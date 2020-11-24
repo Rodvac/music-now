@@ -1,34 +1,42 @@
 <h1> <%= @studio.name %></h1>
 <p><%= @studio.description %></p>
 
-<h1>Room cards</h1>
-<div>
-  <% @studio.rooms.each do |room| %>
-    <h4><%= link_to room.name, room_path(@studio) %></h4>
-    <p><%= room.description %></p>
-    <p>  Capacitée : <%= room.capacity %> </p>
-  <% end %>
+<div class="d-flex">
+  <div class="filtres">
+    <h2>Filtres</h2>
+    <div>
+      <p>BLABLABLABLABLABLABLABLABLABLABLA</p>
+    </div>
+  </div>
+  <div class="cards-rooms">
+    <% @studio.rooms.each do |room| %>
+        <div class="card-room mb-3">
+          <%= link_to room_path(room) do  %>
+             <img src="" alt="">
+          <% end %>
+          <div class="card-room-infos">
+            <div class="studio-name">
+             <p><%= room.studio.name %></p>
+            </div>
+            <div class="card-room-description">
+              <h2><%= link_to room.name, room_path(room) %></h2>
+              <p class="address"><%= room.studio.address %></p>
+              <p class="description mt-2"><%= room.description %></p>
+              <p class="mt-2">  Capacité max : <%= room.capacity %> </p>
+            </div>
+            <div class="card-room-gears d-flex mt-2">
+              <div class="d-flex">
+                <i class="fas fa-search"></i>
+                <p class="ml-1">Matériel</p>
+              </div>
+              <div class="btn btn-primary btn-musicnow">
+                <%= link_to "Réserver ce studio", room_path(room) %>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
 </div>
 
 <h3> <%=  link_to "back", studios_path %> </h3>
-
-
-<div class="cards-rooms">
-  <%#= link_to do,  %>
-  <%# end %>
-  <div class="card-room">
-    <img src="" alt="">
-    <div class="description">
-      <h1>Studio Name</h1>
-      <p>Adress</p>
-      <p>Paragraph</p>
-    </div>
-    <div class="gear details">
-      <i class="fas fa-search"></i>
-      <p>Gear details</p>
-    </div>
-    <div>
-      <%= link_to "Book this room" %>
-    </div>
-  </div>
-</div>

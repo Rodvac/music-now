@@ -1,0 +1,80 @@
+
+.cards-rooms {
+  justify-content: space-between;
+  display: flex;
+  width: 940px;
+  flex-wrap: wrap;
+  margin-left: 20px;
+}
+.card-room {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 300px;
+  min-width: 300px;
+  position: relative;
+}
+
+.card-room img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  min-height: 200px;
+}
+
+.card-room h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-room p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+}
+
+
+.card-room-infos {
+  padding: 16px;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  background-color: $light-gray
+}
+
+.card-room-description h2 {
+  font-size: 24px;
+  color: $black;
+}
+
+.card-room-description .address {
+  color: $light-black;
+  font-size: 12px;
+}
+
+.card-room-description .description {
+  font-size: 14px;
+}
+
+.card-room-gears {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-room-gears p {
+  font-size: 14px;
+}
+
+.studio-name {
+  position: absolute;
+  background-color: $black;
+  color: white;
+  border-radius: 35px;
+  padding: 8px;
+  top: -20px;
+  right: 16px;
+}
+
+
+

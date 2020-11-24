@@ -9,7 +9,6 @@
 
   p {
     font-size: 12px;
-    color: $gray;
   }
 
   h2 {
@@ -17,7 +16,7 @@
   }
 }
 
-.card-img {
+.card-studio-img {
   height: 100%;
   width: 230px;
   background-size: cover;
@@ -36,4 +35,8 @@
 
 .card-studio .description {
   color: black;
+}
+
+.card-studio .address {
+  color: gray;
 }

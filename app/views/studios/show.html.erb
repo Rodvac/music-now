@@ -1,3 +1,4 @@
+
 <h1> <%= @studio.name %></h1>
 <p><%= @studio.description %></p>
 
@@ -30,7 +31,7 @@
                 <p class="ml-1">Matériel</p>
               </div>
               <div class="btn btn-primary btn-musicnow">
-                <%= link_to "Réserver ce studio", room_path(room) %>
+                <%= link_to "Réserver ce studio", new_room_booking_path(room) %>
               </div>
             </div>
           </div>

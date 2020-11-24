@@ -1,19 +1,19 @@
-<div class="container">
-  <h1>Find a studio</h1>
-    <div class="cards">
-      <% @studios.each do |studio| %>
-        <div class="card-studio">
-          <div class= "card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg)"></div>
-            <div class="card-studio-infos">
-              <h2> <%= studio.name %> </h2>
-              <p> <%= studio.address %> </p>
-              <p> <%= studio.description.first(100) %>... </p>
-              <p> <%= link_to "See this studio", studio_path(studio), class: "btn btn-primary" %> </p>
-            </div>
-        </div>
-      <% end %>
-    </div>
-</div>
+<br>
+<h1>Find a studio</h1>
+<br>
+  <div class="cards">
+    <% @studios.each do |studio| %>
+      <div class="card-studio">
+        <div class= "card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg)"></div>
+          <div class="card-studio-infos">
+            <h2> <%= studio.name %> </h2>
+            <p> <%= studio.address %> </p>
+            <p> <%= studio.description.first(100) %>... </p>
+            <p> <%= link_to "See this studio", studio_path(studio), class: "btn btn-primary" %> </p>
+          </div>
+      </div>
+    <% end %>
+  </div>
 
 <h2>
   <%= link_to "Home page", root_path %>

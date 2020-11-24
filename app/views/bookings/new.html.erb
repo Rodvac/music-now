@@ -1,0 +1,5 @@
+<%= simple_form_for [ @room, @booking ] do |f| %>
+  <%= f.input :starts_at, :input_html => { :value => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M") }, as: :hidden %>
+  <%= f.input :duration %>
+  <%= f.submit "Book me", class: 'btn btn-primary' %>
+<% end %>

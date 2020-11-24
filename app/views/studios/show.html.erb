@@ -1,0 +1,13 @@
+<% @studio.rooms.each do |room| %>
+<li class="text-center"><%= room.name %>
+<br>
+<%= room.description %>
+<br>
+<%= room.capacity %>
+</li>
+<% room.items.each do |item|%>
+<li><%=item.name %></li>
+<% end %>
+<%= link_to "book me", new_room_booking_path(room) %>
+<br>
+<% end %>

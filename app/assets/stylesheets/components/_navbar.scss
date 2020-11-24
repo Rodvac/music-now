@@ -1,12 +1,31 @@
-.navbar-lewagon {
+.navbar-music-now {
   justify-content: space-between;
-  background: white;
+  background: $my-green;
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-music-now .navbar-collapse {
   flex-grow: 0;
+
 }
 
-.navbar-lewagon .navbar-brand img {
+.navbar-music-now .navbar-brand img {
   width: 40px;
+}
+
+.music-now {
+  color: white;
+  font-family: Oswald;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 41px;
+}
+
+.nav-link {
+  color: white !important;
+  font-family: Oswald;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 36px;
 }

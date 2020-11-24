@@ -1,13 +1,43 @@
-<% @studio.rooms.each do |room| %>
-<li class="text-center"><%= room.name %>
-<br>
-<%= room.description %>
-<br>
-<%= room.capacity %>
-</li>
-<% room.items.each do |item|%>
-<li><%=item.name %></li>
-<% end %>
-<%= link_to "book me", new_room_booking_path(room) %>
-<br>
-<% end %>
+
+<h1> <%= @studio.name %></h1>
+<p><%= @studio.description %></p>
+
+<div class="d-flex">
+  <div class="filtres">
+    <h2>Filtres</h2>
+    <div>
+      <p>BLABLABLABLABLABLABLABLABLABLABLA</p>
+    </div>
+  </div>
+  <div class="cards-rooms">
+    <% @studio.rooms.each do |room| %>
+        <div class="card-room mb-3">
+          <%= link_to room_path(room) do  %>
+             <img src="" alt="">
+          <% end %>
+          <div class="card-room-infos">
+            <div class="studio-name">
+             <p><%= room.studio.name %></p>
+            </div>
+            <div class="card-room-description">
+              <h2><%= link_to room.name, room_path(room) %></h2>
+              <p class="address"><%= room.studio.address %></p>
+              <p class="description mt-2"><%= room.description %></p>
+              <p class="mt-2">  Capacité max : <%= room.capacity %> </p>
+            </div>
+            <div class="card-room-gears d-flex mt-2">
+              <div class="d-flex">
+                <i class="fas fa-search"></i>
+                <p class="ml-1">Matériel</p>
+              </div>
+              <div class="btn btn-primary btn-musicnow">
+                <%= link_to "Réserver ce studio", new_room_booking_path(room) %>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<h3> <%=  link_to "back", studios_path %> </h3>

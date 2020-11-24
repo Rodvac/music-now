@@ -1,0 +1,13 @@
+<h1> <%= @studio.name %></h1>
+<p><%= @studio.description %></p>
+
+
+<div>
+  <% @studio.rooms.each do |room| %>
+    <h4><%= link_to room.name, room_path(@studio) %></h4>
+    <p><%= room.description %></p>
+    <p>  Capacitée : <%= room.capacity %> </p>
+  <% end %>
+</div>
+
+<h3> <%=  link_to "back", studios_path %> </h3>

@@ -1,3 +1,3 @@
 class Item < ApplicationRecord
-  belongs_to :room
+  has_many :rooms, through: :items_rooms
 end

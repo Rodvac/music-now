@@ -28,7 +28,13 @@
             <div class="card-room-gears d-flex mt-2">
               <div class="d-flex">
                 <i class="fas fa-search"></i>
-                <p class="ml-1">Matériel</p>
+                <a class="btn btn-link" href="#" data-toggle="collapse" data-target="#target1">
+                  Matériel
+                </a>
+              <div id="target1" class="collapse">
+                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s ...
+              </div>
               </div>
               <div class="btn btn-primary btn-musicnow">
                 <%= link_to "Réserver ce studio", new_room_booking_path(room) %>

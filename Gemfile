@@ -31,9 +31,14 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
 
+# Front-end end
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
+
+# Own gems
+gem 'geocoder'
+
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'

@@ -3,6 +3,14 @@ class StudiosController < ApplicationController
 
   def index
     @studios = Studio.all
+
+    @markers = @studios.geocoded.map do |studio|
+      {
+        lat: studio.latitude,
+        lng: studio.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { studio: studio })
+      }
+    end
   end
 
   def show

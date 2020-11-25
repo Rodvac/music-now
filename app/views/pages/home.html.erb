@@ -5,3 +5,15 @@
 <h2>
   <%= link_to "All studios", studios_path %>
 </h2>
+
+
+
+
+
+<h1>Trouver un studio</h1>
+
+<%= simple_form_for :search, url: rooms_path, method: :get  do |f|%>
+      <%= f.input :capacity %>
+      <%= f.input :address, collection: Studio.all.map{|s| s.address}, placeholder: 'Address'%>
+      <%= f.submit "Rechercher", class: 'btn btn-primary' %>
+    <% end %>

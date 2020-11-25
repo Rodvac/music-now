@@ -25,11 +25,16 @@ gem 'faker'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
-gem "simple_calendar"
+gem 'pg_search', '~> 2.3.0'
 
+# Front-end end
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
+
+# Own gems
+gem 'geocoder'
+
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'

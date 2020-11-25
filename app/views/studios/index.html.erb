@@ -25,17 +25,17 @@
     </div>
     <div class="">
       <%= simple_form_for :location, url: studios_path, method: :get do |f| %>
-        <%= f.input :longitude, input_html: {id: "longitude", value: @longitude, class: "d-none"}, label:false%>
-        <%= f.input :latitude, input_html: {id: "latitude", value: @latitude, class: "d-none"}, label:false %>
-        <%= f.input :radius, as: :range, input_html: {min: "1", max: "20", value: @radius} %>
+        <%= f.input :longitude, input_html: {id: "longitude", value: @longitude, class: ""}, label:false%>
+        <%= f.input :latitude, input_html: {id: "latitude", value: @latitude, class: ""}, label:false %>
+        <%= f.input :radius, as: :range, input_html: {min: "1", max: "20", value: @radius}, label: "Rayon" %>
         <%= f.submit "Envoyer" %>
       <% end %>
-      <%= simple_form_for :location, url: studios_path, method: :get do |f| %>
-        <%= f.input :longitude, input_html: {id: "longitude", class: "d-none"}, label:false%>
-        <%= f.input :latitude, input_html: {id: "latitude", class: "d-none"}, label:false %>
-        <%= f.input :radius, as: :radio_buttons, collection: [5, 10, 15, 20], input_html: {value: @radius}, wrapper: :vertical_collection_inline, label: "Rayon" %>
-        <%= f.submit "Envoyer" %>
-      <% end %>
+      <%#= simple_form_for :location, url: studios_path, method: :get do |f| %>
+        <%#= f.input :longitude, input_html: {id: "longitude", value: @longitude, class: ""}, label:false%>
+        <%#= f.input :latitude, input_html: {id: "latitude", value: @latitude, class: ""}, label:false %>
+        <%#= f.input :radius, as: :radio_buttons, collection: [5, 10, 15, 20], input_html: {value: @radius}, wrapper: :vertical_collection_inline, label: "Rayon" %>
+        <%#= f.submit "Envoyer" %>
+      <%# end %>
 
     </div>
   </div>

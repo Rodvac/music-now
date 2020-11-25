@@ -2,10 +2,13 @@ class StudiosController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @studios = Studio.all
-
     if params[:location]
       @studios = Studio.near([params[:location][:latitude], params[:location][:longitude]], params[:location][:radius])
+      @latitude = params[:location][:latitude]
+      @longitude = params[:location][:longitude]
+      @radius = params[:location][:radius] || 5
+    else
+      @studios = Studio.all
     end
     @markers = @studios.geocoded.map do |studio|
       {
@@ -14,9 +17,6 @@ class StudiosController < ApplicationController
         infoWindow: render_to_string(partial: "info_window", locals: { studio: studio })
       }
     end
-      # @latitude = params[:location][:latitude]
-      # @longitude = params[:location][:longitude]
-      # @radius = params[:location][:radius] || 4
   end
 
   def show

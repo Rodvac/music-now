@@ -1,3 +1,4 @@
-<h3><%= studio.name %></h3>
-<p class="map-address"><%= studio.address %></p>
-<p><%= studio.description %></p>
+<%= link_to studio_path(studio) do  %>
+    <h3><%= studio.name %></h3>
+    <p class="map-address"><%= studio.address %></p>
+<% end %>

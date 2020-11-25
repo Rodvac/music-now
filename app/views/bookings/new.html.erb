@@ -11,8 +11,24 @@
 
 <%= "Book #{@room.name} at #{Studio.find(@room.studio_id).name} "%>
 
+<div class="d-flex p-2 bd-highlight">
+<div class="row">
+<% @datearray.each do |date| %>
+<div class="col-1 datebox text-center btn"><%=date%></div>
+<%end%>
+</div>
+</div>
+
+<div class="d-flex p-2 bd-highlight">
+<div class="row">
+<% @timearray.each do |time| %>
+<div class="col-1 text-center timebox btn"><%=time%></div>
+<%end%>
+</div>
+</div>
+
 <%= simple_form_for [ @room, @booking ] do |f| %>
-  <%= f.input :starts_at, :input_html => { :value => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M") } %>
-  <%= f.input :duration %>
+  <%= f.input :date, as: :string, as: :hidden %>
+  <%= f.input :time, as: :string, as: :hidden %>
   <%= f.submit "Book me", class: 'btn btn-primary' %>
 <% end %>

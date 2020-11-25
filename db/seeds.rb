@@ -59,10 +59,10 @@ room15 = Room.create! :name => 'Electric standard', :description => 'Basse, guit
 room16 = Room.create! :name => 'Full band', :description => 'Pour répétition d orchestres et fanfares', :capacity => 18, :price => 27, :studio => luna_rossa
 
 puts "create bookings"
-booking1 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => room1
-booking2 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => room2
-booking3 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => room3
-booking4 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => room4
+booking1 = Booking.create! :date => "2020-26-11", :time => "10:00", :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => room1
+booking2 = Booking.create! :date => "2020-27-11", :time => "12:00", :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => room2
+booking3 = Booking.create! :date => "2020-27-11", :time => "16:00", :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => room3
+booking4 = Booking.create! :date => "2020-25-11", :time => "10:00", :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => room4
 
 puts "create reviews"
 review1 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user => antoine, :booking => booking1

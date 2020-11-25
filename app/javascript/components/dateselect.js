@@ -11,9 +11,10 @@ const dateSelect = () => {
           item.classList.remove("red");
         });
         element.classList.add("red");
+        inputdate.value = element.innerText;
       } else {
       element.classList.add("red");
-      inputdate.value = element.innerHTML;
+      inputdate.value = element.innerText;
       }
     })
   })

@@ -14,7 +14,11 @@
 <div class="d-flex p-2 bd-highlight">
 <div class="row">
 <% @datearray.each do |date| %>
-<div class="col-1 datebox text-center btn"><%=date%></div>
+<% if @date == date %>
+<div class="col-1 datebox text-center btn red"><%=date%></div>
+<% else %>
+<div class="col-1 datebox text-center btn"><%= link_to date, new_room_booking_path(@room, date) %></div>
+<% end %>
 <%end%>
 </div>
 </div>
@@ -22,13 +26,17 @@
 <div class="d-flex p-2 bd-highlight">
 <div class="row">
 <% @timearray.each do |time| %>
-<div class="col-1 text-center timebox btn"><%=time%></div>
+<% if Booking.where(date: @date.to_s, time: time).length > 0 %>
+<div class="col-1 text-center btn booked"><%=time%>Booked</div>
+<% else %>
+<div class="col-1 text-center btn timebox"><%=time%></div>
+<% end %>
 <%end%>
 </div>
 </div>
 
 <%= simple_form_for [ @room, @booking ] do |f| %>
-  <%= f.input :date, as: :string, as: :hidden %>
-  <%= f.input :time, as: :string, as: :hidden %>
+  <%= f.input :date, as: :string, input_html: { value: params[:format] } %>
+  <%= f.input :time, as: :string %>
   <%= f.submit "Book me", class: 'btn btn-primary' %>
 <% end %>

@@ -2,6 +2,17 @@
 <p>Find me in app/views/pages/home.html.erb</p>
 
 
+<div class="home-window">
+  <h1>A GREAT PLACE TO PLAY</h1>
+  <%= simple_form_for :location, url: studios_path, method: :get do |f| %>
+  <%= f.input :longitude, input_html: {id: "longitude", class: "d-none"}, label:false%>
+  <%= f.input :latitude, input_html: {id: "latitude", class: "d-none"}, label:false %>
+  <%= f.input :radius, input_html: {class: "d-none"}, label:false %>
+  <%= f.submit "Studios near me" %>
+  <% end %>
+</div>
+
+
 <h2>
   <%= link_to "All studios", studios_path %>
 </h2>

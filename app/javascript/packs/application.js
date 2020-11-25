@@ -9,10 +9,14 @@ require("@rails/activestorage").start()
 require("channels")
 
 import { initMapbox } from '../plugins/init_mapbox';
+import {init_geoloc} from '../plugins/init_geoloc'
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
+  init_geoloc();
 })
+
+
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

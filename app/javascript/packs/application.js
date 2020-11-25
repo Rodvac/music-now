@@ -9,10 +9,12 @@ require("@rails/activestorage").start()
 require("channels")
 
 import { initMapbox } from '../plugins/init_mapbox';
+import {init_geoloc} from '../plugins/init_geoloc'
 import { toggleClassOnSearchBar } from '../components/searchbar';
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
+  init_geoloc();
   toggleClassOnSearchBar();
 })
 

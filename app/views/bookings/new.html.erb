@@ -27,7 +27,7 @@
 <div class="row">
 <% @timearray.each do |time| %>
 <% if Booking.where(date: @date.to_s, time: time).length > 0 %>
-<div class="col-1 text-center btn booked"><%=time%>Booked</div>
+<div class="col-1 text-center btn booked">Booked</div>
 <% else %>
 <div class="col-1 text-center btn timebox"><%=time%></div>
 <% end %>

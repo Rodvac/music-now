@@ -16,3 +16,22 @@
 <h2>
   <%= link_to "All studios", studios_path %>
 </h2>
+
+
+<div class="container">
+  <h1>Trouver un studio</h1>
+
+  <%= simple_form_for :search, url: rooms_path, method: :get  do |f|%>
+    <div class="search-container">
+      <%= f.input :address, placeholder: 'Où jouez-vous ?'%>
+      <%= f.input :capacity, placeholder: 'Ajoutez des artistes', as: :integer%>
+      <%= f.submit "Rechercher", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
+
+
+<!-- <i class="fas fa-search"></i> -->
+
+<!-- , collection: Studio.all.map{|s| s.address} -->
+

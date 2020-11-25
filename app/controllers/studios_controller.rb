@@ -5,7 +5,7 @@ class StudiosController < ApplicationController
     @studios = Studio.all
 
     if params[:location]
-      @studios = Studio.near([params[:location][:latitude], params[:location][:longitude], params[:location][:radius]])
+      @studios = Studio.near([params[:location][:latitude], params[:location][:longitude]], params[:location][:radius])
     end
     @markers = @studios.geocoded.map do |studio|
       {
@@ -14,9 +14,9 @@ class StudiosController < ApplicationController
         infoWindow: render_to_string(partial: "info_window", locals: { studio: studio })
       }
     end
-      @latitude = params[:location][:latitude]
-      @longitude = params[:location][:longitude]
-      @radius = params[:location][:radius] || 4
+      # @latitude = params[:location][:latitude]
+      # @longitude = params[:location][:longitude]
+      # @radius = params[:location][:radius] || 4
   end
 
   def show

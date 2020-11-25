@@ -23,7 +23,7 @@
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
-    <div class="range-studio-near-me">
+    <div class="">
       <%= simple_form_for :location, url: studios_path, method: :get do |f| %>
         <%= f.input :longitude, input_html: {id: "longitude", value: @longitude, class: "d-none"}, label:false%>
         <%= f.input :latitude, input_html: {id: "latitude", value: @latitude, class: "d-none"}, label:false %>
@@ -33,7 +33,7 @@
       <%= simple_form_for :location, url: studios_path, method: :get do |f| %>
         <%= f.input :longitude, input_html: {id: "longitude", class: "d-none"}, label:false%>
         <%= f.input :latitude, input_html: {id: "latitude", class: "d-none"}, label:false %>
-        <%= f.input :radius, as: :radio_buttons, collection: [5, 10, 15, 20], input_html: {value: @radius}, wrapper: :vertical_collection_inline, label: "autour de toi" %>
+        <%= f.input :radius, as: :radio_buttons, collection: [5, 10, 15, 20], input_html: {value: @radius}, wrapper: :vertical_collection_inline, label: "Rayon" %>
         <%= f.submit "Envoyer" %>
       <% end %>
 

@@ -1,5 +1,14 @@
 // Specific CSS for your home-page
+
+.home-background-image{
+  width: 100%;
+  height: 400px;
+  position: relative;
+}
+
 .home-window {
   background: $my-green;
   position: absolute;
+  right: 100px;
+  bottom: 50px;
 }

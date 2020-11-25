@@ -15,10 +15,6 @@ class Room < ApplicationRecord
       studio: [:address]
     },
 
-    associated_against: {
-      item: [:category]
-    },
-
     using: {
       tsearch: { prefix: true }
     }

@@ -1,6 +1,12 @@
 require 'faker'
 require 'date'
 
+puts "destroying all items-rooms"
+ItemsRoom.destroy_all
+
+puts "destroying all items"
+Item.destroy_all
+
 puts "destroying all Studios"
 Studio.destroy_all
 
@@ -14,7 +20,10 @@ puts "destroying all reviews"
 Review.destroy_all
 
 puts "destroying all users"
-User.destroy_all 
+User.destroy_all
+
+
+
 
 puts "create user"
 antoine = User.create! :email => 'antoine@gmail.com', :password => '123456', :password_confirmation => '123456', :first_name => 'Antoine', :last_name => 'Goeuriot'
@@ -29,44 +38,45 @@ hbs = Studio.create! :name => 'Studios HBS', :address => '25 Avenue Corentin Car
 luna_rossa = Studio.create! :name => 'Luna Rossa', :address => '24 rue Primo Levi, 75013 Paris', :description => 'Créé en 1985 et situé dans le 13ème, le Studio Luna Rossa est le plus grand studio de répétitions de Paris. Après 3 déménagements, le studio est depuis 2011 situé au 24 rue Primo Lévi, au cœur d un arrondissement en pleine explosion artistique et culturelle.'
 
 puts "create rooms"
-room1 = Room.create! :name => 'Solo drumming', :description => 'Petite salle de répétition batterie', :capacity => 1, :price => 9, :studio_id => 1
-room2 = Room.create! :name => 'Piano voix', :description => 'Salle de répétition pour piano et voix', :capacity => 2, :price => 12, :studio_id => 1
-room3 = Room.create! :name => 'Electric standard', :description => 'Basse, guitare, batterie', :capacity => 5, :price => 14, :studio_id => 1
-room4 = Room.create! :name => 'Full band', :description => 'Pour répétition d orchestres et fanfares', :capacity => 18, :price => 27, :studio_id => 1
+room1 = Room.create! :name => 'Solo drumming', :description => 'Petite salle de répétition batterie', :capacity => 1, :price => 9, :studio => studio_bleu
+room2 = Room.create! :name => 'Piano voix', :description => 'Salle de répétition pour piano et voix', :capacity => 2, :price => 12, :studio => studio_bleu
+room3 = Room.create! :name => 'Electric standard', :description => 'Basse, guitare, batterie', :capacity => 5, :price => 14, :studio => studio_bleu
+room4 = Room.create! :name => 'Full band', :description => 'Pour répétition d orchestres et fanfares', :capacity => 18, :price => 27, :studio => studio_bleu
 
-room5 = Room.create! :name => 'Solo drumming', :description => 'Petite salle de répétition batterie', :capacity => 1, :price => 9, :studio_id => 2
-room6 = Room.create! :name => 'Piano voix', :description => 'Salle de répétition pour piano et voix', :capacity => 2, :price => 12, :studio_id => 2
-room7 = Room.create! :name => 'Electric standard', :description => 'Basse, guitare, batterie', :capacity => 5, :price => 14, :studio_id => 2
-room8 = Room.create! :name => 'Full band', :description => 'Pour répétition d orchestres et fanfares', :capacity => 18, :price => 27, :studio_id => 2
+room5 = Room.create! :name => 'Solo drumming', :description => 'Petite salle de répétition batterie', :capacity => 1, :price => 9, :studio => hf_music
+room6 = Room.create! :name => 'Piano voix', :description => 'Salle de répétition pour piano et voix', :capacity => 2, :price => 12, :studio => hf_music
+room7 = Room.create! :name => 'Electric standard', :description => 'Basse, guitare, batterie', :capacity => 5, :price => 14, :studio => hf_music
+room8 = Room.create! :name => 'Full band', :description => 'Pour répétition d orchestres et fanfares', :capacity => 18, :price => 27, :studio => hf_music
 
-room9 = Room.create! :name => 'Solo drumming', :description => 'Petite salle de répétition batterie', :capacity => 1, :price => 9, :studio_id => 3
-room10 = Room.create! :name => 'Piano voix', :description => 'Salle de répétition pour piano et voix', :capacity => 2, :price => 12, :studio_id => 3
-room11 = Room.create! :name => 'Electric standard', :description => 'Basse, guitare, batterie', :capacity => 5, :price => 14, :studio_id => 3
-room12 = Room.create! :name => 'Full band', :description => 'Pour répétition d orchestres et fanfares', :capacity => 18, :price => 27, :studio_id => 3
+room9 = Room.create! :name => 'Solo drumming', :description => 'Petite salle de répétition batterie', :capacity => 1, :price => 9, :studio => hbs
+room10 = Room.create! :name => 'Piano voix', :description => 'Salle de répétition pour piano et voix', :capacity => 2, :price => 12, :studio => hbs
+room11 = Room.create! :name => 'Electric standard', :description => 'Basse, guitare, batterie', :capacity => 5, :price => 14, :studio => hbs
+room12 = Room.create! :name => 'Full band', :description => 'Pour répétition d orchestres et fanfares', :capacity => 18, :price => 27, :studio => hbs
 
-room13 = Room.create! :name => 'Solo drumming', :description => 'Petite salle de répétition batterie', :capacity => 1, :price => 9, :studio_id => 4
-room14 = Room.create! :name => 'Piano voix', :description => 'Salle de répétition pour piano et voix', :capacity => 2, :price => 12, :studio_id => 4
-room15 = Room.create! :name => 'Electric standard', :description => 'Basse, guitare, batterie', :capacity => 5, :price => 14, :studio_id => 4
-room16 = Room.create! :name => 'Full band', :description => 'Pour répétition d orchestres et fanfares', :capacity => 18, :price => 27, :studio_id => 4
+room13 = Room.create! :name => 'Solo drumming', :description => 'Petite salle de répétition batterie', :capacity => 1, :price => 9, :studio => luna_rossa
+room14 = Room.create! :name => 'Piano voix', :description => 'Salle de répétition pour piano et voix', :capacity => 2, :price => 12, :studio => luna_rossa
+room15 = Room.create! :name => 'Electric standard', :description => 'Basse, guitare, batterie', :capacity => 5, :price => 14, :studio => luna_rossa
+room16 = Room.create! :name => 'Full band', :description => 'Pour répétition d orchestres et fanfares', :capacity => 18, :price => 27, :studio => luna_rossa
 
 puts "create bookings"
-booking1 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user_id => 1, :room_id => 1
-booking2 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user_id => 2, :room_id => 2
-booking3 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user_id => 3, :room_id => 3
-booking4 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user_id => 4, :room_id => 4
+booking1 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => room1
+booking2 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => room2
+booking3 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => room3
+booking4 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => room4
 
 puts "create reviews"
-review1 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user_id => 1, :booking_id => 1 
-review2 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user_id => 2, :booking_id => 2
-review3 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user_id => 3, :booking_id => 3
-review4 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user_id => 4, :booking_id => 4
+review1 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user => antoine, :booking => booking1
+review2 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user => tanguy, :booking => booking2
+review3 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user => delphine, :booking => booking3
+review4 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user => rodolphe, :booking => booking4
+
 
 puts "create items"
-30.times do 
+30.times do
   Item.create! :name => Faker::Music.instrument, :description => 'Superbe instrument', :category => 'Instruments'
-end 
+end
 
 puts "assigning items to rooms"
-50.times do 
-ItemsRoom.create! :room_id => rand(1..16), :item_id => rand(1..30)
-end 
+50.times do
+ItemsRoom.create! :room => Room.all.sample, :item => Item.all.sample
+end

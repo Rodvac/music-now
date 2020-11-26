@@ -8,11 +8,22 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
+import "bootstrap";
+
 import { initMapbox } from '../plugins/init_mapbox';
+import {initGeoloc} from '../plugins/init_geoloc'
+import { toggleClassOnSearchBar } from '../components/searchbar';
+import { dateSelect } from '../components/dateselect';
+import { timeSelect } from '../components/timeselect';
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
+  initGeoloc();
+  toggleClassOnSearchBar();
+  dateSelect();
+  timeSelect();
 })
+
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -29,12 +40,3 @@ document.addEventListener('turbolinks:load', () => {
 // ----------------------------------------------------
 
 // External imports
-import "bootstrap";
-
-// Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
-
-document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
-});

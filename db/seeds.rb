@@ -22,8 +22,16 @@ Review.destroy_all
 puts "destroying all users"
 User.destroy_all
 
-
-
+#DATA BASE
+prices = (8..30).to_a
+capacity = (1..12).to_a
+street_numbers = (1..50).to_a
+street_types = %w(rue boulevard avenue)
+street_names = %w(Jean\ Jaures Carnot Charles\ de\ Gaulle Louis\ Pasteur Victor\ Hugo Jean\ Moulin Général\ Leclerc Jules\ Ferry Maréchal\ Foch)
+city = %w(Paris)
+key_word_band = %w(group, solo, trio, quatuors, orchestres, rock\ band, cours, piano\ voix)
+key_word_style = %w(electrique accoustique amplifié)
+#END
 
 puts "create user"
 antoine = User.create! :email => 'antoine@gmail.com', :password => '123456', :password_confirmation => '123456', :first_name => 'Antoine', :last_name => 'Goeuriot'
@@ -37,39 +45,43 @@ hf_music = Studio.create! :name => 'HF Music Studio', :address => '20-22 rue Ric
 hbs = Studio.create! :name => 'Studios HBS', :address => '25 Avenue Corentin Cariou, 75019 Paris', :description => 'HBS Écuries est l un des premiers studios de répétitions musicales à ouvrir dans le centre de Paris et voilà désormais plus de trente ans que groupes et musiciens de tous styles (Jazz, Pop, Rock, Funk, Afro, Punk...), professionnels et amateurs, se succèdent dans nos locaux toujours en expansion.'
 luna_rossa = Studio.create! :name => 'Luna Rossa', :address => '24 rue Primo Levi, 75013 Paris', :description => 'Créé en 1985 et situé dans le 13ème, le Studio Luna Rossa est le plus grand studio de répétitions de Paris. Après 3 déménagements, le studio est depuis 2011 situé au 24 rue Primo Lévi, au cœur d un arrondissement en pleine explosion artistique et culturelle.'
 
+# puts "in france"
+10.times {
+  studio = Studio.create!(name: Faker::Music.album, address: "#{street_numbers.sample} #{street_types.sample} #{street_names.sample} France ", description: Faker::Quote.most_interesting_man_in_the_world)
+}
+puts "in ile-de-france"
+8.times {
+  studio = Studio.create!(name: Faker::Music.album, address: "#{street_numbers.sample} #{street_types.sample} #{street_names.sample} ile-de-france", description: Faker::Quote.most_interesting_man_in_the_world)
+}
+puts "in Paris"
+10.times {
+  studio = Studio.create!(name: Faker::Music.album, address: "#{street_numbers.sample} #{street_types.sample} #{street_names.sample} Paris", description: Faker::Quote.most_interesting_man_in_the_world)
+  file = URI.open('https://source.unsplash.com/1600x900/?room,music')
+  studio.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
+}
+
+
 puts "create rooms"
-room1 = Room.create! :name => 'Solo drumming', :description => 'Petite salle de répétition batterie', :capacity => 1, :price => 9, :studio => studio_bleu
-room2 = Room.create! :name => 'Piano voix', :description => 'Salle de répétition pour piano et voix', :capacity => 2, :price => 12, :studio => studio_bleu
-room3 = Room.create! :name => 'Electric standard', :description => 'Basse, guitare, batterie', :capacity => 5, :price => 14, :studio => studio_bleu
-room4 = Room.create! :name => 'Full band', :description => 'Pour répétition d orchestres et fanfares', :capacity => 18, :price => 27, :studio => studio_bleu
 
-room5 = Room.create! :name => 'Solo drumming', :description => 'Petite salle de répétition batterie', :capacity => 1, :price => 9, :studio => hf_music
-room6 = Room.create! :name => 'Piano voix', :description => 'Salle de répétition pour piano et voix', :capacity => 2, :price => 12, :studio => hf_music
-room7 = Room.create! :name => 'Electric standard', :description => 'Basse, guitare, batterie', :capacity => 5, :price => 14, :studio => hf_music
-room8 = Room.create! :name => 'Full band', :description => 'Pour répétition d orchestres et fanfares', :capacity => 18, :price => 27, :studio => hf_music
-
-room9 = Room.create! :name => 'Solo drumming', :description => 'Petite salle de répétition batterie', :capacity => 1, :price => 9, :studio => hbs
-room10 = Room.create! :name => 'Piano voix', :description => 'Salle de répétition pour piano et voix', :capacity => 2, :price => 12, :studio => hbs
-room11 = Room.create! :name => 'Electric standard', :description => 'Basse, guitare, batterie', :capacity => 5, :price => 14, :studio => hbs
-room12 = Room.create! :name => 'Full band', :description => 'Pour répétition d orchestres et fanfares', :capacity => 18, :price => 27, :studio => hbs
-
-room13 = Room.create! :name => 'Solo drumming', :description => 'Petite salle de répétition batterie', :capacity => 1, :price => 9, :studio => luna_rossa
-room14 = Room.create! :name => 'Piano voix', :description => 'Salle de répétition pour piano et voix', :capacity => 2, :price => 12, :studio => luna_rossa
-room15 = Room.create! :name => 'Electric standard', :description => 'Basse, guitare, batterie', :capacity => 5, :price => 14, :studio => luna_rossa
-room16 = Room.create! :name => 'Full band', :description => 'Pour répétition d orchestres et fanfares', :capacity => 18, :price => 27, :studio => luna_rossa
+Studio.all.each do |studio|
+  rand(4..14).times {
+  Room.create!(name: "#{key_word_band.sample} #{key_word_style.sample}", description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: studio)
+  }
+end
 
 puts "create bookings"
-booking1 = Booking.create! :date => "2020-11-26", :time => "10:00", :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => room1
-booking2 = Booking.create! :date => "2020-11-27", :time => "12:00", :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => room2
-booking3 = Booking.create! :date => "2020-11-27", :time => "16:00", :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => room3
-booking4 = Booking.create! :date => "2020-11-25", :time => "10:00", :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => room4
+
+booking1 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "Mardi", :time => "20h"
+booking2 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "jeudi", :time => "20h"
+booking3 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "jeudi", :time => "20h"
+booking4 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "vendredi", :time => "20h"
+
 
 puts "create reviews"
 review1 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user => antoine, :booking => booking1
 review2 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user => tanguy, :booking => booking2
 review3 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user => delphine, :booking => booking3
 review4 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user => rodolphe, :booking => booking4
-
 
 puts "create items"
 30.times do

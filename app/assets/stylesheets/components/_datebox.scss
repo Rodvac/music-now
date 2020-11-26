@@ -1,12 +1,14 @@
 .datebox {
   border: 1px solid black;
-  margin-right: 10px;
-  margin-bottom: 10px;  
+  margin-top: -1px;
+  margin-right: -1px;
+  min-width: 14%;
+  max-width: 15%;
+  max-height: 30px; 
 }
 
 .timebox {
   border: 1px solid black; 
-  margin-right: 10px;
   margin-bottom: 10px; 
 }
 
@@ -19,5 +21,35 @@
 }
 
 .booked {
-  background-color: red;
+  border: 1px solid black;
+  border: 1px solid black; 
+  margin-bottom: 10px; 
+  background-color: grey;
+}
+
+.daybox {
+  margin-top: -1px;
+  margin-right: -1px;
+  min-width: 14%;
+  max-width: 15%;
+  height: 30px; 
+  text-align: center
+}
+
+.monthbox {
+  width: 33%; 
+  text-align: center; 
+}
+.monthdir {
+  width: 33%; 
+  text-align: center; 
+}
+
+.monthtitle {
+  width: 100%;
+  text-align: center;
+}
+
+.bookcard {
+  background-color: white;
 }

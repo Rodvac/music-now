@@ -1,42 +1,98 @@
-<h1><%=@room.name %></h1>
-<p><%=@room.description%><p>
-<p><%=@room.capacity %><p>
 
-<h2>Our gear</h2>
-<% @room.items.each do |item| %>
-<li><%= item.name %></li>
-<% end %>
 
-<br>
-
-<%= "Book #{@room.name} at #{Studio.find(@room.studio_id).name} "%>
-
-<div class="d-flex p-2 bd-highlight">
 <div class="row">
-<% @datearray.each do |date| %>
-<% if @date == date %>
-<div class="col-1 datebox text-center btn red"><%=date%></div>
-<% else %>
-<div class="col-1 datebox text-center btn"><%= link_to date, new_room_booking_path(@room, date) %></div>
-<% end %>
-<%end%>
-</div>
+
+<div class= "col-4">
+<h2 class="monthtitle">Your Room</h2>
+        <div class="card-room mb-3">
+          <%= link_to room_path(@room) do  %>
+             <img src="" alt="">
+          <% end %>
+          <div class="card-room-infos">
+            <div class="studio-name">
+             <p><%= @room.studio.name %></p>
+            </div>
+            <div class="card-room-description">
+              <h2><%= link_to @room.name, room_path(@room) %></h2>
+              <p class="address"><%= @room.studio.address %></p>
+              <p class="description mt-2"><%= @room.description %></p>
+              <p class="mt-2 capacity">  Capacité max : <%= @room.capacity %> </p>
+            </div>
+            <div class="card-room-gears d-flex mt-2">
+              <div class="d-flex">
+                <i class="fas fa-search"></i>
+                <a class="ml-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  Matériel
+                </a>
+              </div>
+            </div>
+            <div class="collapse" id="collapseExample">
+                <p>- Piano</p>
+                <p>- Batterie</p>
+                <p>- Micro SM-58</p>
+            </div>
+          </div>
+        </div>
+   </div>
+
+
+
+  <div class="col-4">
+  <div class="bookcard">
+    <h2 class="monthtitle">Select a day</h2>
+    <br>
+  <div class="d-flex">
+    <div class="monthdir"><%= link_to "<", new_room_booking_path(@room, @date - 30) %></div>
+    <div class="monthbox"><h4><%=Date::MONTHNAMES[@date.month]%></h4></div>
+    <div class="monthdir"><%= link_to ">", new_room_booking_path(@room, @date + 30) %></div>
+  </div> 
+  <br>
+  <div class="d-flex">
+    <div class="daybox">M</div>
+    <div class="daybox">T</div>
+    <div class="daybox">W</div>
+    <div class="daybox">T</div>
+    <div class="daybox">F</div>
+    <div class="daybox">S</div>
+    <div class="daybox">S</div>
+  </div>
+  <div class="d-flex flex-wrap">
+  <% if @start.wday == 0 %>
+  <% 6.times do %>
+    <div class="datebox text-center" id=""></div>
+  <% end %>
+    <%else%>
+  <% (@start.wday - 1).times do %>
+    <div class="datebox text-center" id=""></div>
+  <% end %>
+  <% end %>
+  <% @datearray.each do |date| %>
+    <% if @date == date %>
+      <div class="datebox text-center red" id="<%date%>"><%=date.day%></div>
+    <% else %>
+      <div class="datebox text-center" id="<%date%>"><%= link_to date.day, new_room_booking_path(@room, date) %></div>
+    <% end %>
+  <%end%>
+  </div>
+  </div>
 </div>
 
-<div class="d-flex p-2 bd-highlight">
-<div class="row">
-<% @timearray.each do |time| %>
-<% if Booking.where(date: @date.to_s, time: time).length > 0 %>
-<div class="col-1 text-center btn booked">Booked</div>
-<% else %>
-<div class="col-1 text-center btn timebox"><%=time%></div>
-<% end %>
-<%end%>
-</div>
-</div>
-
-<%= simple_form_for [ @room, @booking ] do |f| %>
-  <%= f.input :date, as: :string, input_html: { value: params[:format] } %>
-  <%= f.input :time, as: :string %>
+  <div class="col-4">
+  <h2 class="monthtitle">Select a time</h2>
+  <% @timearray.each do |time| %>
+    <% if Booking.where(date: @date.to_s, time: time).length > 0 %>
+      <div class="text-center booked">Booked</div>
+    <% else %>
+      <div class="text-center timebox" id= ""><%=time%></div>
+    <% end %>
+  <%end%>
+  <%= simple_form_for [ @room, @booking ] do |f| %>
+  <%= f.input :date, as: :string, input_html: { value: params[:format] }, as: :hidden %>
+  <%= f.input :time, as: :string, as: :hidden %>
   <%= f.submit "Book me", class: 'btn btn-primary' %>
-<% end %>
+  <% end %>
+  </div>
+
+  
+</div>
+

@@ -7,12 +7,14 @@ class BookingsController < ApplicationController
     @booking = Booking.new
     @date = params[:format].to_date
     @datearray = []
-    @date = @date - 7 
-    14.times do 
-      @datearray << @date
-      @date = @date + 1
+    month = @date.month
+    year = @date.year
+    @start = Date.new(year, month, 1)
+    30.times do 
+      @datearray << @start
+      @start = @start + 1
     end 
-    @date = @date - 7
+    @start = Date.new(year, month, 1)
     @timearray = [ "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00" ]
     @bookings = Booking.all
   end

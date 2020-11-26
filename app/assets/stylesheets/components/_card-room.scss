@@ -2,17 +2,17 @@
 .cards-rooms {
   justify-content: space-between;
   display: flex;
-  width: 940px;
+  width: 100%;
   flex-wrap: wrap;
-  margin-left: 20px;
 }
 .card-room {
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  width: 300px;
+  width: 340px;
   min-width: 300px;
   position: relative;
+  margin-bottom: 30px;
 }
 
 .card-room img {

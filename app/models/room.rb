@@ -3,6 +3,7 @@ class Room < ApplicationRecord
   has_many :items_rooms
   has_many :items, through: :items_rooms
   has_many :reviews, through: :bookings
+  has_one_attached :photo
   belongs_to :studio
 
 

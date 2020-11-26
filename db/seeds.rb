@@ -56,7 +56,7 @@ room_pic_url = [
 
 
 
-
+i = 0
 prices = (8..30).to_a
 capacity = (1..12).to_a
 street_numbers = (1..50).to_a
@@ -80,12 +80,16 @@ hbs = Studio.create! :name => 'Studios HBS', :address => '25 Avenue Corentin Car
 luna_rossa = Studio.create! :name => 'Luna Rossa', :address => '24 rue Primo Levi, 75013 Paris', :description => 'Créé en 1985 et situé dans le 13ème, le Studio Luna Rossa est le plus grand studio de répétitions de Paris. Après 3 déménagements, le studio est depuis 2011 situé au 24 rue Primo Lévi, au cœur d un arrondissement en pleine explosion artistique et culturelle.'
 
 # puts "in france"
-10.times {
+1.times {
   studio = Studio.create!(name: Faker::Music.album, address: "#{street_numbers.sample} #{street_types.sample} #{street_names.sample} France ", description: Faker::Quote.most_interesting_man_in_the_world)
+  file = URI.open('https://source.unsplash.com/1600x900/?room,music')
+  studio.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
 }
 puts "in ile-de-france"
-8.times {
+1.times {
   studio = Studio.create!(name: Faker::Music.album, address: "#{street_numbers.sample} #{street_types.sample} #{street_names.sample} ile-de-france", description: Faker::Quote.most_interesting_man_in_the_world)
+  file = URI.open('https://source.unsplash.com/1600x900/?room,music')
+  studio.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
 }
 puts "in Paris"
 10.times {
@@ -97,13 +101,24 @@ puts "in Paris"
 
 puts "create rooms"
 
-Studio.all.each do |studio|
-  rand(2..7).times {
-  room = Room.create!(name: "#{key_word_band.sample} #{key_word_style.sample}", description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: studio)
-  file = URI.open(room_pic_url.sample)
+25.times {
+  room =Room.create!(name: "#{key_word_band.sample} #{key_word_style.sample}", description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: Studio.all.sample)
+  file = URI.open(room_pic_url[i])
   room.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
-  }
-end
+  i += 1
+  puts "#{i} room"
+}
+
+
+
+
+# Studio.all.each do |studio|
+#   rand(2..7).times {
+#   room = Room.create!(name: "#{key_word_band.sample} #{key_word_style.sample}", description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: studio)
+#   file = URI.open(room_pic_url.sample)
+#   room.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
+#   }
+# end
 
 puts "create bookings"
 

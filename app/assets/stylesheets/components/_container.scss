@@ -1,6 +1,7 @@
 .custom-container {
   width: 1200px;
   max-width: 100%;
+  min-height: calc(100vh - 125px);
 }
 #pages-home .custom-container {
   width: 100%;

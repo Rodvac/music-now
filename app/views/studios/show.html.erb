@@ -1,17 +1,41 @@
+</div>
+<div class="hero-studio">
+  <img src="" alt="" class="hero-studio-img">
+  <h1 class="hero-studio-title"> <%= @studio.name %></h1>
+</div>
+<div class="container custom-container">
+<div class="hero-card float-right">
+<div class="row">
+<span class="fas fa-phone"></span>
+<p>0142546882</p>
+</div>
+<div class="row">
+<i class="fas fa-at"></i>
+<p><a href="" style="color: white">www.studio.com</a></p>
+</div>
+<div class="row">
+<i class="fas fa-envelope"></i>
+<p>studio@studio.fr</p>
+</div>
+<div class="row">
+<i class="fas fa-map-marker"></i>
+<p> <%=@studio.address%></p>
+</div>
+
+</div>
 <br>
-<h1> <%= @studio.name %></h1>
+<%=  link_to "< back to studios", studios_path %>
+
+<div class="studio-desc">
 <p><%= @studio.description %></p>
+</div>
 <br>
-<div class="d-flex m-0">
   <div class="filtres">
-    <h2>Filtres</h2>
-    <div>
-      <p>BLABLABLABLABLABLABLA</p>
-    </div>
+    <h2><%=@studio.name%> rooms</h2>
   </div>
   <div class="cards-rooms">
     <% @studio.rooms.each do |room| %>
-        <div class="card-room mb-3">
+        <div class="card-room">
           <%= link_to room_path(room) do  %>
              <img src="" alt="">
           <% end %>
@@ -45,6 +69,3 @@
         </div>
     <% end %>
   </div>
-</div>
-
-<h3> <%=  link_to "back", studios_path %> </h3>

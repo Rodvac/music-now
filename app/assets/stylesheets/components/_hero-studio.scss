@@ -1,0 +1,37 @@
+.hero-studio {
+  height: 400px;
+  width: 100%
+}
+
+.hero-studio-img {
+  height: 100%;
+  width: 100%;
+}
+
+.hero-studio-title {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+}
+
+.hero-card {
+  background-color: $my-green;
+  position: relative;
+  height: 200px;
+  width: 340px;
+  margin-top: -180px;
+  color: white; 
+  padding: 15px;
+}
+
+.studio-desc {
+  width: 60%;
+  margin-top: 40px;
+}
+
+.hero-card .fas {
+  margin-right: 10px;
+  margin-left: 20px;
+}

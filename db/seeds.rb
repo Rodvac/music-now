@@ -23,6 +23,40 @@ puts "destroying all users"
 User.destroy_all
 
 #DATA BASE
+
+room_pic_url = [
+"https://lh3.googleusercontent.com/proxy/tcapG32QZw5zwekblSTvYhIt7g9JAIW96fZhT5cdaB3w-mmOG5R8Wu0ORxqDH5hbtNemOBSRjxuNMfuDQRJNbE-V0Mx3tqJr5cSi6hFz9wtkYjqSofa3BKk",
+"https://www.spiritofmusic.fr/wp-content/uploads/2018/10/location-espace-studio-musique-aix-en-provence-557x400.jpg",
+"https://www.studios7emeciel.com/img/blog/s4-square.jpg",
+"https://lh3.googleusercontent.com/proxy/vnLQuc0p_EMPf5m6fgOdvMttP7mOpmuirGwvFG59BCeCkE5vs5TVZ_dnlKn9Pt8joryCxWQXTLz-jH1-nkjoF6cRgeeP8J8djHxdHQ",
+"https://img.audiofanzine.com/image.php?lang=fr&identifier=id&size=normal&module=studioClassified&classified_id=9377",
+"https://live-asso.fr/WordPress/wp-content/uploads/2011/12/bar-live-006.jpg",
+"https://www.meancatrecords.fr/templates/yootheme/cache/studio2gretsch2-0ed057de.jpeg",
+"https://www.morteau.org/wp-content/uploads/2019/09/DSCN8239-1024x768.jpg",
+"https://studiotchaman.fr/wp-content/uploads/2017/09/grand-studio-de-repetition-aubagne.jpg",
+"https://www.lusineamusique.fr/wp-content/uploads/2018/06/img4019-800x500.png",
+"https://media-cdn.tripadvisor.com/media/photo-s/0e/2f/86/86/un-de-nos-local-de-repetition.jpg",
+"https://lh3.googleusercontent.com/proxy/WJyZQvPFqiA8A7ipHZkFFR29kbq1SkOl4o-DrUBhiBIPF-tdzgsBY6-1w6NY4gS9CGgoZBkdIDzuBcJ56K2pE5avCzsqhWU9BZzC91pvLLDBqViOeg8Kz8MGHEO4K3WRrR3Ov8mq",
+"https://lh3.googleusercontent.com/proxy/SVcdu0geoiQcSNem1ln0aTUchpemjoLtyboklqrDrbIzV5tZHo0kChdI8a_OLffsYvzqr7Pc4DexiHd38Wo2Mf-SyedLQT_ExyXRPX3o4t4ja_jugpnz20ZPWjr3IV3UKETtCXEclaxHHqiIzX2VUKyyw3h7gFfFU57At6uNPg",
+"https://lh3.googleusercontent.com/proxy/mqUzT1HYQRJpZ5681hdNixLbowZ7EvwmGDOt4J6txZk49eOKHG-u2LMXQndjOpjZsGdN0i6o0XVn7vfbEQ9K3ghLCoS98q9Wn0KRS6SyvknkQML5l7XwoSK9Mb0YZA",
+"https://sallediffart.com/wp-content/uploads/2018/08/studiobleu.jpg",
+"https://lesmusicales.fr/wp-content/uploads/2019/04/sono.jpeg",
+"https://lh3.googleusercontent.com/proxy/vJbk_P_fYBkjzL3NPM1DSo54BKWJjAkTv2QRLd-Wu1uRdMsWit5oaUCnU7xKDcemS66K7sjjJ6xHfrqgOnl2UYBw4sFdmHWikfP43AQNxBjQzg",
+"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.studiocandp.com%2Fblog%2Fpost%2Fcomment-choisir-son-studio-de-repetition%2F14&psig=AOvVaw2t8FBQ2n0UKps1vbW83a3Y&ust=1606489150348000&source=images&cd=vfe&ved=2ahUKEwjv_bPKvKDtAhUP0OAKHdkNAcoQjRx6BAgAEAc",
+"https://www.google.com/url?sa=i&url=https%3A%2F%2Fstudio-bopcity.business.site%2F&psig=AOvVaw1DW4HGVmjKus8p0s4lTCuW&ust=1606489436472000&source=images&cd=vfe&ved=2ahUKEwj50evSvaDtAhV4BWMBHS74BXIQjRx6BAgAEAc",
+"https://www.lamaisondelamusique.fr/isens_thumb.php?width=640&height=376&image=images/2018/lamaisondelamusique/DSC04549.JPG",
+"https://lh3.googleusercontent.com/proxy/-RSzzuMFH8s9Mw0MYGpnHP_2yRKe6N5jGfbEFnS76Qt5Qykp40za2eiFrJU5jg9dIVPvB1CtmAgruonmo4K3R7wnM794vtKqB9uYkLU_ap-IlmSyJ6uShohk9asJDz-Y8lgt",
+"https://lh3.googleusercontent.com/proxy/6T4rIc9b5yxs5fE_RLHV4aEpnFaUJkdmu1drhGg6qlMjIFdpTgv2ytRQRcegNe3xIYbEXM-zLIfKc3ck53Y-99RxdEZxvvyzHPFbQSBbISLTo6-N4aUASqddI1p1eRj9z2px",
+"https://static.wixstatic.com/media/242dce_5b9df68ec01d41ac955dd94c9c3d5129.jpg/v1/fill/w_864,h_576,al_c,lg_1,q_90/242dce_5b9df68ec01d41ac955dd94c9c3d5129.webp",
+"https://www.spectable.com/image/image/n/bhr-prod-studio-enregistrement-et-de-repetition_479469.jpg",
+"https://www.hfmusicstudio.com/wp-content/uploads/2014/09/HFmusicstudioAbbeyRoad-1500x630.jpg"
+]
+
+
+
+
+
+i = 0
 prices = (8..30).to_a
 capacity = (1..12).to_a
 street_numbers = (1..50).to_a
@@ -46,12 +80,16 @@ hbs = Studio.create! :name => 'Studios HBS', :address => '25 Avenue Corentin Car
 luna_rossa = Studio.create! :name => 'Luna Rossa', :address => '24 rue Primo Levi, 75013 Paris', :description => 'Créé en 1985 et situé dans le 13ème, le Studio Luna Rossa est le plus grand studio de répétitions de Paris. Après 3 déménagements, le studio est depuis 2011 situé au 24 rue Primo Lévi, au cœur d un arrondissement en pleine explosion artistique et culturelle.'
 
 # puts "in france"
-10.times {
+1.times {
   studio = Studio.create!(name: Faker::Music.album, address: "#{street_numbers.sample} #{street_types.sample} #{street_names.sample} France ", description: Faker::Quote.most_interesting_man_in_the_world)
+  file = URI.open('https://source.unsplash.com/1600x900/?room,music')
+  studio.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
 }
 puts "in ile-de-france"
-8.times {
+1.times {
   studio = Studio.create!(name: Faker::Music.album, address: "#{street_numbers.sample} #{street_types.sample} #{street_names.sample} ile-de-france", description: Faker::Quote.most_interesting_man_in_the_world)
+  file = URI.open('https://source.unsplash.com/1600x900/?room,music')
+  studio.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
 }
 puts "in Paris"
 10.times {
@@ -63,11 +101,24 @@ puts "in Paris"
 
 puts "create rooms"
 
-Studio.all.each do |studio|
-  rand(4..14).times {
-  Room.create!(name: "#{key_word_band.sample} #{key_word_style.sample}", description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: studio)
-  }
-end
+25.times {
+  room =Room.create!(name: "#{key_word_band.sample} #{key_word_style.sample}", description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: Studio.all.sample)
+  file = URI.open(room_pic_url[i])
+  room.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
+  i += 1
+  puts "#{i} room"
+}
+
+
+
+
+# Studio.all.each do |studio|
+#   rand(2..7).times {
+#   room = Room.create!(name: "#{key_word_band.sample} #{key_word_style.sample}", description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: studio)
+#   file = URI.open(room_pic_url.sample)
+#   room.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
+#   }
+# end
 
 puts "create bookings"
 

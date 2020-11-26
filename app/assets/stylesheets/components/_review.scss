@@ -1,0 +1,20 @@
+.review {
+  border: solid $my-blue;
+  background-color: white;
+  margin: 15px 15px;
+
+  p {
+  margin-top: 15px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  }
+
+  i {
+  color:$my-green;
+  }
+}
+
+.author {
+  color: $gray;
+  font-size: 10px;
+}

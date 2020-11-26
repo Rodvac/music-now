@@ -1,44 +1,51 @@
-</div>
 <div class="hero-studio">
   <img src="" alt="" class="hero-studio-img">
   <h1 class="hero-studio-title"> <%= @studio.name %></h1>
 </div>
 <div class="container custom-container">
-<div class="hero-card float-right">
-<div class="row">
-<span class="fas fa-phone"></span>
-<p>0142546882</p>
-</div>
-<div class="row">
-<i class="fas fa-at"></i>
-<p><a href="" style="color: white">www.studio.com</a></p>
-</div>
-<div class="row">
-<i class="fas fa-envelope"></i>
-<p>studio@studio.fr</p>
-</div>
-<div class="row">
-<i class="fas fa-map-marker"></i>
-<p> <%=@studio.address%></p>
-</div>
+  <div class="hero-card float-right">
+    <div class="row">
+      <span class="fas fa-phone"></span>
+        <p>0142546882</p>
+    </div>
+    <div class="row">
+      <i class="fas fa-at"></i>
+      <p><a href="" style="color: white">www.studio.com</a></p>
+    </div>
+    <div class="row">
+      <i class="fas fa-envelope"></i>
+      <p>studio@studio.fr</p>
+    </div>
+    <div class="row">
+      <i class="fas fa-map-marker"></i>
+      <p> <%=@studio.address%></p>
+    </div>
+  </div>
+  <br>
+  <%=  link_to "< back to studios", studios_path %>
 
-</div>
-<br>
-<%=  link_to "< back to studios", studios_path %>
-
-<div class="studio-desc">
-<p><%= @studio.description %></p>
-</div>
-<br>
+  <div class="studio-desc">
+    <p><%= @studio.description %></p>
+  </div>
+  <br>
   <div class="filtres">
     <h2><%=@studio.name%> rooms</h2>
   </div>
   <div class="cards-rooms">
     <% @studio.rooms.each do |room| %>
         <div class="card-room">
-          <%= link_to room_path(room) do  %>
-             <img src="" alt="">
-          <% end %>
+          <div class= "card-room-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),)">
+            <%= link_to room_path(room) do  %>
+              <%if room.photo.attached? %>
+                <%= link_to room_path(@studio) do %>
+                <%= cl_image_tag room.photo.key, class: "card-studio-img" %>
+                <% end %>
+              <% else %>
+                <div class="card-studio-img" style="background-image: url('http://www.studiobleu.com/wp-content/uploads/2015/06/20181221-INDIGO-02.jpg')">
+                </div>
+              <% end %>
+            <% end %>
+          </div>
           <div class="card-room-infos">
             <div class="studio-name">
              <p><%= room.studio.name %></p>
@@ -69,3 +76,25 @@
         </div>
     <% end %>
   </div>
+
+  <h2><%=@studio.name%> reviews (<%= pluralize @reviews.size, "review"%>)</h2>
+  <% @reviews.each do |review| %>
+    <div class="review">
+      <% if review.booking.room.studio == @studio %>
+        <h4><p><strong><%= review.title %></strong></p></h4>
+          <p><% review.rating.times do %>
+            <i class="fas fa-star"></i>
+          <% end %>
+          <% (5 - review.rating).times do %>
+            <i class="far fa-star"></i>
+          <% end %></p>
+        <p><%= review.content %></p>
+        <div class="author">
+          <p><%= review.user.email %></p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+
+

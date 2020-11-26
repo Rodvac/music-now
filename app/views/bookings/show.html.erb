@@ -1,28 +1,64 @@
-<h2>
-<%= @booking.date %>
-<br>
-<%= @booking.time %>
-<br>
-<%= @booking.user.first_name %>
-<br>
-<%= @booking.user.last_name %>
-<br>
-<%= @booking.user.email %>
-<br>
-<%= @booking.room.name %>
-<br>
-<%= @booking.room.description %>
-<br>
-</h2>
+<% if Date.today > @booking.date.to_date %>
+<h2 class="text-center mb-3">Had a good time at <%=@booking.room.studio.name%>?</h2>
+<%else%>
+<h2 class="text-center mb-3">Your upcoming booking at <%=@booking.room.studio.name%>!</h2>
+<%end%>
 
-<div class="container">
+<div class="d-flex">
+<div class="col-4">
+        <div class="card-room mb-3">
+          <%= link_to room_path(@booking.room) do  %>
+             <img src="" alt="">
+          <% end %>
+          <div class="card-room-infos">
+            <div class="studio-name">
+             <p><%= @booking.room.studio.name %></p>
+            </div>
+            <div class="card-room-description">
+              <h2><%= link_to @booking.room.name, room_path(@booking.room) %></h2>
+              <p class="address"><%= @booking.room.studio.address %></p>
+              <p class="description mt-2"><%= @booking.room.description %></p>
+              <p class="mt-2 capacity">  Capacité max : <%= @booking.room.capacity %> </p>
+            </div>
+            <div class="card-room-gears d-flex mt-2">
+              <div class="d-flex">
+                <i class="fas fa-search"></i>
+                <a class="ml-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  Matériel
+                </a>
+              </div>
+            </div>
+            <div class="collapse" id="collapseExample">
+                <p>- Piano</p>
+                <p>- Batterie</p>
+                <p>- Micro SM-58</p>
+            </div>
+          </div>
+        </div>
+   </div>
+-
+<div class="col-8">
+
+<div class="booking-card">
+<h3>Booking details</h3>
+<p><strong>Date:</strong> <%= @booking.date %></p>
+<p><strong>Time:</strong> <%= @booking.time %></p>
+<p><strong>Name:</strong> <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
+<p><strong>Payment</strong> received on 12/11/2020 with Mastercard **** **** **** 2345</p>
+</div>
+
+<% if Date.today > @booking.date.to_date %>
+<div class="booking-card-review">
   <h2>Leave a review: </h2>
   <%= simple_form_for [@booking, @review] do |f| %>
     <%= f.input :title %>
-    <%= f.input :rating %>
-    <%= f.input :content %>
+    <%= f.input :rating, wrapper_html: { class: 'fas fa-star' }, collection: 0..5 %>
+    <%= f.input :content, as: :text %>
     <%= f.submit "Submit review", class: "btn btn-primary" %>
   <% end %>
+</div>
+<%end %>
+</div>
 </div>
 
 

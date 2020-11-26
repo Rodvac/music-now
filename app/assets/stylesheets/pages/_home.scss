@@ -2,13 +2,26 @@
 
 .home-background-image{
   width: 100%;
-  height: 400px;
+  height: 454px;
   position: relative;
+  background-color: grey;
 }
 
 .home-window {
   background: $my-green;
   position: absolute;
-  right: 100px;
+  width: 550px;
+  height: 326px;
+  right: 200px;
   bottom: 50px;
+}
+
+.button-studio-near-me {
+  position: absolute;
+  margin-left: 303px;
+  margin-top: 200px;
+}
+
+.title-studios-near-me {
+  width: 300px;
 }

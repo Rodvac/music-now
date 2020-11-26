@@ -52,8 +52,8 @@
   <h2>Leave a review: </h2>
   <%= simple_form_for [@booking, @review] do |f| %>
     <%= f.input :title %>
-    <%= f.input :rating %>
-    <%= f.input :content %>
+    <%= f.input :rating, wrapper_html: { class: 'fas fa-star' }, collection: 0..5 %>
+    <%= f.input :content, as: :text %>
     <%= f.submit "Submit review", class: "btn btn-primary" %>
   <% end %>
 </div>

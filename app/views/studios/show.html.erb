@@ -77,14 +77,24 @@
     <% end %>
   </div>
 
-  <h2><%=@studio.name%> reviews</h2>
+  <h2><%=@studio.name%> reviews (<%= pluralize @reviews.size, "review"%>)</h2>
   <% @reviews.each do |review| %>
     <div class="review">
       <% if review.booking.room.studio == @studio %>
-        <p><strong><%= review.title %></strong></p>
-        <p>Ecrit part <%= review.user.email %></p>
-        <p>Rating: <%= review.rating %></p>
+        <h4><p><strong><%= review.title %></strong></p></h4>
+          <p><% review.rating.times do %>
+            <i class="fas fa-star"></i>
+          <% end %>
+          <% (5 - review.rating).times do %>
+            <i class="far fa-star"></i>
+          <% end %></p>
         <p><%= review.content %></p>
+        <div class="author">
+          <p><%= review.user.email %></p>
+        </div>
       <% end %>
     </div>
   <% end %>
+
+
+

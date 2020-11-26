@@ -11,17 +11,17 @@ require("channels")
 import "bootstrap";
 
 import { initMapbox } from '../plugins/init_mapbox';
-import {initGeoloc} from '../plugins/init_geoloc'
+import { initGeoloc } from '../plugins/init_geoloc'
 import { toggleClassOnSearchBar } from '../components/searchbar';
 import { dateSelect } from '../components/dateselect';
 import { timeSelect } from '../components/timeselect';
 
 document.addEventListener('turbolinks:load', () => {
-  initMapbox();
   initGeoloc();
   toggleClassOnSearchBar();
   dateSelect();
   timeSelect();
+  initMapbox();
 })
 
 

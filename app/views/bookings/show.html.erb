@@ -14,3 +14,15 @@
 <%= @booking.room.description %>
 <br>
 </h2>
+
+<div class="container">
+  <h2>Leave a review: </h2>
+  <%= simple_form_for [@booking, @review] do |f| %>
+    <%= f.input :title %>
+    <%= f.input :rating %>
+    <%= f.input :content %>
+    <%= f.submit "Submit review", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+

@@ -1,9 +1,12 @@
 const initGeoloc = () => {
-  const longitude = document.querySelector("#longitude")
-  const latitude = document.querySelector("#latitude")
-  navigator.geolocation.getCurrentPosition((data) => {
-    longitude.value = data.coords.longitude
-    latitude.value = data.coords.latitude
+  const button = document.querySelector("#near-me-btn")
+  if (!button) return;
+
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    navigator.geolocation.getCurrentPosition((data) => {
+      window.location.replace(`/studios?location[longitude]=${data.coords.longitude}&location[latitude]=${data.coords.latitude}&location[radius]=5`)
+    })
   })
 }
 

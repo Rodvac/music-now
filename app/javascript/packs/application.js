@@ -15,6 +15,7 @@ import { initGeoloc } from '../plugins/init_geoloc'
 import { toggleClassOnSearchBar } from '../components/searchbar';
 import { dateSelect } from '../components/dateselect';
 import { timeSelect } from '../components/timeselect';
+import { displayGraduation } from '../components/graduation'
 
 document.addEventListener('turbolinks:load', () => {
   initGeoloc();
@@ -22,6 +23,7 @@ document.addEventListener('turbolinks:load', () => {
   dateSelect();
   timeSelect();
   initMapbox();
+  displayGraduation();
 })
 
 

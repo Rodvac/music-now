@@ -1,10 +1,10 @@
-<div class="home-background-image">
-  <img src="#" alt="Homepage image">
+<div class="home-background-image" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(https://media.baggpipe.com/2017/11/BPS6171.jpg)">
 </div>
 
-<div class="home-window d-flex flex-wrap">
+
+<div class="home-window d-flex">
   <div class="title-studios-near-me">
-    <h1>A GREAT PLACE TO PLAY</h1>
+    <h1>A <br>GREAT PLACE <br>TO PLAY</h1>
   </div>
   <div class="button-studio-near-me">
     <%#= simple_form_for :location, url: studios_path, method: :get do |f| %>
@@ -16,7 +16,10 @@
     <%= link_to "STUDIOS NEAR ME", studios_path, class: "btn btn-primary btn-homepage", id: "near-me-btn" %>
   </div>
 </div>
-
+<br>
+<br>
+<br>
+<br>
 <div class="search-container">
   <h1>Trouver un studio</h1>
 
@@ -32,6 +35,9 @@
   <% end %>
 </div>
 
+<div class="articles-infos">
+
+</div>
 
 
 

@@ -6,7 +6,15 @@
   <div class="cards-studios">
     <% @studios.each do |studio| %>
       <div class="card-studio">
-        <div class= "card-studio-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg)">
+        <div class= "card-studio-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),)">
+          <%if studio.photo.attached? %>
+            <%= link_to studio_path(studio) do %>
+              <%= cl_image_tag studio.photo.key, class: "card-studio-img" %>
+            <% end %>
+          <% else %>
+            <div class="card-studio-img" style="background-image: url('http://www.studiobleu.com/wp-content/uploads/2015/06/20181221-INDIGO-02.jpg')">
+            </div>
+          <% end %>
         </div>
         <div class="card-studio-infos">
           <h2> <%= studio.name %> </h2>

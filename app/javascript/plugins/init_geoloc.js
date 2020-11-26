@@ -1,4 +1,4 @@
-const init_geoloc = () => {
+const initGeoloc = () => {
   const longitude = document.querySelector("#longitude")
   const latitude = document.querySelector("#latitude")
   navigator.geolocation.getCurrentPosition((data) => {
@@ -7,4 +7,4 @@ const init_geoloc = () => {
   })
 }
 
-export {init_geoloc}
+export {initGeoloc}

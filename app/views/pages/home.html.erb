@@ -2,8 +2,6 @@
   <img src="#" alt="Homepage image">
 </div>
 
-
-
 <div class="home-window d-flex flex-wrap">
   <div class="title-studios-near-me">
     <h1>A GREAT PLACE TO PLAY</h1>
@@ -23,15 +21,20 @@
 
   <%= simple_form_for :search, url: rooms_path, method: :get  do |f|%>
     <div class="search-container-items">
-      <%= f.input :address, placeholder: 'Où jouez-vous ?'%>
+      <%= f.input :address, collection: Studio.all.map{|s| s.address}, placeholder: 'Où souhaitez-vous jouer ?'%>
       <%= f.input :capacity, placeholder: 'Ajoutez des artistes', as: :integer%>
-      <%= f.submit "Rechercher", class: 'btn btn-primary' %>
+      <%#= f.submit "Rechercher", class: 'btn btn-primary', wrapper_html: { class: 'fas fa-search' } %>
+      <%= f.button :submit, { class: 'btn-primary' } do %>
+        <i class="fas fa-search"></i>
+      <% end %>
     </div>
   <% end %>
 </div>
 
 
+
+
+
 <!-- <i class="fas fa-search"></i> -->
 
-<!-- , collection: Studio.all.map{|s| s.address} -->
 

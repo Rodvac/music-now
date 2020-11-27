@@ -15,7 +15,9 @@ import { initGeoloc } from '../plugins/init_geoloc'
 import { toggleClassOnSearchBar } from '../components/searchbar';
 import { dateSelect } from '../components/dateselect';
 import { timeSelect } from '../components/timeselect';
-import { displayGraduation } from '../components/graduation'
+import { displayGraduation } from '../components/graduation';
+import { toggleDashboard } from '../components/dashBoardToogle';
+
 
 ScrollReveal().reveal('.card-studio', {delay: 500});
 ScrollReveal().reveal('.card-room', {delay: 500});
@@ -29,6 +31,8 @@ document.addEventListener('turbolinks:load', () => {
   ScrollReveal();
   ScrollReveal().reveal();
   displayGraduation();
+  toggleDashboard();
+
 })
 
 

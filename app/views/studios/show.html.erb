@@ -1,6 +1,8 @@
 </div>
 <div class="hero-studio">
+  <% if @studio.photo.attached? %>
   <%= cl_image_tag @studio.photo.key, class: "hero-studio-img" %>
+  <% end %>
   <h1 class="hero-studio-title"> <%= @studio.name %></h1>
 </div>
 <div class="container custom-container">

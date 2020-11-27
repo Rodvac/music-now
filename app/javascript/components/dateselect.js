@@ -1,5 +1,5 @@
 const dateSelect = () => {
-  const dates = document.querySelectorAll(".datebox");
+  const dates = document.querySelectorAll(".dateboxx");
   const inputdate =  document.querySelector("#booking_date");
   dates.forEach((element) => {
     element.addEventListener("click", (event) => {

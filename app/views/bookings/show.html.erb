@@ -1,3 +1,6 @@
+
+<br>
+<br>
 <% if Date.today > @booking.date.to_date %>
 <h2 class="text-center mb-3">Had a good time at <%=@booking.room.studio.name%>?</h2>
 <%else%>
@@ -8,7 +11,7 @@
 <div class="col-4">
         <div class="card-room mb-3">
           <%= link_to room_path(@booking.room) do  %>
-             <img src="" alt="">
+              <%= cl_image_tag @booking.room.photo.key, class: "card-studio-img" %>
           <% end %>
           <div class="card-room-infos">
             <div class="studio-name">

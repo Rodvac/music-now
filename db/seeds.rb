@@ -104,11 +104,11 @@ luna_rossa.photo.attach(io:file, filename: 'roompicture.png', content_type: 'ima
 
 puts "create rooms"
 
-16.times {
+room_pic_url.length.times {
   room = Room.create!(name: "#{key_word_band.sample} #{key_word_style.sample}", description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: Studio.all.sample)
   file = URI.open(room_pic_url.sample)
   room.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
-  i += 1 
+  i += 1
   puts "#{i} room"
 }
 

@@ -11,7 +11,7 @@
   </div>
   <div class="cards-rooms">
     <% @rooms.each do |room| %>
-        <div class="card-room mb-3">
+        <div class="card-room card-room-index">
           <%= link_to new_room_booking_path(room, Date.today) do  %>
              <img src="" alt="">
           <% end %>

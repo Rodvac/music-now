@@ -58,8 +58,8 @@
       <h2>Voici vos réservations </h2>
       <h3>
       <% current_user.bookings.each do |booking| %>
-        <%=  booking.starts_at.strftime("%A")  %>
-        <%=  booking.starts_at.strftime("de %B")  %>
+        <%=  booking.date  %>
+        <%=  booking.time %>
         <%=  booking.room.studio.name  %>
         <%=  booking.room.name %>
       <% end %>

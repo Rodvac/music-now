@@ -4,7 +4,7 @@
 
 <div class="home-window d-flex">
   <div class="title-studios-near-me">
-    <h1>A <br>GREAT PLACE <br>TO PLAY</h1>
+    <h1>RESERVEZ UN STUDIO PRES <br>DE CHEZ VOUS</h1>
   </div>
   <div class="button-studio-near-me">
     <%#= simple_form_for :location, url: studios_path, method: :get do |f| %>
@@ -13,7 +13,7 @@
     <%#= f.input :radius, as: :range, input_html: {value: 5, class: "d-none"}, label:false %>
     <%#= f.submit "STUDIOS NEAR ME", class: "btn btn-primary btn-homepage" %>
     <%# end %>
-    <%= link_to "STUDIOS NEAR ME", studios_path, class: "btn btn-primary btn-homepage", id: "near-me-btn" %>
+    <%= link_to "Découvrir les studios à proximité", studios_path, class: "btn btn-primary btn-homepage", id: "near-me-btn" %>
   </div>
 </div>
 <br>
@@ -21,12 +21,12 @@
 <br>
 <br>
 <div class="search-container">
-  <h1>Trouver un studio</h1>
+  <h1>Trouver une salle</h1>
 
   <%= simple_form_for :search, url: rooms_path, method: :get  do |f|%>
     <div class="search-container-items">
-      <%= f.input :address, collection: Studio.all.map{|s| s.address}, placeholder: 'Où souhaitez-vous jouer ?'%>
-      <%= f.input :capacity, placeholder: 'Ajoutez des artistes', as: :integer%>
+      <%= f.input :address, label: "Adresse", collection: Studio.all.map{|s| s.address}, placeholder: 'Où souhaitez-vous jouer ?'%>
+      <%= f.input :capacity, label: "Capacité", placeholder: 'Ajoutez des artistes', as: :integer%>
       <%= f.submit "Rechercher", class: 'btn btn-primary' %>
       <%#= f.submit do %>
         <!-- <i class="fas fa-search"></i>

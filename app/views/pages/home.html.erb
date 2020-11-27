@@ -21,21 +21,37 @@
 <br>
 <br>
 
-<div class="container">
+<div class="home-description">
+  <h1>VOTRE SESSION MUSIQUE EN QUELQUES CLICS </h1>
+  <div class="etapes d-flex">
+    <div class="search etape">
+      <i class="fas fa-search"></i>
+      <p>Trouvez un studio</p>
+    </div>
+    <div class="calendar etape">
+      <i class="far fa-calendar-plus"></i>
+      <p>Vérifiez les disponibilités</p>
+    </div>
+    <div class="book etape">
+      <i class="fas fa-check"></i>
+      <p>Réservez en ligne</p>
+    </div>
+  </div>
+</div>
+<!-- <div class="search-container">
   <h1>Find a room</h1>
 
-  <%= simple_form_for :search, url: rooms_path, method: :get  do |f|%>
+  <%#= simple_form_for :search, url: rooms_path, method: :get  do |f|%>
     <div class="search-container-items">
-      <%= f.input :address, label: "Adresse", collection: Studio.all.map{|s| s.address}, placeholder: 'Où souhaitez-vous jouer ?'%>
-      <%= f.input :capacity, label: "Capacité", placeholder: 'Ajoutez des artistes', as: :integer%>
-      <%= f.submit "Rechercher", class: 'btn btn-primary' %>
+      <%#= f.input :address, label: "Adresse", collection: Studio.all.map{|s| s.address}, placeholder: 'Où souhaitez-vous jouer ?'%>
+      <%#= f.input :capacity, label: "Capacité", placeholder: 'Ajoutez des artistes', as: :integer%>
+      <%#= f.submit "Rechercher", class: 'btn btn-primary' %>
       <%#= f.submit do %>
         <!-- <i class="fas fa-search"></i>
       <%# end %> -->
-    </div>
-  <% end %>
-</div>
-
+<!--     </div>
+ -->  <%# end %>
+<!-- </div> -->
 <div class="articles-infos">
 
 </div>

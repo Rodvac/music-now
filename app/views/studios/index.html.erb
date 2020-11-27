@@ -1,6 +1,6 @@
 <br>
 <br>
-<h1 class="mb-4 our-studios">Nos studios</h1>
+<h1 class="mb-5 our-studios">Nos studios</h1>
 
 <div class="d-flex m-0">
   <div class="cards-studios col-8">
@@ -19,7 +19,7 @@
         <div class="card-studio-infos">
           <h2> <%= studio.name %> </h2>
           <p class="address"> <%= studio.address %> </p>
-          <p class="description mt-2"> <%= studio.description.first(100) %>... </p>
+          <p class="description mt-2"> <%= studio.description %></p>
           <p> <%= link_to "Voir ce studio", studio_path(studio), class: "btn btn-primary" %> </p>
         </div>
       </div>

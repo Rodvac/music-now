@@ -1,7 +1,6 @@
 .custom-container {
   width: 1200px;
   max-width: 100%;
-  min-height: calc(100vh - 125px);
 }
 
 #pages-home .custom-container {
@@ -16,4 +15,10 @@
   padding: 0;
   position: relative;
   margin-top: 0px;
+}
+
+.search-container {
+  width: 1200px; 
+  margin-right: auto;
+  margin-left: auto;
 }

@@ -6,6 +6,11 @@
   right: 0;
   top:0;
 }
+
+#map {
+  position: absolute;
+}
+
 .mapboxgl-popup {
   max-width: 200px;
   width: 200px;
@@ -22,4 +27,9 @@
 
 .radius {
   width: 80px;
+  height: 10px;
+    .form-group {
+      margin-bottom:0px;
+    }
+
 }

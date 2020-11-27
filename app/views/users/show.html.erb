@@ -47,7 +47,7 @@
   <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button>
 
   <!-- Demo content -->
-  <h2 class="display-4 "><h1>Welcome to your Manage place</h1></h2>
+  <h2 class="display-4 "><h1>Bienvenue dans votre espace personnel</h1></h2>
   <p class="lead  mb-0"></p>
   <p class="lead "><a href="https://bootstrapious.com/snippets" class="">
         <u></u></a>
@@ -55,11 +55,15 @@
   <div class="separator"></div>
   <div class="row ">
     <div class="col-lg-7">
+      <h2>Voici vos réservations </h2>
+      <h3>
       <% current_user.bookings.each do |booking| %>
-         <%=  booking.starts_at.day  %>
-         <%=  booking.room.studio.name  %>
-         <%=  booking.room.name  %>
+        <%=  booking.starts_at.strftime("%A")  %>
+        <%=  booking.starts_at.strftime("de %B")  %>
+        <%=  booking.room.studio.name  %>
+        <%=  booking.room.name %>
       <% end %>
+      </h3>
     </div>
   </div>
 

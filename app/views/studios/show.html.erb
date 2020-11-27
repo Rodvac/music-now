@@ -57,17 +57,17 @@
               <h2><%= link_to room.name, room_path(room) %></h2>
               <p class="address"><%= room.studio.address %></p>
               <p class="description mt-2"><%= room.description %></p>
-              <p class="mt-2 capacity">  Capacité max : <%= room.capacity %> </p>
+              <p class="mt-2 capacity">  Max capacity : <%= room.capacity %> </p>
             </div>
             <div class="card-room-gears d-flex mt-2">
               <div class="d-flex">
                 <i class="fas fa-search"></i>
                 <a class="ml-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                  Matériel
+                  Gear 
                 </a>
               </div>
               <div class="btn btn-primary btn-musicnow">
-                <%= link_to "Réserver ce studio", new_room_booking_path(room, Date.today) %>
+                <%= link_to "Book this room", new_room_booking_path(room, Date.today) %>
               </div>
             </div>
             <div class="collapse" id="collapseExample">
@@ -80,8 +80,8 @@
     <% end %>
   </div>
 
-  <h2><%=@studio.name%> reviews (<%= pluralize @reviews.size, "review"%>)</h2>
-  <% @reviews.each do |review| %>
+  <h2><%=@studio.name%> reviews (<%= pluralize @studio.reviews.size, "review"%>)</h2>
+  <% @studio.reviews.each do |review| %>
     <div class="review">
       <% if review.booking.room.studio == @studio %>
         <h4><p><strong><%= review.title %></strong></p></h4>

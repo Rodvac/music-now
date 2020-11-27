@@ -84,8 +84,8 @@
   <% @studio.reviews.each do |review| %>
     <div class="review">
       <% if review.booking.room.studio == @studio %>
-        <h4><p><strong><%= review.title %></strong></p></h4>
-          <p><% review.rating.times do %>
+        <p><h4><strong><%= review.title %></strong></h4>
+          <% review.rating.times do %>
             <i class="fas fa-star"></i>
           <% end %>
           <% (5 - review.rating).times do %>
@@ -93,7 +93,7 @@
           <% end %></p>
         <p><%= review.content %></p>
         <div class="author">
-          <p><%= review.user.email %></p>
+          <p><%= review.user.email %> (salle: <%= review.booking.room.name %>)</p>
         </div>
       <% end %>
     </div>

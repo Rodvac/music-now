@@ -36,20 +36,22 @@ room_pic_url = [
 "https://studiotchaman.fr/wp-content/uploads/2017/09/grand-studio-de-repetition-aubagne.jpg",
 "https://www.lusineamusique.fr/wp-content/uploads/2018/06/img4019-800x500.png",
 "https://media-cdn.tripadvisor.com/media/photo-s/0e/2f/86/86/un-de-nos-local-de-repetition.jpg",
-"https://lh3.googleusercontent.com/proxy/WJyZQvPFqiA8A7ipHZkFFR29kbq1SkOl4o-DrUBhiBIPF-tdzgsBY6-1w6NY4gS9CGgoZBkdIDzuBcJ56K2pE5avCzsqhWU9BZzC91pvLLDBqViOeg8Kz8MGHEO4K3WRrR3Ov8mq",
-"https://lh3.googleusercontent.com/proxy/SVcdu0geoiQcSNem1ln0aTUchpemjoLtyboklqrDrbIzV5tZHo0kChdI8a_OLffsYvzqr7Pc4DexiHd38Wo2Mf-SyedLQT_ExyXRPX3o4t4ja_jugpnz20ZPWjr3IV3UKETtCXEclaxHHqiIzX2VUKyyw3h7gFfFU57At6uNPg",
-"https://lh3.googleusercontent.com/proxy/mqUzT1HYQRJpZ5681hdNixLbowZ7EvwmGDOt4J6txZk49eOKHG-u2LMXQndjOpjZsGdN0i6o0XVn7vfbEQ9K3ghLCoS98q9Wn0KRS6SyvknkQML5l7XwoSK9Mb0YZA",
 "https://sallediffart.com/wp-content/uploads/2018/08/studiobleu.jpg",
 "https://lesmusicales.fr/wp-content/uploads/2019/04/sono.jpeg",
-"https://lh3.googleusercontent.com/proxy/vJbk_P_fYBkjzL3NPM1DSo54BKWJjAkTv2QRLd-Wu1uRdMsWit5oaUCnU7xKDcemS66K7sjjJ6xHfrqgOnl2UYBw4sFdmHWikfP43AQNxBjQzg",
-"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.studiocandp.com%2Fblog%2Fpost%2Fcomment-choisir-son-studio-de-repetition%2F14&psig=AOvVaw2t8FBQ2n0UKps1vbW83a3Y&ust=1606489150348000&source=images&cd=vfe&ved=2ahUKEwjv_bPKvKDtAhUP0OAKHdkNAcoQjRx6BAgAEAc",
-"https://www.google.com/url?sa=i&url=https%3A%2F%2Fstudio-bopcity.business.site%2F&psig=AOvVaw1DW4HGVmjKus8p0s4lTCuW&ust=1606489436472000&source=images&cd=vfe&ved=2ahUKEwj50evSvaDtAhV4BWMBHS74BXIQjRx6BAgAEAc",
+"https://www.studiocandp.com/blog/uploads/images/image_big_14_5cb5e21c70016.jpg",
+"https://lh3.googleusercontent.com/p/AF1QipNA0k57Y6yf8XPbKlBzLzSLDHOZ7aSq-tJf0y-Z=w600-h0",
 "https://www.lamaisondelamusique.fr/isens_thumb.php?width=640&height=376&image=images/2018/lamaisondelamusique/DSC04549.JPG",
-"https://lh3.googleusercontent.com/proxy/-RSzzuMFH8s9Mw0MYGpnHP_2yRKe6N5jGfbEFnS76Qt5Qykp40za2eiFrJU5jg9dIVPvB1CtmAgruonmo4K3R7wnM794vtKqB9uYkLU_ap-IlmSyJ6uShohk9asJDz-Y8lgt",
 "https://lh3.googleusercontent.com/proxy/6T4rIc9b5yxs5fE_RLHV4aEpnFaUJkdmu1drhGg6qlMjIFdpTgv2ytRQRcegNe3xIYbEXM-zLIfKc3ck53Y-99RxdEZxvvyzHPFbQSBbISLTo6-N4aUASqddI1p1eRj9z2px",
 "https://static.wixstatic.com/media/242dce_5b9df68ec01d41ac955dd94c9c3d5129.jpg/v1/fill/w_864,h_576,al_c,lg_1,q_90/242dce_5b9df68ec01d41ac955dd94c9c3d5129.webp",
 "https://www.spectable.com/image/image/n/bhr-prod-studio-enregistrement-et-de-repetition_479469.jpg",
-"https://www.hfmusicstudio.com/wp-content/uploads/2014/09/HFmusicstudioAbbeyRoad-1500x630.jpg"
+"https://www.hfmusicstudio.com/wp-content/uploads/2014/09/HFmusicstudioAbbeyRoad-1500x630.jpg",
+"https://lh3.googleusercontent.com/p/AF1QipOfJ6jrnDYyWaWNvItdRoPRH7rMrbVlzOJ2JEAG=w600-h0",
+"https://lh3.googleusercontent.com/p/AF1QipO53idNasegrIQ125Kg9DHg66SIroLB86h31yNh=w600-h0",
+"https://lh3.googleusercontent.com/p/AF1QipMg5Nbt0sO8mR-3N_G6eA1EFM3o_5ftfz328bfF=w600-h0",
+"http://www.studiobleu.com/wp-content/uploads/2015/06/St-Bleu-20-%C3%A8me-Salle-6-03-600x360.jpg",
+"http://www.studiobleu.com/wp-content/uploads/2015/06/Box-5-02--600x360.jpg",
+"http://www.studiobleu.com/wp-content/uploads/2015/06/Count-Basie-2016-01-600x360.jpg",
+"http://www.studiobleu.com/wp-content/uploads/2015/06/20-Ray-Charles-01-600x360.jpg"
 ]
 
 

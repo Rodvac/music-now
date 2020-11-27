@@ -54,7 +54,7 @@ street_types = %w(rue boulevard avenue)
 street_names = %w(Jean\ Jaures Carnot Charles\ de\ Gaulle Louis\ Pasteur Victor\ Hugo Jean\ Moulin Général\ Leclerc Jules\ Ferry Maréchal\ Foch)
 city = %w(Paris)
 key_word_band = %w(Group Solo Trio Quatuors Orchestres Rock\ band Cours Piano\ voix)
-key_word_style = %w(electrique accoustique amplifié)
+key_word_style = %w(éléctrique acoustique amplifié)
 #END
 
 puts "create user"
@@ -105,7 +105,7 @@ luna_rossa.photo.attach(io:file, filename: 'roompicture.png', content_type: 'ima
 puts "create rooms"
 
 room_pic_url.length.times {
-  room = Room.create!(name: "#{key_word_band.sample} #{key_word_style.sample}", description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: Studio.all.sample)
+  room = Room.create!(name: "#{key_word_band.sample}/#{key_word_style.sample}", description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: Studio.all.sample)
   file = URI.open(room_pic_url.sample)
   room.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
   i += 1

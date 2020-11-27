@@ -20,7 +20,7 @@
              <p><%= room.studio.name %></p>
             </div>
             <div class="card-room-description">
-              <h2><%= link_to room.name, room_path(room) %></h2>
+              <h2><%= link_to room.name, new_room_booking_path(room, Date.today) %></h2>
               <p class="address"><%= room.studio.address %></p>
               <p class="description mt-2"><%= room.description %></p>
               <p class="mt-2 capacity">  Capacité max : <%= room.capacity %> </p>

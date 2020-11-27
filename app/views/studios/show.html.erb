@@ -58,7 +58,7 @@
             <div class="card-room-gears d-flex mt-2">
               <div class="d-flex">
                 <i class="fas fa-search"></i>
-                <a class="ml-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <a class="ml-2" data-toggle="collapse" href="#collapseExample-<%=room.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
                   Matériel
                 </a>
               </div>
@@ -66,10 +66,10 @@
                 <%= link_to "Réserver", new_room_booking_path(room, Date.today) %>
               </div>
             </div>
-            <div class="collapse" id="collapseExample">
-                <p>- Piano</p>
-                <p>- Batterie</p>
-                <p>- Micro SM-58</p>
+           <div class="collapse" id="collapseExample-<%=room.id%>">
+              <% room.items.each do |item| %>
+                <p>- <%= item.name %></p>
+              <% end %>
             </div>
           </div>
         </div>

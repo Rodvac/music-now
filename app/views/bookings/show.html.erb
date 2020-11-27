@@ -2,9 +2,9 @@
 <br>
 <br>
 <% if Date.today > @booking.date.to_date %>
-<h2 class="text-center mb-3">Had a good time at <%=@booking.room.studio.name%>?</h2>
+<h2 class="text-center mb-3">Etes-vous satisfait de votre expérience chez <%=@booking.room.studio.name%>?</h2>
 <%else%>
-<h2 class="text-center mb-3">Your upcoming booking at <%=@booking.room.studio.name%>!</h2>
+<h2 class="text-center mb-3">Votre réservation chez <%=@booking.room.studio.name%>!</h2>
 <%end%>
 
 <div class="d-flex">
@@ -39,25 +39,25 @@
           </div>
         </div>
    </div>
--
+
 <div class="col-8">
 
 <div class="booking-card">
-<h3>Booking details</h3>
+<h3>Détails de la réservation</h3>
 <p><strong>Date:</strong> <%= @booking.date %></p>
-<p><strong>Time:</strong> <%= @booking.time %></p>
-<p><strong>Name:</strong> <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
-<p><strong>Payment</strong> received on 12/11/2020 with Mastercard **** **** **** 2345</p>
+<p><strong>Heure:</strong> <%= @booking.time %></p>
+<p><strong>Nom:</strong> <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
+<p><strong>Paiement</strong> reçu le 12/11/2020 - Mastercard **** **** **** 2345</p>
 </div>
 
 <% if Date.today > @booking.date.to_date %>
 <div class="booking-card-review">
-  <h2>Leave a review: </h2>
+  <h2>Donnez votre avis: </h2>
   <%= simple_form_for [@booking, @review] do |f| %>
-    <%= f.input :title %>
-    <%= f.input :rating, wrapper_html: { class: 'fas fa-star' }, collection: 0..5 %>
-    <%= f.input :content, as: :text %>
-    <%= f.submit "Submit review", class: "btn btn-primary" %>
+    <%= f.input :title, label: "Titre" %>
+    <%= f.input :rating, wrapper_html: { class: 'fas fa-star' }, collection: 0..5, label: "Note" %>
+    <%= f.input :content, as: :text, label: "Commentaire" %>
+    <%= f.submit "Valider", class: "btn btn-primary" %>
   <% end %>
 </div>
 <%end %>

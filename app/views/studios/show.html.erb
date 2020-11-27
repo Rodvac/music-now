@@ -25,14 +25,14 @@
     </div>
   </div>
   <br>
-  <%=  link_to "< back to studios", studios_path %>
+  <%=  link_to "< Nos studios", studios_path %>
 
   <div class="studio-desc">
     <p><%= @studio.description %></p>
   </div>
   <br>
   <div class="filtres">
-    <h2><%=@studio.name%> rooms</h2>
+    <h2>Les salles</h2>
   </div>
   <div class="cards-rooms">
     <% @studio.rooms.each do |room| %>
@@ -57,17 +57,17 @@
               <h2><%= link_to room.name, new_room_booking_path(room, Date.today) %></h2>
               <p class="address"><%= room.studio.address %></p>
               <p class="description mt-2"><%= room.description %></p>
-              <p class="mt-2 capacity">  Max capacity : <%= room.capacity %> </p>
+              <p class="mt-2 capacity">  Capacité max : <%= room.capacity %> </p>
             </div>
             <div class="card-room-gears d-flex mt-2">
               <div class="d-flex">
                 <i class="fas fa-search"></i>
                 <a class="ml-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                  Gear 
+                  Matériel
                 </a>
               </div>
               <div class="btn btn-primary btn-musicnow">
-                <%= link_to "Book this room", new_room_booking_path(room, Date.today) %>
+                <%= link_to "Réserver", new_room_booking_path(room, Date.today) %>
               </div>
             </div>
             <div class="collapse" id="collapseExample">
@@ -80,7 +80,7 @@
     <% end %>
   </div>
 
-  <h2><%=@studio.name%> reviews (<%= pluralize @studio.reviews.size, "review"%>)</h2>
+  <h2><%= pluralize @studio.reviews.size, "avis"%></h2>
   <% @studio.reviews.each do |review| %>
     <div class="review">
       <% if review.booking.room.studio == @studio %>

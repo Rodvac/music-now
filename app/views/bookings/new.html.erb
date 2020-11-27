@@ -3,7 +3,7 @@
 <div class="row">
 
 <div class= "col-4">
-<h2 class="monthtitle">Your Room</h2>
+<h2 class="monthtitle">Votre salle</h2>
         <div class="card-room mb-3">
           <%= link_to room_path(@room) do  %>
              <%= cl_image_tag @room.photo.key, class: "card-studio-img" %>
@@ -39,22 +39,22 @@
 
   <div class="col-4">
   <div class="bookcard">
-    <h2 class="monthtitle">Select a day</h2>
+    <h2 class="monthtitle">Choisir un jour</h2>
     <br>
   <div class="d-flex">
     <div class="monthdir"><%= link_to "<", new_room_booking_path(@room, @date - 30) %></div>
     <div class="monthbox"><h4><%=Date::MONTHNAMES[@date.month]%></h4></div>
     <div class="monthdir"><%= link_to ">", new_room_booking_path(@room, @date + 30) %></div>
-  </div> 
+  </div>
   <br>
   <div class="d-flex">
+    <div class="daybox">L</div>
     <div class="daybox">M</div>
-    <div class="daybox">T</div>
-    <div class="daybox">W</div>
-    <div class="daybox">T</div>
-    <div class="daybox">F</div>
+    <div class="daybox">M</div>
+    <div class="daybox">J</div>
+    <div class="daybox">V</div>
     <div class="daybox">S</div>
-    <div class="daybox">S</div>
+    <div class="daybox">D</div>
   </div>
   <div class="d-flex flex-wrap">
   <% if @start.wday == 0 %>
@@ -78,7 +78,7 @@
 </div>
 
   <div class="col-4">
-  <h2 class="monthtitle">Select a time</h2>
+  <h2 class="monthtitle">Choisir une heure</h2>
   <% @timearray.each do |time| %>
     <% if Booking.where(date: @date.to_s, time: time).length > 0 %>
       <div class="text-center booked">Booked</div>
@@ -89,10 +89,10 @@
   <%= simple_form_for [ @room, @booking ] do |f| %>
   <%= f.input :date, as: :string, input_html: { value: params[:format] }, as: :hidden %>
   <%= f.input :time, as: :string, as: :hidden %>
-  <%= f.submit "Book me", class: 'btn btn-primary' %>
+  <%= f.submit "Réserver", class: 'btn btn-primary' %>
   <% end %>
   </div>
 
-  
+
 </div>
 </div>

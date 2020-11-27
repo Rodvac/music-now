@@ -15,6 +15,7 @@ import { initGeoloc } from '../plugins/init_geoloc'
 import { toggleClassOnSearchBar } from '../components/searchbar';
 import { dateSelect } from '../components/dateselect';
 import { timeSelect } from '../components/timeselect';
+import { displayGraduation } from '../components/graduation'
 
 ScrollReveal().reveal('.card-studio', {delay: 500});
 ScrollReveal().reveal('.card-room', {delay: 500});
@@ -27,6 +28,7 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   ScrollReveal();
   ScrollReveal().reveal();
+  displayGraduation();
 })
 
 

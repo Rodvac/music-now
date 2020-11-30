@@ -39,12 +39,13 @@
   </div>
 </div>
 <div class="search-container">
-  <h1>Find a room</h1>
+  <h1>Trouver une salle</h1>
 
   <%= simple_form_for :search, url: rooms_path, method: :get  do |f|%>
     <div class="search-container-items">
       <%= f.input :address, label: "Adresse", placeholder: 'Où souhaitez-vous jouer ?'%>
       <%= f.input :capacity, label: "Capacité", placeholder: 'Ajoutez des artistes', as: :integer%>
+      <%= f.input :item, label: "Instrument", collection: Item.all.map{|s| s.name}, placeholder: 'Que recherchez-vous ?'%>
       <%= f.submit "Rechercher", class: 'btn btn-primary' %>
     </div>
 <% end %>

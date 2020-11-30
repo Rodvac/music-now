@@ -6,6 +6,7 @@ class StudiosController < ApplicationController
       @studios = Studio.near([params[:location][:latitude], params[:location][:longitude]], params[:location][:radius])
       @latitude = params[:location][:latitude]
       @longitude = params[:location][:longitude]
+      @current_position = { longitude: @longitude, latitude: @latitude }
       @radius = params[:location][:radius] || 5
     else
       @studios = Studio.all
@@ -14,7 +15,8 @@ class StudiosController < ApplicationController
       {
         lat: studio.latitude,
         lng: studio.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { studio: studio })
+        infoWindow: render_to_string(partial: "info_window", locals: { studio: studio }),
+        image_url: helpers.asset_url("https://i.etsystatic.com/10924369/r/il/96200a/961644812/il_570xN.961644812_fohw.jpg")
       }
     end
   end

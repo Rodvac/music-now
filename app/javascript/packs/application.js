@@ -32,7 +32,6 @@ document.addEventListener('turbolinks:load', () => {
   ScrollReveal().reveal();
   displayGraduation();
   toggleDashboard();
-
 })
 
 

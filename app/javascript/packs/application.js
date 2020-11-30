@@ -20,8 +20,6 @@ import { initTabs } from '../components/dashboardTabsMenu';
 import { initAutocomplete } from '../plugins/init_autocomplete';
 
 
-
-
 ScrollReveal().reveal('.card-studio', {delay: 500});
 ScrollReveal().reveal('.card-room', {delay: 500});
 
@@ -34,7 +32,6 @@ document.addEventListener('turbolinks:load', () => {
   ScrollReveal();
   ScrollReveal().reveal();
   displayGraduation();
-  initTabs();
   initAutocomplete();
 })
 

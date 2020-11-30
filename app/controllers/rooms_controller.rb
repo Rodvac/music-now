@@ -2,12 +2,14 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = Room.all
+
     if params[:search]
       if params[:search][:address].present?
-        @rooms = @rooms.global_search(params[:search][:address])
+        @studios = Studio.near(params[:search][:address], 10).map(&:id)
+        @rooms = @rooms.where(studio_id: @studios)
       end
       if params[:search][:capacity].present?
-        @rooms = @rooms.where(capacity:params[:search][:capacity])
+        @rooms = @rooms.where("capacity <= #{params[:search][:capacity]}")
       end
     end
   end

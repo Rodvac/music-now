@@ -1,19 +1,43 @@
 .datebox {
-  border: 1px solid black;
-  margin-top: -1px;
-  margin-right: -1px;
+  background-color: white;
+  margin-right: 1px;
+  margin-bottom: 1px;
   min-width: 14%;
-  max-width: 15%;
-  max-height: 30px; 
+  max-width: 15%; 
+  height: 50px;
+  color: black;
+  text-align: center;
+  font-weight: 600;
+  line-height: 50px;
+}
+
+.datebox:hover {
+  background-color: darkgray;
+}
+
+.datebox a {
+  color: black;
+  text-decoration: none;
 }
 
 .timebox {
-  border: 1px solid black; 
-  margin-bottom: 10px; 
+  border: 1px solid darkgray;
+  height: 30px; 
+  color: black;
+  text-align: center;
+  font-weight: 600;
+  line-height: 30px;
+  width: 90px;
+  margin: 5px auto;
+  cursor: pointer;
+}
+
+.timebox:hover {
+  background-color: darkgray;
 }
 
 .red {
-  background-color: $my-green;
+  background-color: $my-green
 }
 
 .redtime {
@@ -21,10 +45,14 @@
 }
 
 .booked {
-  border: 1px solid black;
-  border: 1px solid black; 
-  margin-bottom: 10px; 
   background-color: grey;
+  height: 30px; 
+  width: 90px; 
+  color: black;
+  text-align: center;
+  font-weight: 600;
+  margin: 5px auto;
+  line-height: 30px;
 }
 
 .daybox {
@@ -52,4 +80,8 @@
 
 .bookcard {
   background-color: white;
+}
+
+.book-btn {
+  margin: 0 auto;
 }

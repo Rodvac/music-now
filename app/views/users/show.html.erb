@@ -3,7 +3,7 @@
 <ul id="tabs">
   <li><a href="#about">Mes Réservations</a></li>
   <li><a href="#advantages">Planning</a></li>
-  <li><a href="#usage">Paramètre</a></li>
+  <li><a href="#usage">Éditer mon Profil</a></li>
 </ul>
 
 <div class="tabContent" id="about">
@@ -200,6 +200,18 @@
 </div>
 
 <div class="tabContent" id="usage">
-  <h2>Paramètre</h2>
+  <h2>Éditer mon Profil</h2>
+  <div class="container ptpb">
+  <%= simple_form_for @user do |f| %>
+    <%= f.input :first_name, :label => "First Name" %>
+    <%= f.input :last_name, :label => "Last Name" %>
+    <%= f.input :email, :label => "Email" %>
+    <%= f.input :current_password %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+    <%= f.input :photo, as: :file %>
+    <%= f.submit "Save", class: 'btn btn-primary' %>
+  <% end %>
+  </div>
 </div>
 

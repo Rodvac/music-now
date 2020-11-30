@@ -1,14 +1,20 @@
 
 <br>
 <br>
-<% if Date.today > @booking.date.to_date %>
-<h2 class="text-center mb-3">Etes-vous satisfait de votre expérience chez <%=@booking.room.studio.name%>?</h2>
-<%else%>
-<h2 class="text-center mb-3">Votre réservation chez <%=@booking.room.studio.name%>!</h2>
-<%end%>
 
-<div class="d-flex">
+
+<div class="d-flex flex-wrap">
+<div class="col-12">
+<% if Date.today > @booking.date.to_date %>
+<h2 class="mb-3">Etes-vous satisfait de votre expérience chez <%=@booking.room.studio.name%>?</h2>
+<br>
+<%else%>
+<h2 class="mb-3">Merci pour votre réservation chez <%=@booking.room.studio.name%></h2>
+<br>
+<%end%>
+</div>
 <div class="col-4">
+<h3>Votre salle</h3>
         <div class="card-room mb-3">
           <%= link_to room_path(@booking.room) do  %>
               <%= cl_image_tag @booking.room.photo.key, class: "card-studio-img" %>
@@ -19,7 +25,6 @@
             </div>
             <div class="card-room-description">
               <h2><%= link_to @booking.room.name, room_path(@booking.room) %></h2>
-              <p class="address"><%= @booking.room.studio.address %></p>
               <p class="description mt-2"><%= @booking.room.description %></p>
               <p class="mt-2 capacity">  Capacité max : <%= @booking.room.capacity %> </p>
             </div>
@@ -41,14 +46,38 @@
    </div>
 
 <div class="col-8">
-
-<div class="booking-card">
 <h3>Détails de la réservation</h3>
-<p><strong>Date:</strong> <%= @booking.date %></p>
-<p><strong>Heure:</strong> <%= @booking.time %></p>
-<p><strong>Nom:</strong> <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
-<p><strong>Paiement</strong> reçu le 12/11/2020 - Mastercard **** **** **** 2345</p>
+<br>
+
+<div class="row">
+<div class="col-3">
+<h4>
+  <i class="far fa-calendar"></i>
+  <%= @booking.date %></p>
+  <i class="far fa-clock"></i>
+  <%= @booking.time %></p>
+</h4>
 </div>
+
+
+<div class="col-9">
+  <div class="booking-card">
+  <p><strong>Nom:</strong> <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
+  <p><strong>Paiement</strong> reçu le 12/11/2020 - Mastercard **** **** **** 2345</p>
+  </div>
+</div>
+</div>
+
+<% if Date.today <= @booking.date.to_date %>
+<h3>Trouver votre studio</h3>
+<div class="col-12">
+    <div id="map"
+      style="width: 100%; height: 300px; margin-left: -15px;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
+<% end %>
 
 <% if Date.today > @booking.date.to_date %>
 <div class="booking-card-review">

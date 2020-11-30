@@ -16,11 +16,11 @@ import { toggleClassOnSearchBar } from '../components/searchbar';
 import { dateSelect } from '../components/dateselect';
 import { timeSelect } from '../components/timeselect';
 import { displayGraduation } from '../components/graduation';
-import {  } from '../components/dashboardTabsMenu';
+import { initTabs } from '../components/dashboardTabsMenu';
 import { initAutocomplete } from '../plugins/init_autocomplete';
 
 
-initAutocomplete();
+
 
 ScrollReveal().reveal('.card-studio', {delay: 500});
 ScrollReveal().reveal('.card-room', {delay: 500});
@@ -34,7 +34,10 @@ document.addEventListener('turbolinks:load', () => {
   ScrollReveal();
   ScrollReveal().reveal();
   displayGraduation();
+  initTabs();
+  initAutocomplete();
 })
+
 
 
 

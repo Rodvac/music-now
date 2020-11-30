@@ -37,6 +37,14 @@ class BookingsController < ApplicationController
   def show
     @booking = Booking.find(params[:id])
     @review = Review.new
+    @id = @booking.room.studio.id
+    @studios = Studio.where(id: @id)
+    @markers = @studios.geocoded.map do |studio|
+      {
+      lat: studio.latitude,
+      lng: studio.longitude,
+      }
+    end
   end
 
   private

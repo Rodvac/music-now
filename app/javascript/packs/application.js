@@ -18,11 +18,6 @@ import { timeSelect } from '../components/timeselect';
 import { displayGraduation } from '../components/graduation';
 import { initTabs } from '../components/dashboardTabsMenu';
 import { initAutocomplete } from '../plugins/init_autocomplete';
-import { Calendar } from '@fullcalendar/core';
-import dayGridPlugin from '@fullcalendar/daygrid';
-
-
-
 
 
 ScrollReveal().reveal('.card-studio', {delay: 500});
@@ -37,9 +32,7 @@ document.addEventListener('turbolinks:load', () => {
   ScrollReveal();
   ScrollReveal().reveal();
   displayGraduation();
-  initTabs();
   initAutocomplete();
-  toggleDashboard();
 })
 
 

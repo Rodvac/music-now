@@ -20,4 +20,7 @@ Rails.application.routes.draw do
   resources :bookings do
     resources :reviews
   end
+
+  resources :chatrooms, only: :show
+
 end

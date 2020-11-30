@@ -36,8 +36,11 @@ document.addEventListener('turbolinks:load', () => {
   displayGraduation();
   initTabs();
   initAutocomplete();
+<<<<<<< HEAD
   toggleDashboard();
   initChatroomCable ();
+=======
+>>>>>>> master
 })
 
 

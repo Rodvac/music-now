@@ -25,9 +25,9 @@
   <h1>TROUVER UNE SALLE</h1>
       <%= simple_form_for :search, url: rooms_path, method: :get  do |f|%>
         <div class="search-container-items">
-          <%= f.input :address, label: "Adresse", placeholder: 'Où souhaitez-vous jouer ?', required: false %>
-          <%= f.input :capacity, label: "Artistes", placeholder: 'Ajoutez des artistes', as: :integer, required: false %>
-          <%= f.input :item, label: "Instrument", collection: Item.all.map{|s| s.name}, class: "recognitionStyling", prompt: "-- SELECTIONNER --", required: false %>
+          <%= f.input :address, label: "Adresse", placeholder: 'Où souhaitez-vous jouer ?', required: false, wrapper_html: { class: 'search-hover' }%>
+          <%= f.input :capacity, label: "Artistes", placeholder: 'Ajoutez des artistes', as: :integer, required: false, wrapper_html: { class: 'search-hover' }%>
+          <%= f.input :item, label: "Instrument", collection: Item.all.map{|s| s.name}, wrapper_html: { class: 'search-hover' }, prompt: "-- SELECTIONNER --", required: false %>
           <%#= f.submit "Rechercher", class: 'btn btn-primary' %>
           <%= button_tag type: 'submit', class: "kill-border" do %>
             <i class="fas fa-search" aria-hidden="true"></i>

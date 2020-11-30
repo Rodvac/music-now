@@ -1,13 +1,13 @@
 class MessagesController < ApplicationController
   def create
-    @chatroom = Chatroom.find(params[:chatroom_id])
+    @booking = Booking.find(params[:booking_id])
     @message = Message.new(message_params)
-    @message.chatroom = @chatroom
+    @message.booking = @booking
     @message.user = current_user
     if @message.save
-      redirect_to chatroom_path(@chatroom, anchor: "message-#{@message.id}")
+      redirect_to booking_path(@booking, anchor: "message-#{@message.id}")
     else
-      render "chatrooms/show"
+      render "bookings/show"
     end
   end
 

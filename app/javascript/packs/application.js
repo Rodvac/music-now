@@ -18,6 +18,9 @@ import { timeSelect } from '../components/timeselect';
 import { displayGraduation } from '../components/graduation';
 import {  } from '../components/dashboardTabsMenu';
 import { initAutocomplete } from '../plugins/init_autocomplete';
+import { Calendar } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+
 
 
 initAutocomplete();

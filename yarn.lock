@@ -3304,6 +3304,11 @@ fstream@^1.0.0, fstream@^1.0.12:
     mkdirp ">=0.5 0"
     rimraf "2"
 
+fullcalendar@^5.4.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/fullcalendar/-/fullcalendar-5.4.0.tgz#079e6ff9ffb17f7ec5809ada5e352e6cbc3ba5c9"
+  integrity sha512-TYAycz4vCrcBpZQYc1AJA8C5bZD1rKEr1+2LL2AZ/TW5Ga+FSu88OTo8/Q0mP469LzBXNbp3AXn1TQv9UKDW6g==
+
 function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"

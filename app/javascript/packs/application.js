@@ -16,7 +16,6 @@ import { toggleClassOnSearchBar } from '../components/searchbar';
 import { dateSelect } from '../components/dateselect';
 import { timeSelect } from '../components/timeselect';
 import { displayGraduation } from '../components/graduation';
-import { initTabs } from '../components/dashboardTabsMenu';
 import { initAutocomplete } from '../plugins/init_autocomplete';
 
 

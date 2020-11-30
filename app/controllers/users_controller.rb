@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @bookings = Booking.where(user_id: @user.id)
     @studios = Studio.where(user_id: @user.id)
+    @chatroom = Chatroom.where(user_id: @user_id)
   end
 
   def edit

@@ -45,6 +45,7 @@
     <div class="search-container-items">
       <%= f.input :address, label: "Adresse", placeholder: 'Où souhaitez-vous jouer ?'%>
       <%= f.input :capacity, label: "Capacité", placeholder: 'Ajoutez des artistes', as: :integer%>
+      <%= f.input :item, label: "Instrument", collection: Item.all.map{|s| s.name}, placeholder: 'Que recherchez-vous ?'%>
       <%= f.submit "Rechercher", class: 'btn btn-primary' %>
     </div>
 <% end %>

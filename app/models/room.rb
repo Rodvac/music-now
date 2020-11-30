@@ -11,7 +11,8 @@ class Room < ApplicationRecord
   pg_search_scope :global_search,
                   against: [:capacity],
                   associated_against: {
-                  studio: [:address]
+                  studio: [:address],
+                  items: [:name]
                   },
                   using: {
                   tsearch: { prefix: true } }

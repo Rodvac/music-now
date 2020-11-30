@@ -1,74 +1,190 @@
-.vertical-nav {
-  min-width: 17rem;
-  width: 17rem;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s;
+/*
+*
+* ==========================================
+* Tabs MENU
+* ==========================================
+*
+*/
+
+.underline {
+  text-decoration: underline;
 }
 
-.page-content {
-  width: calc(100% - 17rem);
-  margin-left: 17rem;
-  transition: all 0.4s;
+ul#tabs {
+  list-style-type: none;
+  margin: 30px 0 0 0;
+  padding: 0 0 0.3em 0;
 }
 
-/* for toggle behavior */
-
-#sidebar.active {
-  margin-left: -17rem;
+ul#tabs li {
+  display: inline;
+  font-family: Oswald, sans-serif;
+  font-size: 25px;
 }
 
-#content.active {
-  width: 100%;
-  margin: 0;
+ul#tabs li a {
+  color: #42454a;
+  background-color: #dedbde;
+  border: 1px solid #c9c3ba;
+  border-bottom: none;
+  padding: 0.3em;
+  text-decoration: none;
+  border-top-left-radius: 15px;
 }
 
-@media (max-width: 768px) {
-  #sidebar {
-    margin-left: -17rem;
-  }
-  #sidebar.active {
-    margin-left: 0;
-  }
-  #content {
+ul#tabs li a:hover {
+  background-color: #f1f0ee;
+}
+
+ul#tabs li a.selected {
+  color: #000;
+  background-color: #f1f0ee;
+  font-weight: bold;
+  padding: 0.7em 0.3em 0.38em 0.3em;
+}
+
+div.tabContent {
+  border: 1px solid #c9c3ba;
+  padding: 0.5em;
+  background-color: #f1f0ee42;
+  text-align: center;
+}
+
+div.tabContent.hide {
+  display: none;
+}
+
+
+
+/*
+*
+* ==========================================
+* TABLE DATA
+* ==========================================
+*
+*/
+.table-fixed tbody {
+    height: 300px;
+    overflow-y: auto;
     width: 100%;
-    margin: 0;
+}
+
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+    display: block;
+}
+
+.table-fixed tbody td,
+.table-fixed tbody th,
+.table-fixed thead > tr > th {
+    float: left;
+    position: relative;
+
+    &::after {
+        content: '';
+        clear: both;
+        display: block;
+    }
+}
+
+
+/*
+*
+* ==========================================
+* CALENDAR
+* ==========================================
+*
+*/
+
+
+.with-chevron[aria-expanded='true'] i {
+  display: block;
+  transform: rotate(180deg) !important;
+}
+
+.clearfix::after,
+.calendar ol::after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+/* ================
+Calendar Styling */
+.calendar {
+  border-radius: 10px;
+}
+
+.month {
+  font-size: 2rem;
+}
+
+@media (min-width: 992px) {
+  .month {
+    font-size: 3.5rem;
   }
-  #content.active {
-    margin-left: 17rem;
-    width: calc(100% - 17rem);
-  }
 }
 
-.nav-link-dashboard{
-  color: black;
-  font-family: Oswald;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 36px;
+.calendar ol li {
+  float: left;
+  width: 14.28571%;
 }
 
-body {
-  // background: #599fd9;
-  // background: -webkit-linear-gradient(to right, #599fd9, #c2e59c);
-  // background: linear-gradient(to right, #599fd9, #c2e59c);
-  min-height: 100vh;
-  overflow-x: hidden;
+.calendar .day-names {
+  border-bottom: 1px solid #eee;
 }
 
-.separator {
-  margin: 3rem 0;
-  border-bottom: 1px dashed #fff;
+.calendar .day-names li {
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
 }
 
-.text-uppercase {
-  letter-spacing: 0.1em;
+.calendar .days li {
+  border-bottom: 1px solid #eee;
+  min-height: 8rem;
 }
 
-.text-gray {
-  color: #aaa;
+.calendar .days li .date {
+  margin: 0.5rem 0;
 }
+
+.calendar .days li .event {
+  font-size: 0.75rem;
+  padding: 0.4rem;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 4rem;
+  margin-bottom: 1px;
+}
+
+.calendar .days li .event.span-2 {
+  width: 200%;
+}
+
+.calendar .days li .event.begin {
+  border-radius: 1rem 0 0 1rem;
+}
+
+.calendar .days li .event.end {
+  border-radius: 0 1rem 1rem 0;
+}
+
+.calendar .days li .event.clear {
+  background: none;
+}
+
+.calendar .days li:nth-child(n+29) {
+  border-bottom: none;
+}
+
+.calendar .days li.outside .date {
+  color: #ddd;
+}
+

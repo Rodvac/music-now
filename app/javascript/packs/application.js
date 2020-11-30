@@ -36,7 +36,6 @@ document.addEventListener('turbolinks:load', () => {
   displayGraduation();
   initTabs();
   initAutocomplete();
-  toggleDashboard();
 })
 
 

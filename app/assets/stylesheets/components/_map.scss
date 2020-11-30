@@ -1,6 +1,11 @@
 .map-container-studios {
   position:relative;
+  height: 594px;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
 }
+
 .radius-graduation {
   position: absolute;
   right: -16px;

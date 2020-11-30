@@ -18,7 +18,7 @@ import { timeSelect } from '../components/timeselect';
 import { displayGraduation } from '../components/graduation';
 import { initTabs } from '../components/dashboardTabsMenu';
 import { initAutocomplete } from '../plugins/init_autocomplete';
-
+import { initChatroomCable } from "../channels/chatroom_channel";
 
 
 
@@ -37,6 +37,7 @@ document.addEventListener('turbolinks:load', () => {
   initTabs();
   initAutocomplete();
   toggleDashboard();
+  initChatroomCable ();
 })
 
 

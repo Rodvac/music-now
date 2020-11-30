@@ -38,27 +38,29 @@
     </div>
   </div>
 </div>
-<!-- <div class="search-container">
-  <h1>Find a room</h1>
+<div class="search-container">
+  <h1>Trouver une salle</h1>
 
-  <%#= simple_form_for :search, url: rooms_path, method: :get  do |f|%>
+  <%= simple_form_for :search, url: rooms_path, method: :get  do |f|%>
     <div class="search-container-items">
-      <%#= f.input :address, label: "Adresse", collection: Studio.all.map{|s| s.address}, placeholder: 'Où souhaitez-vous jouer ?'%>
-      <%#= f.input :capacity, label: "Capacité", placeholder: 'Ajoutez des artistes', as: :integer%>
-      <%#= f.submit "Rechercher", class: 'btn btn-primary' %>
-      <%#= f.submit do %>
-        <!-- <i class="fas fa-search"></i>
-      <%# end %> -->
-<!--     </div>
- -->  <%# end %>
-<!-- </div> -->
+      <%= f.input :address, label: "Adresse", placeholder: 'Où souhaitez-vous jouer ?'%>
+      <%= f.input :capacity, label: "Capacité", placeholder: 'Ajoutez des artistes', as: :integer%>
+      <%= f.input :item, label: "Instrument", collection: Item.all.map{|s| s.name}, placeholder: 'Que recherchez-vous ?'%>
+      <%= f.submit "Rechercher", class: 'btn btn-primary' %>
+    </div>
+<% end %>
 <div class="articles-infos">
 
 </div>
 
 
+<!-- collection: Studio.all.map{|s| s.address}, -->
 
-
-<!-- <i class="fas fa-search"></i> -->
-
+<%#= form_tag rooms_path, method: :get do %>
+<%#= text_field_tag :query,
+params[:query],
+class: "form-control",
+placeholder: "Find a room" %>
+<%#= submit_tag "Search", class: "btn btn-primary" %>
+<%# end %>
 

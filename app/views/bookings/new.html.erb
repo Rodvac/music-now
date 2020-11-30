@@ -4,7 +4,7 @@
 
 <div class= "col-4">
 <h2 class="monthtitle">Votre salle</h2>
-        <div class="card-room mb-3">
+        <div class="card-room">
           <%= link_to room_path(@room) do  %>
              <%= cl_image_tag @room.photo.key, class: "card-studio-img" %>
           <% end %>
@@ -80,19 +80,27 @@
   <div class="col-4">
   <h2 class="monthtitle">Choisir une heure</h2>
   <% @timearray.each do |time| %>
-    <% if Booking.where(date: @date.to_s, time: time).length > 0 %>
-      <div class="text-center booked">Booked</div>
+    <% if @date < Date.today || (@date - Date.today).to_i > 14 %>
+      <div class="text-center booked">-</div>
+    <% elsif Booking.where(date: @date.to_s, time: time).length > 0 %>
+      <div class="text-center booked">Réservé</div>
     <% else %>
       <div class="text-center timebox" id= ""><%=time%></div>
     <% end %>
   <%end%>
-  <%= simple_form_for [ @room, @booking ] do |f| %>
-  <%= f.input :date, as: :string, input_html: { value: params[:format] }, as: :hidden %>
-  <%= f.input :time, as: :string, as: :hidden %>
-  <%= f.submit "Réserver", class: 'btn btn-primary' %>
-  <% end %>
   </div>
 
 
 </div>
+
+<div class="d-flex justify-content-center">
+
+  <%= simple_form_for [ @room, @booking ] do |f| %>
+  <%= f.input :date, as: :string, input_html: { value: params[:format] }, as: :hidden %>
+  <%= f.input :time, as: :string, as: :hidden %>
+  <%= f.submit "Réserver", class: 'btn btn-primary book-btn' %>
+  <% end %>
+
+</div>
+
 </div>

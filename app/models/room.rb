@@ -9,9 +9,7 @@ class Room < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :global_search,
-                  against: [:capacity],
                   associated_against: {
-                  studio: [:address],
                   items: [:name]
                   },
                   using: {

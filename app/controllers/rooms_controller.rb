@@ -11,8 +11,7 @@ class RoomsController < ApplicationController
         @rooms = @rooms.where("capacity <= #{params[:search][:capacity]}")
       end
       if params[:search][:item].present?
-        @rooms = @rooms.where(name: params[:search][:item])
-        raise
+        @rooms = @rooms.global_search(params[:search][:item])
       end
     end
   end

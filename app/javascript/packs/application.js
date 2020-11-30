@@ -16,7 +16,7 @@ import { toggleClassOnSearchBar } from '../components/searchbar';
 import { dateSelect } from '../components/dateselect';
 import { timeSelect } from '../components/timeselect';
 import { displayGraduation } from '../components/graduation';
-import { toggleDashboard } from '../components/dashBoardToogle';
+import {  } from '../components/dashboardTabsMenu';
 
 
 ScrollReveal().reveal('.card-studio', {delay: 500});
@@ -31,8 +31,6 @@ document.addEventListener('turbolinks:load', () => {
   ScrollReveal();
   ScrollReveal().reveal();
   displayGraduation();
-  toggleDashboard();
-
 })
 
 

@@ -5,7 +5,7 @@
       <%= simple_form_for :search, url: rooms_path, method: :get  do |f|%>
         <%= f.input :address, label: "Adresse", placeholder: 'Où jouer ?', required: false%>
         <%= f.input :capacity, label: "Artistes", input_html: { min: 1 }, placeholder: 'Ajouter', as: :numeric, required: false%>
-        <%= f.input :item, label: "Instrument", collection: Item.all.map{|s| s.name}, wrapper_html: { class: 'choose-instrument' }, prompt: "SELECTIONNER", required: false %>
+        <%= f.input :item, label: "Instrument", collection: Item.all.map{|s| s.name}, wrapper_html: { class: 'choose-instrument' }, prompt: "Sélectionner", required: false %>
         <%= f.submit "Rechercher", class: 'btn btn-primary' %>
       <% end %>
     </div>

@@ -1,7 +1,4 @@
-<h1>Mon espace  <%= cl_image_tag @user.photo.attached? %></h1>
-
-
-
+<h1>Mon espace  </h1>
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   <li class="nav-item" role="presentation">
     <a class="nav-link active text-black" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Mes Réservations</a>
@@ -46,7 +43,7 @@
                               <% current_user.bookings.each do |booking| %>
                                 <tr>
                                   <th scope="row" class="col-1"><%= i %></th>
-                                  <td class="col-2 bold"><%=  booking.date.split("-").pop(2).join("/") %></td>
+                                  <td class="col-2 bold"><%=  booking.date.split("-").pop(2).reverse.join("/") %></td>
                                   <td class="col-1"><%=  booking.time %></td>
                                   <td class="col-2"><%=  booking.room.studio.name %></td>
                                   <td class="col-3"><%=  booking.room.name %></td>
@@ -68,16 +65,16 @@
 
       <div class="calendar_show">
         <div class="calendar_container">
-          <% @already_booked %>
           <%= month_calendar studio: @bookings do |date, bookings| %>
             <!--display date if today's date  and not booked-->
-            <% if @already_booked&.exclude?(date)%>
+            <% if @already_booked.pluck(:date)&.include?(date.strftime("%Y-%m-%d"))%>
                 <div class="cursor" style="cursor: pointer;">
                   <div class="round">
                   <%= date.day %>
+                  <% booking = @already_booked.select { |e| e.date == date.to_s }.first %>
+                  <p> <%= booking.time %>
+                  <%= link_to booking.room.studio.name, user_booking_path(current_user, booking)  %></p>
                   </div>
-                  <!-- content of the complete date -->
-                  <span style="display: none"><%= date %></span>
                 </div>
             <!--past days note proposed -->
             <% else %>
@@ -90,17 +87,20 @@
             <% end %>
           <% end %>
         </div>
-
-
       </div>
-    </div>
-
   </div>
 
   <!-- Editer mon profil  -->
   <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
     <div class="tabContent" id="usage">
       <h2>Éditer mon Profil</h2>
+      <div class="d-flex justify-content-center">
+        <% if @user.photo.attached? %>
+          <%= cl_image_tag @user.photo.key, class: "avatar-medium dropdown-toggle ", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
+        <% else %>
+          <%= image_tag "https://i.etsystatic.com/10924369/r/il/96200a/961644812/il_570xN.961644812_fohw.jpg", class: "avatar dropdown-toggle ", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% end %>
+      </div>
       <div class="container ptpb">
         <%= simple_form_for @user do |f| %>
           <%= f.input :first_name, :label => "First Name" %>

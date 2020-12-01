@@ -26,11 +26,13 @@ class BookingsController < ApplicationController
     @booking.room = @room
     @user = current_user
     @booking.user = @user
+
     if @booking.save
       redirect_to booking_path(@booking)
     else
       render :new
     end
+
   end
 
   def show

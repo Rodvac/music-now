@@ -10,7 +10,6 @@ class UsersController < ApplicationController
     @user.bookings.all.each do |booked|
       @already_booked << booked
     end
-    raise
   end
 
   def edit
@@ -29,6 +28,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :first_name, :last_name)
+    params.require(:user).permit(:email, :first_name, :last_name, :photo)
   end
 end

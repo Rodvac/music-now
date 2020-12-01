@@ -5,10 +5,10 @@
 <h1><%= current_user.first_name %> </h1>
   <div class="col-12">
     <h5>Status de la réservation: </h5>
-    <% if Date.today > @booking.formatted_date %>
+    <% if Date.today > @booking.date.to_date %>
       <h5 class="mb-3">passée</h5>
       <br>
-      <% elsif Date.today <= @booking.formatted_date %>
+      <% elsif Date.today <= @booking.date.to_date %>
       <h5 class="mb-3">confirmée</h5>
       <br>
     <% end %>
@@ -71,7 +71,7 @@
     <div class="col-12">
       <div class="your-review">
         <% if @booking.user == current_user %>
-          <% if Date.today <= @booking.formatted_date %>
+          <% if Date.today <= @booking.date.to_date %>
             <h4>Localiser le studio</h4>
               <div class="col-12">
                 <div id="map"
@@ -99,7 +99,7 @@
             <% end %>
           <% end %>
         <% else %>
-          <% if Date.today <= @booking.formatted_date %>
+          <% if Date.today <= @booking.date.to_date %>
             <h5>Profil de <%= @booking.user.first_name%></h5>
             <ul>
               <li><%= @booking.user.first_name%></li>

@@ -164,7 +164,6 @@ ActiveRecord::Schema.define(version: 2020_12_01_115257) do
   add_foreign_key "jams", "rooms"
   add_foreign_key "jams_users", "jams"
   add_foreign_key "jams_users", "users"
-  add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "reviews", "bookings"
   add_foreign_key "reviews", "users"

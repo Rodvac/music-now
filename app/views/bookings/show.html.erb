@@ -93,7 +93,7 @@
 </div>
 </div>
 
-<h1>#<%= @booking.name %></h1>
+<h1>Your conversation with   <%= @booking.name %></h1>
 <div id="messages" data-booking-id="<%= @booking.id %>">
   <% @booking.messages.each do |message| %>
     <div class="message-container" id="message-<%= message.id %>">

@@ -3,7 +3,7 @@
   background-color: $my-green;
   color: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  padding: 15px; 
+  padding: 15px;
   margin-bottom: 30px;
 }
 
@@ -11,9 +11,19 @@
   width: 100%;
   background-color: $light-gray;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  padding: 15px; 
+  padding: 15px;
+  margin-bottom: 30px;
+  height: 246px;
+}
+
+
+.booking-card-infos {
+  width: 100%;
+  background-color: #475b6329;
+  color: #040404;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  padding: 15px;
   margin-bottom: 30px;
 }
 
-.book {
-}
+

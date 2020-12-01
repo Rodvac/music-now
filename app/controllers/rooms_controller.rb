@@ -5,14 +5,16 @@ class RoomsController < ApplicationController
     if params[:search]
       if params[:search][:address].present?
         @studios = Studio.near(params[:search][:address], 10).map(&:id)
-        @rooms = @rooms.where(studio_id: @studios)
+        @rooms = @rooms.where(studio_id: @studios).order(capacity: :asc)
       end
       if params[:search][:capacity].present?
-        @rooms = @rooms.where("capacity >= #{params[:search][:capacity]}")
+        @rooms = @rooms.where("capacity >= #{params[:search][:capacity]}").order(capacity: :asc)
       end
       if params[:search][:item].present?
-        @rooms = @rooms.global_search(params[:search][:item])
+        @rooms = @rooms.global_search(params[:search][:item]).order(capacity: :asc)
       end
+      #raise
+      @tags = params[:search].values
     end
   end
 

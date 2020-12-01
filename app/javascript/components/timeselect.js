@@ -1,6 +1,6 @@
 const timeSelect = () => {
   const times = document.querySelectorAll(".timebox");
-  const inputTime =  document.querySelector("#booking_time");
+  const inputTime =  document.querySelector("#booking_time, #jam_time");
   times.forEach((element) => {
     element.addEventListener("click", (event) => {
       const red = document.querySelectorAll(".redtime");

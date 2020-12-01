@@ -1,6 +1,60 @@
+<div class="col-4">
+  <div class="bookcard">
+    <h2 class="monthtitle">Choisir un jour</h2>
+    <br>
+  <div class="d-flex">
+    <div class="monthdir"><%= link_to "<", new_jam_path(@date - 30) %></div>
+    <div class="monthbox"><h4><%=Date::MONTHNAMES[@date.month]%></h4></div>
+    <div class="monthdir"><%= link_to ">", new_jam_path(@date + 30) %></div>
+  </div>
+  <br>
+  <div class="d-flex">
+    <div class="daybox">L</div>
+    <div class="daybox">M</div>
+    <div class="daybox">M</div>
+    <div class="daybox">J</div>
+    <div class="daybox">V</div>
+    <div class="daybox">S</div>
+    <div class="daybox">D</div>
+  </div>
+  <div class="d-flex flex-wrap">
+  <% if @start.wday == 0 %>
+  <% 6.times do %>
+    <div class="datebox text-center" id=""></div>
+  <% end %>
+    <%else%>
+  <% (@start.wday - 1).times do %>
+    <div class="datebox text-center" id=""></div>
+  <% end %>
+  <% end %>
+  <% @datearray.each do |date| %>
+    <% if @date == date %>
+      <div class="datebox text-center red" id="<%date%>"><%=date.day%></div>
+    <% else %>
+      <div class="datebox text-center" id="<%date%>"><%= link_to date.day, new_jam_path(date) %></div>
+    <% end %>
+  <%end%>
+  </div>
+  </div>
+</div>
+
+  <div class="col-4">
+  <h2 class="monthtitle">Choisir une heure</h2>
+  <% @timearray.each do |time| %>
+    <% if @date < Date.today || (@date - Date.today).to_i > 14 %>
+      <div class="text-center booked">-</div>
+    <% else %>
+      <div class="text-center timebox" id= ""><%=time%></div>
+    <% end %>
+  <%end%>
+  </div>
+  
+  
   <%= simple_form_for [ @jam ] do |f| %>
   <%= f.input :name, as: :string %>
   <%= f.input :description, as: :string %>
+  <%= f.input :date, as: :string, input_html: { value: params[:format] }, as: :hidden %>
+  <%= f.input :time, as: :string %>
   <%= simple_fields_for :other do |o| %>
     <%= o.input :instrument, as: :string, label: 'What instrument will u be playing?' %>
   <% end %>

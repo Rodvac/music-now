@@ -1,6 +1,17 @@
 .filter {
   width: 200px;
   margin-right: 20px;
+
+  .form-control {
+    width: 93%;
+    font-weight: 350;
+    font-size: 15px;
+    color: #6c757d;
+  }
+
+  .choose-instrument {
+    color: black;
+}
 }
 
 .card-room-index {
@@ -8,4 +19,8 @@
   min-width: 200px;
   margin-right: 15px;
   height: max-content;
+}
+
+.choose-instrument {
+  color: #6c757d;
 }

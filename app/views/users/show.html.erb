@@ -47,7 +47,7 @@
                               <% current_user.bookings.each do |booking| %>
                                 <tr>
                                   <th scope="row" class="col-1"><%= i %></th>
-                                  <td class="col-2 bold"><%=  booking.date.split("-").pop(2).join("/") %></td>
+                                  <td class="col-2 bold"><%=  booking.date.split("-").pop(2).reverse.join("/") %></td>
                                   <td class="col-1"><%=  booking.time %></td>
                                   <td class="col-2"><%=  booking.room.studio.name %></td>
                                   <td class="col-3"><%=  booking.room.name %></td>

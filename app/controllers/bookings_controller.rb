@@ -34,6 +34,7 @@ class BookingsController < ApplicationController
   end
 
   def show
+
     @booking = Booking.find(params[:id])
     @review = Review.new
     @id = @booking.room.studio.id
@@ -44,7 +45,7 @@ class BookingsController < ApplicationController
       lng: studio.longitude,
       }
     end
-    @message = Message.where(booking_id: @id)
+    @message = Message.new
   end
 
   private

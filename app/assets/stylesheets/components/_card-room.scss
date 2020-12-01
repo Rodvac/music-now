@@ -23,6 +23,11 @@
   margin-right: 30px;
 }
 
+#bookings-show .card-room {
+    width: 100%;
+    min-width: auto;
+}
+
 .card-room-book {
   overflow: hidden;
   background: $light-gray;

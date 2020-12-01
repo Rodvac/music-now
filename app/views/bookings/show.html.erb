@@ -1,112 +1,156 @@
-
 <br>
 <br>
-
 
 <div class="d-flex flex-wrap">
-<div class="col-12">
-<% if Date.today > @booking.formatted_date %>
-<h2 class="mb-3">Etes-vous satisfait de votre expérience chez <%=@booking.room.studio.name%>?</h2>
-<br>
-<%else%>
-<h2 class="mb-3">Merci pour votre réservation chez <%=@booking.room.studio.name%></h2>
-<br>
-<%end%>
-</div>
-<div class="col-4">
-<h3>Votre salle</h3>
-        <div class="card-room mb-3">
-          <%= link_to room_path(@booking.room) do  %>
-              <%= cl_image_tag @booking.room.photo.key, class: "card-studio-img" %>
-          <% end %>
-          <div class="card-room-infos">
-            <div class="studio-name">
-             <p><%= @booking.room.studio.name %></p>
-            </div>
-            <div class="card-room-description">
-              <h2><%= link_to @booking.room.name, room_path(@booking.room) %></h2>
-              <p class="description mt-2"><%= @booking.room.description %></p>
-              <p class="mt-2 capacity">  Capacité max : <%= @booking.room.capacity %> </p>
-            </div>
-            <div class="card-room-gears d-flex mt-2">
-              <div class="d-flex">
-                <i class="fas fa-search"></i>
-                <a class="ml-2" data-toggle="collapse" href="#collapseExample-<%=@booking.room.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
-                  Matériel
-                </a>
-              </div>
-            </div>
-            <div class="collapse" id="collapseExample-<%=@booking.room.id%>">
-              <% @booking.room.items.each do |item| %>
-                <p>- <%= item.name %></p>
-              <% end %>
-            </div>
-          </div>
-        </div>
-   </div>
-
-<div class="col-8">
-<h3>Détails de la réservation</h3>
-<br>
-
-<div class="row">
-<div class="col-3">
-<h4>
-  <i class="far fa-calendar"></i>
-  <%= @booking.date %></p>
-  <i class="far fa-clock"></i>
-  <%= @booking.time %></p>
-</h4>
-</div>
-
-
-<div class="col-9">
-  <div class="booking-card">
-  <p><strong>Nom:</strong> <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
-  <p><strong>Paiement</strong> reçu le 12/11/2020 - Mastercard **** **** **** 2345</p>
-  </div>
-</div>
-</div>
-
-<% if Date.today <= @booking.formatted_date %>
-<h3>Trouver votre studio</h3>
-<div class="col-12">
-    <div id="map"
-      style="width: 100%; height: 300px; margin-left: -15px;"
-      data-markers="<%= @markers.to_json %>"
-      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-    </div>
-  </div>
-<% end %>
-
-<% if Date.today > @booking.formatted_date %>
-  <div class="booking-card-review">
-    <h2>Donnez votre avis: </h2>
-    <%= simple_form_for [@booking, @review] do |f| %>
-      <%= f.input :title, label: "Titre" %>
-      <%= f.input :rating, wrapper_html: { class: 'fas fa-star' }, collection: 0..5, label: "Note" %>
-      <%= f.input :content, as: :text, label: "Commentaire" %>
-      <%= f.submit "Valider", class: "btn btn-primary" %>
+<h1><%= current_user.first_name %> </h1>
+  <div class="col-12">
+    <h5>Status de la réservation: </h5>
+    <% if Date.today > @booking.formatted_date %>
+      <h5 class="mb-3">passée</h5>
+      <br>
+      <% elsif Date.today <= @booking.formatted_date %>
+      <h5 class="mb-3">confirmée</h5>
+      <br>
     <% end %>
   </div>
-<%end %>
-</div>
-</div>
 
-<h1>Your conversation with <%= @studio.user.first_name %></h1>
-<div id="messages" data-booking-id="<%= @booking.id %>">
-  <% @booking.messages.each do |message| %>
-    <div class="message-container" id="message-<%= message.id %>">
-      <i class="author">
-        <span><%= message.user.nickname %></span>
-        <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-      </i>
-      <p><%= message.content %></p>
+  <div class="col-3">
+    <h3>Votre salle</h3>
+    <br>
+    <div class="card-room mb-3">
+      <%= link_to room_path(@booking.room) do  %>
+          <%= cl_image_tag @booking.room.photo.key, class: "card-studio-img" %>
+      <% end %>
+      <div class="card-room-infos">
+        <div class="studio-name">
+         <p><%= @booking.room.studio.name %></p>
+        </div>
+        <div class="card-room-description">
+          <h2><%= link_to @booking.room.name, room_path(@booking.room) %></h2>
+          <p class="description mt-2"><%= @booking.room.description %></p>
+          <p class="mt-2 capacity">  Capacité max : <%= @booking.room.capacity %> </p>
+        </div>
+        <div class="card-room-gears d-flex mt-2">
+          <div class="d-flex">
+            <i class="fas fa-search"></i>
+            <a class="ml-2" data-toggle="collapse" href="#collapseExample-<%=@booking.room.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+              Matériel
+            </a>
+          </div>
+        </div>
+        <div class="collapse" id="collapseExample-<%=@booking.room.id%>">
+          <% @booking.room.items.each do |item| %>
+            <p>- <%= item.name %></p>
+          <% end %>
+        </div>
+      </div>
     </div>
-  <% end %>
+    <br>
+  </div>
+
+<div class="col-6">
+  <h3>Détails de la réservation</h3>
+  <br>
+  <div class="row mr-2 ml-2">
+    <div class="col-3 text-center booking-card-infos">
+      <h5>
+        <i class="far fa-calendar"></i>
+        <%= @booking.date %></p>
+        <i class="far fa-clock"></i>
+        <%= @booking.time %></p>
+      </h5>
+    </div>
+    <div class="col-9">
+      <div class="booking-card">
+      <p><strong>Nom:</strong> <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
+      <p><strong>Paiement</strong> reçu le 12/11/2020 - Mastercard **** **** **** 2345</p>
+      </div>
+    </div>
+  </div>
+  <div class="row mr-2 ml-2">
+    <div class="col-12">
+      <div class="your-review">
+        <% if @booking.user == current_user %>
+          <% if Date.today <= @booking.formatted_date %>
+            <h4>Localiser le studio</h4>
+              <div class="col-12">
+                <div id="map"
+                  style="width: 100%; height: 205px; margin-left: -15px;"
+                  data-markers="<%= @markers.to_json %>"
+                  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+                </div>
+              </div>
+          <% else %>
+            <% if @booking.review.present? %>
+              <br>
+              <br>
+              <h4> Votre avis :</h4>
+              <p><%= @booking.review.content %> </p>
+            <% else %>
+              <div class="booking-card-review">
+                <h4>Etes-vous satisfait de l'expérience?</h4>
+                <%= simple_form_for [@booking, @review] do |f| %>
+                  <%= f.input :title, label: "Titre" %>
+                  <%= f.input :rating, wrapper_html: { class: 'fas fa-star' }, collection: 0..5, label: "Note" %>
+                  <%= f.input :content, as: :text, label: "Commentaire" %>
+                  <%= f.submit "Valider", class: "btn btn-primary" %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <% if Date.today <= @booking.formatted_date %>
+            <h5>Profil de <%= @booking.user.first_name%></h5>
+            <ul>
+              <li><%= @booking.user.first_name%></li>
+              <li><%= @booking.user.last_name%></li>
+              <li><%= @booking.user.nickname%></li>
+              <li><%= @booking.user.email%></li>
+            </ul>
+          <% else %>
+            <% if @booking.review.present? %>
+              <h4>Avis de <%= @booking.user.first_name%> :</h4>
+              <p><%= @booking.review.content  %> </p>
+            <% else %>
+              <h5><%= @booking.user.first_name%> n'a pas encore donné son avis</h5>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <br>
 </div>
 
-<%= simple_form_for [ @booking, @message ], remote: true do |f| %>
-  <%= f.input :content, label: false, placeholder: "Message ##{@booking.name}" %>
-<% end %>
+<div class="col-3">
+  <div>
+    <% if @booking.user == current_user %>
+      <h3>Votre conversation avec <%= @studio.user.first_name %></h3>
+    <% else %>
+      <h3>Votre conversation avec <%= @booking.user.first_name %></h3>
+    <% end %>
+    <br>
+    <div class="message-box">
+      <div id="messages" data-booking-id="<%= @booking.id %>">
+        <% @booking.messages.each do |message| %>
+          <div class="message-container" id="message-<%= message.id %>">
+            <i class="author">
+              <span><%= message.user.nickname %></span>
+              <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+            </i>
+            <p><%= message.content %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="add-messages">
+      <%= simple_form_for [ @booking, @message ], remote: true do |f| %>
+        <%= f.input :content, input_html: { class: ""}, label: false, placeholder: "Message ##{@booking.name}" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
+
+
 

@@ -9,6 +9,13 @@
         <%= f.submit "Rechercher", class: 'btn btn-primary' %>
       <% end %>
     </div>
+    <% unless @tags.size == 0 %>
+      <%  @tags.each do |tag|%>
+        <div class="tag-filter">
+          <%= tag %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
   <div class="cards-rooms">
     <% @rooms.each do |room| %>

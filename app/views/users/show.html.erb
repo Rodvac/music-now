@@ -65,6 +65,36 @@
 
   <!--   Mon Calendrier -->
   <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+      <div class="calendar_show">
+        <div class="calendar_container">
+          <% @already_booked %>
+          <%= month_calendar studio: @bookings do |date, bookings| %>
+            <!--display date if today's date  and not booked-->
+            <% if @already_booked&.exclude?(date)%>
+                <div class="cursor" style="cursor: pointer;">
+                  <div class="round">
+                  <%= date.day %>
+                  </div>
+                  <!-- content of the complete date -->
+                  <span style="display: none"><%= date %></span>
+                </div>
+            <!--past days note proposed -->
+            <% else %>
+            <div class="" style="cursor: pointer;">
+              <div class="round">
+              <%= date.day %>
+              </div>
+              <span style="display: none"><%= date %></span>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+
+
+      </div>
+    </div>
+
   </div>
 
   <!-- Editer mon profil  -->

@@ -3,9 +3,17 @@
     <h5>Filtrer par :</h5>
     <div>
       <%= simple_form_for :search, url: rooms_path, method: :get  do |f|%>
-        <%= f.input :address, label: "Adresse", placeholder: 'Où souhaitez-vous jouer ?'%>
-        <%= f.input :capacity,label: "Capacité", placeholder: 'Ajoutez des artistes', as: :integer%>
+        <%= f.input :address, label: "Adresse", placeholder: 'Où jouer ?', required: false%>
+        <%= f.input :capacity, label: "Artistes", input_html: { min: 1 }, placeholder: 'Ajouter', as: :numeric, required: false%>
+        <%= f.input :item, label: "Instrument", collection: Item.all.map{|s| s.name}, wrapper_html: { class: 'choose-instrument' }, prompt: "Sélectionner", required: false %>
         <%= f.submit "Rechercher", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+    <div class="tags-filter">
+      <% @tags.each do |tag|%>
+        <div class="tag-filter">
+          <%= tag %>
+        </div>
       <% end %>
     </div>
   </div>
@@ -23,7 +31,7 @@
               <h2><%= link_to room.name, new_room_booking_path(room, Date.today) %></h2>
               <p class="address"><%= room.studio.address %></p>
               <p class="description mt-2"><%= room.description %></p>
-              <p class="mt-2 capacity">  Capacité max : <%= room.capacity %> </p>
+              <p class="mt-2 capacity">  <i class="fas fa-users"></i> <%= room.capacity %> </p>
             </div>
             <div class="card-room-gears d-flex mt-2">
               <div class="d-flex">
@@ -33,7 +41,7 @@
                 </a>
               </div>
               <div class="btn btn-primary btn-musicnow">
-                <%= link_to "Réserver ce studio", new_room_booking_path(room, Date.today) %>
+                <%= link_to "Réserver", new_room_booking_path(room, Date.today) %>
               </div>
             </div>
             <div class="collapse" id="collapseExample-<%=room.id%>">

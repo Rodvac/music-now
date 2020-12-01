@@ -45,14 +45,9 @@ ActiveRecord::Schema.define(version: 2020_12_01_115257) do
     t.bigint "user_id", null: false
     t.string "date"
     t.string "time"
+    t.string "name"
     t.index ["room_id"], name: "index_bookings_on_room_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
-  end
-
-  create_table "chatrooms", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "items", force: :cascade do |t|
@@ -101,11 +96,11 @@ ActiveRecord::Schema.define(version: 2020_12_01_115257) do
 
   create_table "messages", force: :cascade do |t|
     t.string "content"
-    t.bigint "chatroom_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.bigint "booking_id"
+    t.index ["booking_id"], name: "index_messages_on_booking_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -140,6 +135,8 @@ ActiveRecord::Schema.define(version: 2020_12_01_115257) do
     t.datetime "updated_at", precision: 6, null: false
     t.float "latitude"
     t.float "longitude"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_studios_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -172,4 +169,5 @@ ActiveRecord::Schema.define(version: 2020_12_01_115257) do
   add_foreign_key "reviews", "bookings"
   add_foreign_key "reviews", "users"
   add_foreign_key "rooms", "studios"
+  add_foreign_key "studios", "users"
 end

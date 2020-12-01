@@ -12,19 +12,19 @@ import "bootstrap";
 
 import { initMapbox } from '../plugins/init_mapbox';
 import { initGeoloc } from '../plugins/init_geoloc'
-import { toggleClassOnSearchBar } from '../components/searchbar';
+// import { toggleClassOnSearchBar } from '../components/searchbar';
 import { dateSelect } from '../components/dateselect';
 import { timeSelect } from '../components/timeselect';
 import { displayGraduation } from '../components/graduation';
 import { initAutocomplete } from '../plugins/init_autocomplete';
-
+import { initChatroomCable } from "../channels/chatroom_channel";
 
 ScrollReveal().reveal('.card-studio', {delay: 500});
 ScrollReveal().reveal('.card-room', {delay: 500});
 
 document.addEventListener('turbolinks:load', () => {
   initGeoloc();
-  toggleClassOnSearchBar();
+  // toggleClassOnSearchBar();
   dateSelect();
   timeSelect();
   initMapbox();
@@ -32,6 +32,7 @@ document.addEventListener('turbolinks:load', () => {
   ScrollReveal().reveal();
   displayGraduation();
   initAutocomplete();
+  initChatroomCable ();
 })
 
 

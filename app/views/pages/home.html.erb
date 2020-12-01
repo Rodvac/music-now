@@ -26,9 +26,8 @@
       <%= simple_form_for :search, url: rooms_path, method: :get  do |f|%>
         <div class="search-container-items">
           <%= f.input :address, label: "Adresse", placeholder: 'Où souhaitez-vous jouer ?', required: false, wrapper_html: { class: 'search-hover' }%>
-          <%= f.input :capacity, label: "Artistes", placeholder: 'Ajoutez des artistes', as: :integer, required: false, wrapper_html: { class: 'search-hover' }%>
-          <%= f.input :item, label: "Instrument", collection: Item.all.map{|s| s.name}, wrapper_html: { class: 'search-hover' }, prompt: "-- SELECTIONNER --", required: false %>
-          <%#= f.submit "Rechercher", class: 'btn btn-primary' %>
+          <%= f.input :capacity, label: "Artistes", input_html: { min: 1 }, placeholder: 'Ajoutez des artistes', as: :numeric, required: false, wrapper_html: { class: 'search-hover' }%>
+          <%= f.input :item, label: "Instrument", collection: Item.all.map{|s| s.name}, wrapper_html: { class: 'search-hover' }, prompt: "Sélectionner", required: false %>
           <%= button_tag type: 'submit', class: "kill-border" do %>
             <i class="fas fa-search" aria-hidden="true"></i>
           <% end %>
@@ -40,7 +39,7 @@
   <h1>VOTRE SESSION MUSIQUE EN QUELQUES CLICS </h1>
   <div class="etapes d-flex">
     <div class="search etape">
-      <i class="fas fa-search"></i>
+      <i class="fas fa-search noHover"></i>
       <p>Trouvez un studio</p>
     </div>
     <div class="calendar etape">

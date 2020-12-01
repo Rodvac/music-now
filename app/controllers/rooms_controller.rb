@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
 
   def index
-    @rooms = Room.all
+    @rooms = Room.all.order(capacity: :asc)
     if params[:search]
       if params[:search][:address].present?
         @studios = Studio.near(params[:search][:address], 10).map(&:id)
@@ -14,6 +14,8 @@ class RoomsController < ApplicationController
         @rooms = @rooms.global_search(params[:search][:item])
       end
     end
+    @tags =
+      params[:search].present? ? params[:search].values.select(&:present?) : []
   end
 
   private

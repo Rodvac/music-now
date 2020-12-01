@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   resources :bookings do
     resources :reviews
+
     resources :jams
   end
 
@@ -30,5 +31,7 @@ Rails.application.routes.draw do
   resources :jams do
     resources :jams_users
   end 
+    resources :messages, only: :create
+  end
 
 end

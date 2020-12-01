@@ -54,7 +54,7 @@
               <h2><%= link_to room.name, new_room_booking_path(room, Date.today) %></h2>
               <p class="address"><%= room.studio.address %></p>
               <p class="description mt-2"><%= room.description %></p>
-              <p class="mt-2 capacity">  Capacité max : <%= room.capacity %> </p>
+              <p class="mt-2 capacity"><i class="fas fa-users"></i> <%= room.capacity %> </p>
             </div>
             <div class="card-room-gears d-flex mt-2">
               <div class="d-flex">

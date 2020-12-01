@@ -1,0 +1,17 @@
+<br>
+<br>
+<%=@jam.name%>
+<br>
+<%=@jam.description%>
+<br>
+<br>
+<% @jams_users.each do |jam_user| %>
+<%= jam_user.user.first_name %>
+<%= jam_user.instrument %>
+<br>
+<% end %>
+
+<%= simple_form_for [ @jam, @jams_user ] do |f| %>
+<%= f.input :instrument, as: :string %>
+<%= f.submit "S'ajouter", class: 'btn btn-primary book-btn' %>
+<% end %>

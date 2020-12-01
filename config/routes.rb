@@ -23,4 +23,11 @@ Rails.application.routes.draw do
 
   resources :chatrooms, only: :show
 
+  resources :jams
+  resources :jams_users
+
+  resources :jams do
+    resources :jams_users
+  end 
+
 end

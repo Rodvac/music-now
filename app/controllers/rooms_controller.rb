@@ -13,8 +13,9 @@ class RoomsController < ApplicationController
       if params[:search][:item].present?
         @rooms = @rooms.global_search(params[:search][:item])
       end
-      @tags = params[:search].values.select(&:present?)
     end
+    @tags =
+      params[:search].present? ? params[:search].values.select(&:present?) : []
   end
 
   private

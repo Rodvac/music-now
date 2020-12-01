@@ -10,12 +10,10 @@
       <% end %>
     </div>
     <div class="tags-filter">
-      <% unless @tags.size == 0 %>
-        <%  @tags.each do |tag|%>
-          <div class="tag-filter">
-            <%= tag %>
-          </div>
-        <% end %>
+      <% @tags.each do |tag|%>
+        <div class="tag-filter">
+          <%= tag %>
+        </div>
       <% end %>
     </div>
   </div>

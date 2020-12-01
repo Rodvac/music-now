@@ -18,6 +18,13 @@ class JamsUsersController < ApplicationController
         redirect_to jam_path(@jams_user.jam)
     end 
 
+    def destroy 
+        @jams_user = JamsUser.find(params[:id])
+        @jam = @jams_user.jam
+        @jams_user.destroy!
+        redirect_to jam_path(@jam)
+    end 
+
     private
 
     def jams_user_params

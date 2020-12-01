@@ -15,7 +15,9 @@
 <% @jams_users.each do |jam_user| %>
 <%= jam_user.user.first_name %>
 <%= jam_user.instrument %>
-<%= jam_user.admin %>
+<% if @jams_users[0].user == current_user && jam_user.user != current_user %>
+<%= link_to "Enlever", jams_user_path(jam_user), method: :delete %>
+<% end %>
 <br>
 <% end %>
 
@@ -71,11 +73,22 @@
 <br>
 <br>
 
-<% if @allpaid == @jams_users.count %>
+<% if @allpaid == @jams_users.count && @jam.booking_id == nil %>
 <%="all good, we are ready to create your booking"%>
-  <%= simple_form_for [ @room, @booking ] do |f| %>
-  <%= f.input :date, as: :string, input_html: { value: params[:format] }, as: :hidden %>
-  <%= f.input :time, as: :string, as: :hidden %>
+  <%= simple_form_for [ @jam.room, @booking ] do |f| %>
+  <%= f.input :date, as: :string, input_html: { value: @jam.date } %>
+  <%= f.input :time, as: :string, input_html: { value: @jam.time } %>
+  <%= simple_fields_for :other do |o| %>
+    <%= o.input :jam_id, input_html: { value: @jam.id } %>
+  <% end %>
   <%= f.submit "Réserver", class: 'btn btn-primary book-btn' %>
   <% end %>
+<% end %>
+
+<% if @jam.booking_id != nil %>
+<%= "Your booking" %>
+<%= @jam.booking.date %>
+<%= @jam.booking.time %>
+<%= @jam.booking.room.studio.name %>
+<%= @jam.booking.room.name %>
 <% end %>

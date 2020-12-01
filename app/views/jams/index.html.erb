@@ -1,0 +1,6 @@
+<% @jams.each do |jam| %>
+<%= link_to "#{jam.name}", jam_path(jam) %>
+<br>
+<% end %>
+
+<%= link_to "new jam", new_jam_path(Date.today) %>

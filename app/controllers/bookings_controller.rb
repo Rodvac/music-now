@@ -28,7 +28,13 @@ class BookingsController < ApplicationController
     @booking.user = @user
 
     if @booking.save
-      redirect_to booking_path(@booking)
+      if params[:other]
+        @jam = Jam.find(params[:other][:jam_id])
+        @jam.booking = @booking
+        @jam.save
+        redirect_to jam_path(@jam) and return
+      end 
+      redirect_to booking_path(@booking) and return
     else
       render :new
     end
@@ -41,6 +47,7 @@ class BookingsController < ApplicationController
     @review = Review.new
     @id = @booking.room.studio.id
     @studios = Studio.where(id: @id)
+    @studio = Studio.find(@id)
     @markers = @studios.geocoded.map do |studio|
       {
       lat: studio.latitude,

@@ -17,8 +17,8 @@
         <li class="nav-item underlineHover">
           <%= link_to "NOS SALLES", rooms_path, class: "nav-link" %>
         </li>
-        <li class="nav-item underlineHover">
-          <%= link_to "JAM SESSION", "#", class: "nav-link" %>
+        <li class="nav-item">
+          <%= link_to "JAM SESSION", jams_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown ">
           <% if @user.photo.attached? %>

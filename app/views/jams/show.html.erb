@@ -1,0 +1,94 @@
+<% if @jams_users[0].user == current_user %>
+<%= "vous etes admin" %>
+<% end %>
+
+<br>
+<br>
+<%=@jam.name%>
+<br>
+<%=@jam.description%>
+<br>
+<%=@jam.date %>
+<br>
+<%=@jam.time %>
+<br>
+<% @jams_users.each do |jam_user| %>
+<%= jam_user.user.first_name %>
+<%= jam_user.instrument %>
+<% if @jams_users[0].user == current_user && jam_user.user != current_user %>
+<%= link_to "Enlever", jams_user_path(jam_user), method: :delete %>
+<% end %>
+<br>
+<% end %>
+
+<% if @jam.groupe == false %>
+<%= simple_form_for [ @jam, @jams_user ] do |f| %>
+<%= f.input :instrument, as: :string %>
+<%= f.submit "S'ajouter", class: 'btn btn-primary book-btn' %>
+<% end %>
+<% end %>
+
+<% if @jams_users[0].user == current_user && @jam.groupe == false %>
+<%= simple_form_for [ @jam ] do |f| %>
+<%= f.input :groupe, as: :boolean %>
+<%= f.submit "Trouver une salle avec ce groupe", class: 'btn btn-primary book-btn' %>
+<% end %>
+<% end %>
+<br>
+
+<% if @jams_users[0].user == current_user && @jam.groupe == true && @jam.room_id == nil %>
+    <% @rooms.each do |room| %>
+    <%= room.name %>
+            <%= simple_form_for [ @jam ] do |f| %>
+            <%= f.input :room_id, input_html: {value: room.id}, as: :hidden %>
+            <%= f.submit "Choisir cette room", class: 'btn btn-primary book-btn' %>
+            <% end %>
+    <% end %>
+<% end %>
+
+<% if  @jam.room_id != nil %>
+<%= "ur room: #{@jam.room.name}" %>
+<% end %>
+
+<br>
+
+<% if @jam.groupe == true && @jam.room_id != nil %>
+<% @jams_users.each do |jams_user| %>
+<%= jams_user.user.first_name %>
+<br>
+<%= jams_user.priceuser %>
+<br>
+<% if jams_user.user == current_user && jams_user.paid == false %>
+    <%= simple_form_for [ jams_user ] do |f| %>
+    <%= f.input :paid, input_html: {value: true}, as: :hidden %>
+    <%= f.submit "Pay", class: 'btn btn-primary book-btn' %>
+    <% end %>
+<% else %>
+    <%= "status: payé: #{jams_user.paid}" %>
+<% end %>
+
+<% end %>
+<% end %>
+
+<br>
+<br>
+
+<% if @allpaid == @jams_users.count && @jam.booking_id == nil %>
+<%="all good, we are ready to create your booking"%>
+  <%= simple_form_for [ @jam.room, @booking ] do |f| %>
+  <%= f.input :date, as: :string, input_html: { value: @jam.date } %>
+  <%= f.input :time, as: :string, input_html: { value: @jam.time } %>
+  <%= simple_fields_for :other do |o| %>
+    <%= o.input :jam_id, input_html: { value: @jam.id } %>
+  <% end %>
+  <%= f.submit "Réserver", class: 'btn btn-primary book-btn' %>
+  <% end %>
+<% end %>
+
+<% if @jam.booking_id != nil %>
+<%= "Your booking" %>
+<%= @jam.booking.date %>
+<%= @jam.booking.time %>
+<%= @jam.booking.room.studio.name %>
+<%= @jam.booking.room.name %>
+<% end %>

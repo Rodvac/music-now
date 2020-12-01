@@ -20,6 +20,16 @@ Rails.application.routes.draw do
   resources :bookings do
     resources :reviews
     resources :messages, only: :create
+    resources :jams
   end
+
+  resources :chatrooms, only: :show
+
+  resources :jams
+  resources :jams_users
+
+  resources :jams do
+    resources :jams_users
+  end 
 
 end

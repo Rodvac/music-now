@@ -5,7 +5,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @bookings = Booking.where(user_id: @user.id)
     @studios = Studio.where(user_id: @user.id)
-    @chatroom = Chatroom.where(user_id: @user_id)
+    @owner_bookings = []
+    Booking.all.each do |booking|
+      @owner_bookings << booking if booking.room.studio.user == current_user
+    end
   end
 
   def edit

@@ -1,18 +1,21 @@
 <h1>Mon espace  </h1>
 <% if current_user.studio.nil? %>
-<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <a class="nav-link active text-black" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Mes Réservations</a>
-  </li>
-  <li class="nav-item " role="presentation">
-    <a class="nav-link text-black" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Mon Calendrier</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link text-black" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Éditez mes informations</a>
-  </li>
-</ul>
-<div class="tab-content " id="pills-tabContent">
-  <!--   Mes Reservation -->
+  <!-- bar nav -->
+  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active text-black" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Mes Réservations</a>
+    </li>
+    <li class="nav-item " role="presentation">
+      <a class="nav-link text-black" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Mon Calendrier</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link text-black" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Éditez mes informations</a>
+    </li>
+  </ul>
+
+  <!-- content -->
+  <div class="tab-content " id="pills-tabContent">
+    <!--   Mes Reservation -->
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
     <div class="tabContent" id="about">
       <div class="container text-center">
@@ -29,53 +32,40 @@
                   <!-- Fixed header table-->
                   <div class="table-responsive">
                       <table class="table table-fixed">
-                          <thead>
+                        <thead>
+                            <tr>
+                                <th scope="col" class="col-1">#</th>
+                                <th scope="col" class="col-2">Date</th>
+                                <th scope="col" class="col-1">Heure</th>
+                                <th scope="col" class="col-2">Studio</th>
+                                <th scope="col" class="col-3  ">Room</th>
+                                <th scope="col" class="col-3">Adresse</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% i = 1 %>
+                            <% current_user.bookings.each do |booking| %>
                               <tr>
-                                  <th scope="col" class="col-1">#</th>
-                                  <th scope="col" class="col-2">Date</th>
-                                  <th scope="col" class="col-1">Heure</th>
-                                  <th scope="col" class="col-2">Studio</th>
-                                  <th scope="col" class="col-3  ">Room</th>
-                                  <th scope="col" class="col-3">Adresse</th>
+                                <th scope="row" class="col-1"><%= i %></th>
+                                <td class="col-2 bold"><%=  booking.date.split("-").pop(2).join("/") %></td>
+                                <td class="col-1"><%=  booking.time %></td>
+                                <td class="col-2"><%=  booking.room.studio.name %></td>
+                                <td class="col-3"><%=  booking.room.name %></td>
+                                <td class="col-3"><%=  booking.room.studio.address %></td>
                               </tr>
-                          </thead>
-                          <tbody>
-                              <% i = 1 %>
-                              <% current_user.bookings.each do |booking| %>
-                                <tr>
-                                  <th scope="row" class="col-1"><%= i %></th>
-                                  <td class="col-2 bold"><%=  booking.date.split("-").pop(2).reverse.join("/") %></td>
-                                  <td class="col-1"><%=  booking.time %></td>
-                                  <td class="col-2"><%=  booking.room.studio.name %></td>
-                                  <td class="col-3"><%=  booking.room.name %></td>
-                                  <td class="col-3"><%=  booking.room.studio.address %></td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% i = 1 %>
-                                <% current_user.bookings.each do |booking| %>
-                                  <tr>
-                                    <th scope="row" class="col-1"><%= i %></th>
-                                    <td class="col-2 bold"><%=  booking.date.split("-").pop(2).join("/") %></td>
-                                    <td class="col-1"><%=  booking.time %></td>
-                                    <td class="col-2"><%=  booking.room.studio.name %></td>
-                                    <td class="col-3"><%=  booking.room.name %></td>
-                                    <td class="col-3"><%=  booking.room.studio.address %></td>
-                                  </tr>
-                                  <% i += 1 %>
-                                <% end %>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+                              <% i += 1 %>
+                            <% end %>
+                        </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
       </div>
     </div>
+  </div>
 
   <!--   Mon Calendrier -->
   <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-
       <div class="calendar_show">
         <div class="calendar_container">
           <%= month_calendar studio: @bookings do |date, bookings| %>
@@ -131,7 +121,7 @@
 
 <% else %>
 
-<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
     <li class="nav-item" role="presentation">
       <a class="nav-link active text-black" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Mes Réservations</a>
     </li>
@@ -153,43 +143,42 @@
             </div>
         </div>
         <div class="container py-5">
-            <div class="row">
-                <div class="col-lg-12 mx-auto bg-white rounded shadow">
-                    <!-- Fixed header table-->
-                    <div class="table-responsive">
-                        <table class="table table-fixed">
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="col-1">#</th>
-                                    <th scope="col" class="col-2">Date</th>
-                                    <th scope="col" class="col-2">Heure</th>
-                                    <th scope="col" class="col-2">Client</th>
-                                    <th scope="col" class="col-3">Room</th>
-                                    <th scope="col" class="col-2">Messages</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% i = 1 %>
-                                <% @owner_bookings.each do |booking| %>
-                                  <tr>
-                                    <th scope="row" class="col-1"><%= link_to i, booking_path(booking) %></th>
-                                    <td class="col-2 bold"><%=  booking.date.split("-").pop(2).join("/") %></td>
-                                    <td class="col-2"><%=  booking.time %></td>
-                                    <td class="col-2"><%=  booking.user.first_name %></td>
-                                    <td class="col-3"><%=  booking.room.name %></td>
-                                    <th scope="col" class="col-2"><%= link_to booking.messages.count, booking_path(booking)%></th>
-                                  <% i += 1 %>
-                                <% end %>
-                            </tbody>
-                        </table>
-                    </div>
+          <div class="row">
+              <div class="col-lg-12 mx-auto bg-white rounded shadow">
+                <!-- Fixed header table-->
+                <div class="table-responsive">
+                  <table class="table table-fixed">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="col-1">#</th>
+                            <th scope="col" class="col-2">Date</th>
+                            <th scope="col" class="col-2">Heure</th>
+                            <th scope="col" class="col-2">Client</th>
+                            <th scope="col" class="col-3">Room</th>
+                            <th scope="col" class="col-2">Messages</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% i = 1 %>
+                        <% @owner_bookings.each do |booking| %>
+                          <tr>
+                            <th scope="row" class="col-1"><%= link_to i, booking_path(booking) %></th>
+                            <td class="col-2 bold"><%=  booking.date.split("-").pop(2).join("/") %></td>
+                            <td class="col-2"><%=  booking.time %></td>
+                            <td class="col-2"><%=  booking.user.first_name %></td>
+                            <td class="col-3"><%=  booking.room.name %></td>
+                            <th scope="col" class="col-2"><%= link_to booking.messages.count, booking_path(booking)%></th>
+                          <% i += 1 %>
+                        <% end %>
+                    </tbody>
+                  </table>
                 </div>
-            </div>
+              </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
 <% end %>
 
 

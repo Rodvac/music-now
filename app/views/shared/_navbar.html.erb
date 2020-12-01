@@ -21,8 +21,8 @@
           <%= link_to "JAM SESSION", jams_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown ">
-          <% if @user.photo.attached? %>
-            <%= cl_image_tag @user.photo.key, class: "avatar dropdown-toggle ", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
+          <% if current_user.photo.attached? %>
+            <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle ", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
           <% else %>
             <%= image_tag "https://i.etsystatic.com/10924369/r/il/96200a/961644812/il_570xN.961644812_fohw.jpg", class: "avatar dropdown-toggle ", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% end %>

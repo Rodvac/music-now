@@ -50,7 +50,6 @@
     font-size: 25px;
   }
 
-
   .kill-border {
     border: none;
     background: none;
@@ -62,4 +61,14 @@
   background-color: #608766;
 }
 
+.search-container-items .form-group.select:hover {
+    border-radius: 50px 0 0 50px;
+}
+.search-container-items .form-group:hover,
+.search-container-items .form-group.select:hover + button {
+    background: #ebebeb;
+}
 
+.search-container-items .form-group.select:hover + button {
+  border-radius: 0 50px 50px 0;
+  }

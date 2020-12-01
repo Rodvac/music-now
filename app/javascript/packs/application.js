@@ -12,7 +12,7 @@ import "bootstrap";
 
 import { initMapbox } from '../plugins/init_mapbox';
 import { initGeoloc } from '../plugins/init_geoloc'
-import { toggleClassOnSearchBar } from '../components/searchbar';
+// import { toggleClassOnSearchBar } from '../components/searchbar';
 import { dateSelect } from '../components/dateselect';
 import { timeSelect } from '../components/timeselect';
 import { displayGraduation } from '../components/graduation';
@@ -24,7 +24,7 @@ ScrollReveal().reveal('.card-room', {delay: 500});
 
 document.addEventListener('turbolinks:load', () => {
   initGeoloc();
-  toggleClassOnSearchBar();
+  // toggleClassOnSearchBar();
   dateSelect();
   timeSelect();
   initMapbox();

@@ -39,6 +39,7 @@ class BookingsController < ApplicationController
     @review = Review.new
     @id = @booking.room.studio.id
     @studios = Studio.where(id: @id)
+    @studio = Studio.find(@id)
     @markers = @studios.geocoded.map do |studio|
       {
       lat: studio.latitude,

@@ -1,5 +1,6 @@
 class Booking < ApplicationRecord
   has_one :review, :dependent => :destroy
+  belongs_to :jam, optional: true
   belongs_to :user
   belongs_to :room
   has_many :messages, :dependent => :destroy

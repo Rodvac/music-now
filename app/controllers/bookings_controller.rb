@@ -27,7 +27,13 @@ class BookingsController < ApplicationController
     @user = current_user
     @booking.user = @user
     if @booking.save
-      redirect_to booking_path(@booking)
+      if params[:other]
+        @jam = Jam.find(params[:other][:jam_id])
+        @jam.booking = @booking
+        @jam.save
+        redirect_to jam_path(@jam) and return
+      end 
+      redirect_to booking_path(@booking) and return
     else
       render :new
     end

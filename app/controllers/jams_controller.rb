@@ -11,7 +11,8 @@ class JamsController < ApplicationController
     
     def create
         @jam = Jam.new(jam_params)
-        @jams_user = JamsUser.new(instrument: params[:other][:instrument])
+        @jam.groupe = false 
+        @jams_user = JamsUser.new(instrument: params[:other][:instrument], admin: true)
         @jams_user.user = current_user
         if @jam.save!
             @jams_user.jam = @jam
@@ -28,10 +29,23 @@ class JamsController < ApplicationController
         @jams_user = JamsUser.new
     end 
 
+    def update
+        @jam= Jam.find(params[:id])
+        if @jam.update!(update_params)
+          redirect_to jam_path(@jam)
+        else
+          raise
+        end
+      end
+
     private 
 
     def jam_params
-        params.require(:jam).permit(:name,:description,jams_users_attributes: [:instrument])
+        params.require(:jam).permit(:name,:description)
+    end 
+
+    def update_params
+        params.require(:jam).permit(:name,:description,:groupe)
     end 
 
 end

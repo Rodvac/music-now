@@ -6,6 +6,7 @@ class JamsUsersController < ApplicationController
         @jams_user.jam = @jam 
         @user = current_user
         @jams_user.user = current_user
+        @jams_user.admin = false
         @jams_user.save!
         redirect_to jam_path(@jam)
     end 

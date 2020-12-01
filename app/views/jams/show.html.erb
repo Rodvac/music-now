@@ -1,3 +1,7 @@
+<% if @jams_users[0].user == current_user %>
+<%= "vous etes admin" %>
+<% end %>
+
 <br>
 <br>
 <%=@jam.name%>
@@ -8,10 +12,20 @@
 <% @jams_users.each do |jam_user| %>
 <%= jam_user.user.first_name %>
 <%= jam_user.instrument %>
+<%= jam_user.admin %>
 <br>
 <% end %>
 
+<% if @jam.groupe == false %>
 <%= simple_form_for [ @jam, @jams_user ] do |f| %>
 <%= f.input :instrument, as: :string %>
 <%= f.submit "S'ajouter", class: 'btn btn-primary book-btn' %>
+<% end %>
+<% end %>
+
+<% if @jams_users[0].user == current_user && @jam.groupe == false %>
+<%= simple_form_for [ @jam ] do |f| %>
+<%= f.input :groupe, as: :boolean %>
+<%= f.submit "Trouver une salle avec ce groupe", class: 'btn btn-primary book-btn' %>
+<% end %>
 <% end %>

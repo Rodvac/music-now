@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_085930) do
+ActiveRecord::Schema.define(version: 2020_12_01_102142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_085930) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "groupe"
     t.index ["booking_id"], name: "index_jams_on_booking_id"
     t.index ["room_id"], name: "index_jams_on_room_id"
   end
@@ -91,6 +92,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_085930) do
     t.float "priceuser"
     t.integer "paid"
     t.string "instrument"
+    t.boolean "admin"
     t.index ["jam_id"], name: "index_jams_users_on_jam_id"
     t.index ["user_id"], name: "index_jams_users_on_user_id"
   end

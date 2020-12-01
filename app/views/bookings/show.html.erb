@@ -5,7 +5,7 @@
 
 <div class="d-flex flex-wrap">
 <div class="col-12">
-<% if Date.today > @booking.date.to_date %>
+<% if Date.today > @booking.formatted_date %>
 <h2 class="mb-3">Etes-vous satisfait de votre expérience chez <%=@booking.room.studio.name%>?</h2>
 <br>
 <%else%>
@@ -68,7 +68,7 @@
 </div>
 </div>
 
-<% if Date.today <= @booking.date.to_date %>
+<% if Date.today <= @booking.formatted_date %>
 <h3>Trouver votre studio</h3>
 <div class="col-12">
     <div id="map"
@@ -79,18 +79,34 @@
   </div>
 <% end %>
 
-<% if Date.today > @booking.date.to_date %>
-<div class="booking-card-review">
-  <h2>Donnez votre avis: </h2>
-  <%= simple_form_for [@booking, @review] do |f| %>
-    <%= f.input :title, label: "Titre" %>
-    <%= f.input :rating, wrapper_html: { class: 'fas fa-star' }, collection: 0..5, label: "Note" %>
-    <%= f.input :content, as: :text, label: "Commentaire" %>
-    <%= f.submit "Valider", class: "btn btn-primary" %>
-  <% end %>
-</div>
+<% if Date.today > @booking.formatted_date %>
+  <div class="booking-card-review">
+    <h2>Donnez votre avis: </h2>
+    <%= simple_form_for [@booking, @review] do |f| %>
+      <%= f.input :title, label: "Titre" %>
+      <%= f.input :rating, wrapper_html: { class: 'fas fa-star' }, collection: 0..5, label: "Note" %>
+      <%= f.input :content, as: :text, label: "Commentaire" %>
+      <%= f.submit "Valider", class: "btn btn-primary" %>
+    <% end %>
+  </div>
 <%end %>
 </div>
 </div>
 
+<h1>#<%= @booking.name %></h1>
+<div id="messages" data-booking-id="<%= @booking.id %>">
+  <% @booking.messages.each do |message| %>
+    <div class="message-container" id="message-<%= message.id %>">
+      <i class="author">
+        <span><%= message.user.nickname %></span>
+        <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+      </i>
+      <p><%= message.content %></p>
+    </div>
+  <% end %>
+</div>
+
+<%= simple_form_for [ @booking, @message ], remote: true do |f| %>
+  <%= f.input :content, label: false, placeholder: "Message ##{@booking.name}" %>
+<% end %>
 

@@ -1,0 +1,44 @@
+.calendar_show{
+  display: flex;
+  justify-content: space-around;
+}
+
+.calendar_container {
+  margin-bottom: 30px;
+  height: 100%;
+  width: 90%;
+  box-shadow: 10px 10px 40px grey;
+}
+
+.calendar_form {
+  width: 20%;
+  margin-left: 30px;
+}
+
+.cursor-past{
+  color: #d0ceceba;
+}
+
+.simple-calendar {
+  .day {}
+
+  .wday-0 {}
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {}
+
+  .today {}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {}
+  .next-month { }
+  .current-month {}
+
+  .has-events {}
+}

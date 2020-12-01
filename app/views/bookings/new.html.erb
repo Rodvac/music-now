@@ -98,6 +98,7 @@
   <%= simple_form_for [ @room, @booking ] do |f| %>
   <%= f.input :date, as: :string, input_html: { value: params[:format] }, as: :hidden %>
   <%= f.input :time, as: :string, as: :hidden %>
+  <%= f.input :starts_at, as: :DateTime, as: :hidden %>
   <%= f.submit "Réserver", class: 'btn btn-primary book-btn' %>
   <% end %>
 

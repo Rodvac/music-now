@@ -15,6 +15,8 @@ const dateSelect = () => {
       } else {
       element.classList.add("red");
       inputdate.value = element.id;
+      console.log(element.id)
+
       }
     })
   })

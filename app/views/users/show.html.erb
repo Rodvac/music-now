@@ -1,44 +1,54 @@
-<h1>Mon espace  <%= cl_image_tag @user.photo.attached? %></h1>
-
+<h1>Mon espace  </h1>
 <% if current_user.studio.nil? %>
-
-  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <a class="nav-link active text-black" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Mes Réservations</a>
-    </li>
-    <li class="nav-item " role="presentation">
-      <a class="nav-link text-black" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Mon Calendrier</a>
-    </li>
-    <li class="nav-item" role="presentation">
-      <a class="nav-link text-black" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Éditez mes informations</a>
-    </li>
-  </ul>
-  <div class="tab-content " id="pills-tabContent">
-    <!--   Mes Reservation -->
-    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-      <div class="tabContent" id="about">
-        <div class="container text-center">
-            <div class="row pt-5">
-                <div class="col-lg-8 mx-auto">
-                    <h1 class="display-4">Liste de mes Réservations</h1>
-                    <h3 class="underline">Vous avez <%= current_user.bookings.count %> réservations </h3>
-                </div>
-            </div>
-        </div>
-        <div class="container py-5">
-            <div class="row">
-                <div class="col-lg-12 mx-auto bg-white rounded shadow">
-                    <!-- Fixed header table-->
-                    <div class="table-responsive">
-                        <table class="table table-fixed">
-                            <thead>
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active text-black" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Mes Réservations</a>
+  </li>
+  <li class="nav-item " role="presentation">
+    <a class="nav-link text-black" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Mon Calendrier</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link text-black" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Éditez mes informations</a>
+  </li>
+</ul>
+<div class="tab-content " id="pills-tabContent">
+  <!--   Mes Reservation -->
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    <div class="tabContent" id="about">
+      <div class="container text-center">
+          <div class="row pt-5">
+              <div class="col-lg-8 mx-auto">
+                  <h1 class="display-4">Liste de mes Réservations</h1>
+                  <h3 class="underline">Vous avez <%= current_user.bookings.count %> réservations </h3>
+              </div>
+          </div>
+      </div>
+      <div class="container py-5">
+          <div class="row">
+              <div class="col-lg-12 mx-auto bg-white rounded shadow">
+                  <!-- Fixed header table-->
+                  <div class="table-responsive">
+                      <table class="table table-fixed">
+                          <thead>
+                              <tr>
+                                  <th scope="col" class="col-1">#</th>
+                                  <th scope="col" class="col-2">Date</th>
+                                  <th scope="col" class="col-1">Heure</th>
+                                  <th scope="col" class="col-2">Studio</th>
+                                  <th scope="col" class="col-3  ">Room</th>
+                                  <th scope="col" class="col-3">Adresse</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <% i = 1 %>
+                              <% current_user.bookings.each do |booking| %>
                                 <tr>
-                                    <th scope="col" class="col-1">#</th>
-                                    <th scope="col" class="col-2">Date</th>
-                                    <th scope="col" class="col-1">Heure</th>
-                                    <th scope="col" class="col-2">Studio</th>
-                                    <th scope="col" class="col-3  ">Room</th>
-                                    <th scope="col" class="col-3">Adresse</th>
+                                  <th scope="row" class="col-1"><%= i %></th>
+                                  <td class="col-2 bold"><%=  booking.date.split("-").pop(2).reverse.join("/") %></td>
+                                  <td class="col-1"><%=  booking.time %></td>
+                                  <td class="col-2"><%=  booking.room.studio.name %></td>
+                                  <td class="col-3"><%=  booking.room.name %></td>
+                                  <td class="col-3"><%=  booking.room.studio.address %></td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,26 +73,58 @@
       </div>
     </div>
 
-    <!--   Mon Calendrier -->
-    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-    </div>
+  <!--   Mon Calendrier -->
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 
-    <!-- Editer mon profil  -->
-    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-      <div class="tabContent" id="usage">
-        <h2>Éditer mon Profil</h2>
-        <div class="container ptpb">
-          <%= simple_form_for @user do |f| %>
-            <%= f.input :first_name, :label => "First Name" %>
-            <%= f.input :last_name, :label => "Last Name" %>
-            <%= f.input :email, :label => "Email" %>
-            <%= f.input :current_password %>
-            <%= f.input :password %>
-            <%= f.input :password_confirmation %>
-            <%= f.input :photo, as: :file %>
-            <%= f.submit "Save", class: 'btn btn-primary' %>
+      <div class="calendar_show">
+        <div class="calendar_container">
+          <%= month_calendar studio: @bookings do |date, bookings| %>
+            <!--display date if today's date  and not booked-->
+            <% if @already_booked.pluck(:date)&.include?(date.strftime("%Y-%m-%d"))%>
+                <div class="cursor" style="cursor: pointer;">
+                  <div class="round">
+                  <%= date.day %>
+                  <% booking = @already_booked.select { |e| e.date == date.to_s }.first %>
+                  <p> <%= booking.time %>
+                  <%= link_to booking.room.studio.name, user_booking_path(current_user, booking)  %></p>
+                  </div>
+                </div>
+            <!--past days note proposed -->
+            <% else %>
+            <div class="" style="cursor: pointer;">
+              <div class="round">
+              <%= date.day %>
+              </div>
+              <span style="display: none"><%= date %></span>
+            </div>
+            <% end %>
           <% end %>
         </div>
+      </div>
+  </div>
+
+  <!-- Editer mon profil  -->
+  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+    <div class="tabContent" id="usage">
+      <h2>Éditer mon Profil</h2>
+      <div class="d-flex justify-content-center">
+        <% if @user.photo.attached? %>
+          <%= cl_image_tag @user.photo.key, class: "avatar-medium dropdown-toggle ", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
+        <% else %>
+          <%= image_tag "https://i.etsystatic.com/10924369/r/il/96200a/961644812/il_570xN.961644812_fohw.jpg", class: "avatar dropdown-toggle ", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <% end %>
+      </div>
+      <div class="container ptpb">
+        <%= simple_form_for @user do |f| %>
+          <%= f.input :first_name, :label => "First Name" %>
+          <%= f.input :last_name, :label => "Last Name" %>
+          <%= f.input :email, :label => "Email" %>
+          <%= f.input :current_password %>
+          <%= f.input :password %>
+          <%= f.input :password_confirmation %>
+          <%= f.input :photo, as: :file %>
+          <%= f.submit "Save", class: 'btn btn-primary' %>
+        <% end %>
       </div>
     </div>
   </div>

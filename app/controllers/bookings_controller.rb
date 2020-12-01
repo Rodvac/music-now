@@ -26,6 +26,7 @@ class BookingsController < ApplicationController
     @booking.room = @room
     @user = current_user
     @booking.user = @user
+
     if @booking.save
       if params[:other]
         @jam = Jam.find(params[:other][:jam_id])
@@ -37,6 +38,7 @@ class BookingsController < ApplicationController
     else
       render :new
     end
+
   end
 
   def show

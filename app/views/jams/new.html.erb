@@ -1,3 +1,4 @@
+<div class="row">
 <div class="col-4">
   <div class="bookcard">
     <h2 class="monthtitle">Choisir un jour</h2>
@@ -49,14 +50,17 @@
   <%end%>
   </div>
   
-  
+  <div class="col-4">
+  <h2>Votre jamsession</h2>
   <%= simple_form_for [ @jam ] do |f| %>
-  <%= f.input :name, as: :string %>
-  <%= f.input :description, as: :string %>
+  <%= f.input :name, as: :string, label: "Nom du jam" %>
+  <%= f.input :description, as: :text, label: "Qu'est ce que vous voulez jouer ?" %>
   <%= f.input :date, as: :string, input_html: { value: params[:format] }, as: :hidden %>
-  <%= f.input :time, as: :string %>
+  <%= f.input :time, as: :string, as: :hidden%>
   <%= simple_fields_for :other do |o| %>
-    <%= o.input :instrument, as: :string, label: 'What instrument will u be playing?' %>
+    <%= o.input :instrument, as: :string, label: 'Quel instrument jouez vous ?' %>
   <% end %>
   <%= f.submit "Creer session", class: 'btn btn-primary book-btn' %>
   <% end %>
+  </div>
+  </div>

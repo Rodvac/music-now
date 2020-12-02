@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   resources :jams do
     resources :jams_users
-  end 
+  end
 
+  get '/about' => 'pages#about'
 end

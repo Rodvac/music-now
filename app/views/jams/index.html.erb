@@ -1,7 +1,45 @@
-<% @jams.each do |jam| %>
-    <% if jam.groupe == false %>
-    <%= link_to "#{jam.name}", jam_path(jam) %>
-    <% end %>
-<% end %>
+<br>
+<br>
+<div class="row">
 
-<%= link_to "new jam", new_jam_path(Date.today) %>
+    <div class="col-3">
+    <div class="sticky-top">
+    <%= image_tag "jam", class: "jamimg" %>
+    <br>
+    <br>
+    <h4>Trouver des jamsession</h4>
+    <h6>Vous cherchez des musiciens avec qui jouer? Trouvez ici des jam sessions ouvertes, inscrivez-vous, ou alors créez la votre!</h6>
+   <br>
+    <%= link_to "Créer ma jam", new_jam_path(Date.today), class:"btn btn-primary" %>
+    </div>
+    </div>
+
+    <div class="col-9">
+    <h4>Jam sessions ouvertes</h4>
+    <% @jams.each do |jam| %>
+    <% if jam.groupe == false %>
+        <div class="jamcard">
+            <div class="row">
+            <div class="col-4">
+                <% if jam.photo.attached? %>
+                <%= cl_image_tag jam.photo.key %>
+                <% else %>
+                <%= image_tag "jam" %>
+                <% end %>
+            </div>
+            <div class="col-8 float-left">
+            <h5><%= link_to "#{jam.name}", jam_path(jam) %></h5>
+            <p><%=jam.description%></p>
+            <br>
+            <h6>Date:<%=jam.date%></h6>
+            <h6>Heure:<%=jam.time%></h6>
+            </div>
+            </div>
+        </div>
+    <% end %>
+    <% end %>
+    </div>
+</div>
+
+
+

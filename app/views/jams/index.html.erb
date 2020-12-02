@@ -4,7 +4,7 @@
 
     <div class="col-3">
     <div class="sticky-top">
-    <%= image_tag "jam", class: "jamimg" %>
+    <%= image_tag "https://blog.reverbnation.com/wp-content/uploads/2017/12/why-your-band-needs-to-practice-1500px.jpg", class: "jamimg" %>
     <br>
     <br>
     <h4>Trouver des jamsession</h4>
@@ -24,7 +24,7 @@
                 <% if jam.photo.attached? %>
                 <%= cl_image_tag jam.photo.key %>
                 <% else %>
-                <%= image_tag "jam" %>
+                <%= image_tag "https://blog.reverbnation.com/wp-content/uploads/2017/12/why-your-band-needs-to-practice-1500px.jpg" %>
                 <% end %>
             </div>
             <div class="col-8 float-left">

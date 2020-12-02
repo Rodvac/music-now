@@ -4,7 +4,7 @@
   <% if @jam.photo.attached? %>
   <%= cl_image_tag @jam.photo.key, class: "hero-studio-img" %>
   <% else %>
-  <%= image_tag "jam", class: "hero-studio-img" %>
+  <%= image_tag "https://blog.reverbnation.com/wp-content/uploads/2017/12/why-your-band-needs-to-practice-1500px.jpg", class: "hero-studio-img" %>
   <% end %>
   <h1 class="hero-studio-title"> <%= "#{@jams_users[0].user.first_name}'s jam session" %></h1>
 </div>

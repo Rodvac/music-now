@@ -21,7 +21,7 @@
     <div class="sticky-top">
       <div class="card-jam">
           <% if @jams_users[0].user.photo.attached? %>
-          <%= cl_image_tag current_user.photo.key, class: "card-jam-photo" %>
+          <%= cl_image_tag @jams_users[0].user.photo.key, class: "card-jam-photo" %>
           <% else %>
           <%= image_tag "jam", class: "card-jam-photo" %>
           <% end %>

@@ -1,11 +1,11 @@
 .hero-studio {
   height: 400px;
-  width: 100%; 
+  width: 100%;
 }
 
-.hero-studio-img {  
+.hero-studio-img {
   object-fit: cover;
-  width: 100%; 
+  width: 100%;
   height: 100%;
   filter: brightness(50%);
 }
@@ -19,11 +19,13 @@
 }
 
 .hero-card {
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   background-color: $my-green;
   position: relative;
   width: 340px;
   margin-top: -150px;
-  color: white; 
+  color: white;
   padding: 15px;
 }
 

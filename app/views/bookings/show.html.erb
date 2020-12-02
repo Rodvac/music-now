@@ -124,7 +124,7 @@
   <br>
   <div class = "card-message">
     <div class="message-box">
-      <div id="messages" data-booking-id="<%= @booking.id %>">
+      <div id="messages" data-booking-id="<%= @booking.id %>" data-user-id="<%= current_user.id %> ">
         <div class="welcoming-message">
           <% if @booking.messages == [] %>
             <p> Des questions à propos de votre réservation ?</p>

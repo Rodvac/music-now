@@ -17,7 +17,7 @@ import { dateSelect } from '../components/dateselect';
 import { timeSelect } from '../components/timeselect';
 import { displayGraduation } from '../components/graduation';
 import { initAutocomplete } from '../plugins/init_autocomplete';
-import { initBookingCable } from "../channels/chatroom_channel";
+import { initBookingCable } from "../channels/booking_channel";
 import { tabsDash } from "../components/tabs_dashboard";
 
 ScrollReveal().reveal('.card-studio', {delay: 500});
@@ -33,7 +33,7 @@ document.addEventListener('turbolinks:load', () => {
   ScrollReveal().reveal();
   displayGraduation();
   initAutocomplete();
-  initChatroomCable ();
+  initBookingCable();
   tabsDash();
 })
 

@@ -33,7 +33,7 @@ class BookingsController < ApplicationController
         @jam.booking = @booking
         @jam.save
         redirect_to jam_path(@jam) and return
-      end 
+      end
       redirect_to booking_path(@booking) and return
     else
       render :new
@@ -48,12 +48,11 @@ class BookingsController < ApplicationController
     @id = @booking.room.studio.id
     @studios = Studio.where(id: @id)
     @studio = Studio.find(@id)
-    @markers = @studios.geocoded.map do |studio|
+    @markers = [
       {
-      lat: studio.latitude,
-      lng: studio.longitude,
-      }
-    end
+        lat: @studio.latitude,
+        lng: @studio.longitude,
+      }]
     @message = Message.new
   end
 

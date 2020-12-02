@@ -1,5 +1,54 @@
 .message-box {
   overflow-y: scroll;
-  max-height: 349px;
-  min-height: 54px;
+  max-height: 356px;
+  min-height: 356px;
+}
+
+.card-message {
+  overflow: hidden;
+  background: $light-gray;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 100%;
+  position: relative;
+  margin-bottom: 30px;
+  margin-right: 30px;
+}
+
+.message-input {
+  width: 90%;
+  margin-left: 5%;
+}
+.message-block {
+  width: 80%;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.m-sender{
+  background: #729b79ad;
+}
+
+.m-receiver{
+  background: #475b63a8;;
+}
+
+.message-date {
+  text-align: right;
+}
+
+.author-message {
+  color: white;
+  font-size: 10px;
+}
+
+.welcoming-message {
+  margin: 10px 10px;
+  text-align: center;
+  p {
+    font-size: 16px;
+  }
+}
+.color-text-title-messages {
+  color: white;
 }

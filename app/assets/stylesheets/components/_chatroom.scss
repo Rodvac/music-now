@@ -2,6 +2,7 @@
   overflow-y: scroll;
   max-height: 356px;
   min-height: 356px;
+  border-radius: 5px;
 }
 
 .card-message {
@@ -12,11 +13,13 @@
   position: relative;
   margin-bottom: 30px;
   margin-right: 30px;
+  height: 410px;
 }
 
 .message-input {
-  width: 90%;
-  margin-left: 5%;
+  width: 93%;
+  margin-top: 8px;
+  margin-left: 5px;
 }
 .message-block {
   width: 80%;
@@ -52,3 +55,5 @@
 .color-text-title-messages {
   color: white;
 }
+
+

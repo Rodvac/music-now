@@ -3,11 +3,16 @@
   justify-content: space-around;
 }
 
+.calendar-heading {
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+
 .calendar_container {
   margin-bottom: 30px;
   height: 100%;
   width: 90%;
-  box-shadow: 10px 10px 40px grey;
 }
 
 .calendar_form {
@@ -15,12 +20,12 @@
   margin-left: 30px;
 }
 
-.cursor-past{
-  color: #d0ceceba;
-}
 
 .simple-calendar {
-  .day {}
+  .day {
+    background-color: white;
+    font-style: bold;
+  }
 
   .wday-0 {}
   .wday-1 {}

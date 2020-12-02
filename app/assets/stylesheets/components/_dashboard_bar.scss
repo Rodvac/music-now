@@ -1,3 +1,11 @@
+.dashboard-container {
+  padding: 50px;
+}
+
+.form-group {
+  margin-bottom: 0px;
+}
+
 /*
 *
 * ==========================================
@@ -6,8 +14,31 @@
 *
 */
 
-.underline {
-  text-decoration: underline;
+.underlineHoverBlack {
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.09em;
+  display: inline-block;
+  padding: 0px 20px;
+  position: relative;
+
+  a:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: black;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+
+  a:hover:after {
+    width: 100%;
+    left: 0;
+  }
 }
 
 .text-black {
@@ -15,14 +46,54 @@
 }
 
 .tabContent {
-  background-color: #8080800f;
-  border-radius: 12px;
+  // // background-color: #8080800f;
+  // border-radius: 12px;
+
 }
 
-.bd-light-grey {
 
-  background-color: grey !important ;
+// .bd-light-grey {
+
+//   background-color: grey !important ;
+// }
+
+/*
+*
+* ==========================================
+* switch bouton
+* ==========================================
+*
+*/
+
+
+/* Large toggl switches */
+.custom-switch-lg .custom-control-label::before {
+    left: -2.25rem;
+    width: 3rem;
+    border-radius: 1.5rem;
 }
+
+.custom-switch-lg .custom-control-label::after {
+    top: calc(.25rem + 3px);
+    left: calc(-2.25rem + 4px);
+    width: calc(1.5rem - 6px);
+    height: calc(1.5rem - 6px);
+    border-radius: 1.5rem;
+}
+
+.custom-switch-lg .custom-control-input:checked ~ .custom-control-label::after {
+    transform: translateX(1.4rem);
+}
+
+.custom-switch-lg .custom-control-label::before {
+    height: 1.5rem;
+}
+
+.custom-switch-lg .custom-control-label {
+    padding-left: 1.5rem;
+    line-height: 1.7rem;
+}
+
 
 /*
 *
@@ -37,122 +108,5 @@
     width: 100%;
 }
 
-.table-fixed thead,
-.table-fixed tbody,
-.table-fixed tr,
-.table-fixed td,
-.table-fixed th {
-    display: block;
-}
 
-.table-fixed tbody td,
-.table-fixed tbody th,
-.table-fixed thead > tr > th {
-    float: left;
-    position: relative;
-
-    &::after {
-        content: '';
-        clear: both;
-        display: block;
-    }
-}
-
-
-/*
-*
-* ==========================================
-* CALENDAR
-* ==========================================
-*
-*/
-
-
-.with-chevron[aria-expanded='true'] i {
-  display: block;
-  transform: rotate(180deg) !important;
-}
-
-.clearfix::after,
-.calendar ol::after {
-  content: ".";
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
-}
-
-/* ================
-Calendar Styling */
-.calendar {
-  border-radius: 10px;
-}
-
-.month {
-  font-size: 2rem;
-}
-
-@media (min-width: 992px) {
-  .month {
-    font-size: 3.5rem;
-  }
-}
-
-.calendar ol li {
-  float: left;
-  width: 14.28571%;
-}
-
-.calendar .day-names {
-  border-bottom: 1px solid #eee;
-}
-
-.calendar .day-names li {
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-}
-
-.calendar .days li {
-  border-bottom: 1px solid #eee;
-  min-height: 8rem;
-}
-
-.calendar .days li .date {
-  margin: 0.5rem 0;
-}
-
-.calendar .days li .event {
-  font-size: 0.75rem;
-  padding: 0.4rem;
-  color: white;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  border-radius: 4rem;
-  margin-bottom: 1px;
-}
-
-.calendar .days li .event.span-2 {
-  width: 200%;
-}
-
-.calendar .days li .event.begin {
-  border-radius: 1rem 0 0 1rem;
-}
-
-.calendar .days li .event.end {
-  border-radius: 0 1rem 1rem 0;
-}
-
-.calendar .days li .event.clear {
-  background: none;
-}
-
-.calendar .days li:nth-child(n+29) {
-  border-bottom: none;
-}
-
-.calendar .days li.outside .date {
-  color: #ddd;
-}
 

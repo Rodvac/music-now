@@ -1,7 +1,11 @@
+<br>
+<h3>Créez votre jam session et rencontrez des musiciens!</h3>
+<br>
+
 <div class="row">
 <div class="col-4">
   <div class="bookcard">
-    <h2 class="monthtitle">Choisir un jour</h2>
+    <h4 class="monthtitle">Choisir un jour</h4>
     <br>
   <div class="d-flex">
     <div class="monthdir"><%= link_to "<", new_jam_path(@date - 30) %></div>
@@ -40,7 +44,7 @@
 </div>
 
   <div class="col-4">
-  <h2 class="monthtitle">Choisir une heure</h2>
+  <h4 class="monthtitle">Choisir une heure</h4>
   <% @timearray.each do |time| %>
     <% if @date < Date.today || (@date - Date.today).to_i > 14 %>
       <div class="text-center booked">-</div>
@@ -51,12 +55,13 @@
   </div>
   
   <div class="col-4">
-  <h2>Votre jamsession</h2>
+  <h4>Votre jamsession</h4>
   <%= simple_form_for [ @jam ] do |f| %>
   <%= f.input :name, as: :string, label: "Nom du jam" %>
   <%= f.input :description, as: :text, label: "Qu'est ce que vous voulez jouer ?" %>
   <%= f.input :date, as: :string, input_html: { value: params[:format] }, as: :hidden %>
   <%= f.input :time, as: :string, as: :hidden%>
+  <%= f.input :photo, as: :file %>
   <%= simple_fields_for :other do |o| %>
     <%= o.input :instrument, as: :string, label: 'Quel instrument jouez vous ?' %>
   <% end %>

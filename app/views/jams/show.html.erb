@@ -1,7 +1,11 @@
 
 
 <div class="hero-studio">
-  <%= image_tag "jam", class: "hero-studio-img" %>
+  <% if @jam.photo.attached? %>
+  <%= cl_image_tag @jam.photo.key, class: "hero-studio-img" %>
+  <% else %>
+  <%= image_tag "https://blog.reverbnation.com/wp-content/uploads/2017/12/why-your-band-needs-to-practice-1500px.jpg", class: "hero-studio-img" %>
+  <% end %>
   <h1 class="hero-studio-title"> <%= "#{@jams_users[0].user.first_name}'s jam session" %></h1>
 </div>
 
@@ -16,7 +20,11 @@
     <div class="col-4">
     <div class="sticky-top">
       <div class="card-jam">
+          <% if @jams_users[0].user.photo.attached? %>
+          <%= cl_image_tag @jams_users[0].user.photo.key, class: "card-jam-photo" %>
+          <% else %>
           <%= image_tag "jam", class: "card-jam-photo" %>
+          <% end %>
           <div class="card-jam-title">
             <h4><%="#{@jam.name} proposée par #{@jams_users[0].user.first_name}"%></h4>
           </div>

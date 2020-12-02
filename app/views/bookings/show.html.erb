@@ -1,19 +1,6 @@
 <br>
 <br>
-
 <div class="d-flex flex-wrap">
-<h1><%= current_user.first_name %> </h1>
-  <div class="col-12">
-    <h5>Status de la réservation: </h5>
-    <% if Date.today > @booking.date.to_date %>
-      <h5 class="mb-3">passée</h5>
-      <br>
-      <% elsif Date.today <= @booking.date.to_date %>
-      <h5 class="mb-3">confirmée</h5>
-      <br>
-    <% end %>
-  </div>
-
   <div class="col-3">
     <h3>Votre salle</h3>
     <br>
@@ -51,33 +38,43 @@
 <div class="col-6">
   <h3>Détails de la réservation</h3>
   <br>
-  <div class="row mr-2 ml-2">
-    <div class="col-3 text-center booking-card-infos">
+  <div class="row booking-card">
+    <div class="col-4 text-center booking-card-infos">
       <h5>
         <i class="far fa-calendar"></i>
         <%= @booking.date %></p>
+        <br>
         <i class="far fa-clock"></i>
         <%= @booking.time %></p>
       </h5>
     </div>
-    <div class="col-9">
-      <div class="booking-card">
+    <div class="col-8 book-details">
+      <div class="">
       <p><strong>Nom:</strong> <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
-      <p><strong>Paiement</strong> reçu le 12/11/2020 - Mastercard **** **** **** 2345</p>
+        <p><strong>Statut de la résa : </strong>
+        <% if Date.today > @booking.date.to_date %>
+          réalisée</p> <br>
+        <% elsif Date.today <= @booking.date.to_date %>
+          confirmée</p>
+        <% end %>
+      <p><strong>Paiement</strong> reçu le 12/11/2020 <br> Mastercard **** **** **** 2345</p>
       </div>
     </div>
   </div>
-  <div class="row mr-2 ml-2">
-    <div class="col-12">
+  <br>
+<!--   <div class="row mr-2 ml-2">
+    <div class="col-12"> -->
       <div class="your-review">
         <% if @booking.user == current_user %>
           <% if Date.today <= @booking.date.to_date %>
-            <h4>Localiser le studio</h4>
-              <div class="col-12">
+            <p><strong>Adresse : </strong><%= @booking.room.studio.address %></p>
+              <div class="book-map">
                 <div id="map"
-                  style="width: 100%; height: 205px; margin-left: -15px;"
+                  style="width: 100%; height: 164px; position: relative;"
                   data-markers="<%= @markers.to_json %>"
-                  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+                  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+                  data-current-position="<%= @current_position.to_json %>"
+                  data-current-user="<%=current_user.first_name.chars.first.upcase%><%=current_user.last_name.chars.first.upcase%>">
                 </div>
               </div>
           <% else %>
@@ -117,35 +114,48 @@
           <% end %>
         <% end %>
       </div>
-    </div>
-  </div>
+<!--     </div>
+  </div> -->
   <br>
 </div>
 
 <div class="col-3">
-  <div>
-    <% if @booking.user == current_user %>
-      <h3>Votre conversation avec <%= @studio.user.first_name %></h3>
-    <% else %>
-      <h3>Votre conversation avec <%= @booking.user.first_name %></h3>
-    <% end %>
-    <br>
+  <h3 class="color-text-title-messages">Messages</h3>
+  <br>
+  <div class = "card-message">
     <div class="message-box">
       <div id="messages" data-booking-id="<%= @booking.id %>">
+        <div class="welcoming-message">
+          <% if @booking.messages == [] %>
+            <p> Des questions à propos de votre réservation ?</p>
+          <% end %>
+        </div>
         <% @booking.messages.each do |message| %>
-          <div class="message-container" id="message-<%= message.id %>">
-            <i class="author">
-              <span><%= message.user.nickname %></span>
-              <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-            </i>
-            <p><%= message.content %></p>
+          <% flex_direction = (message.user == current_user ? "flex-row" : "flex-row-reverse")%>
+          <div class="d-flex w-100 <%= flex_direction %>">
+            <% background = (message.user == current_user ? "m-sender" : "m-receiver")%>
+            <div class="message-block <%= background %>">
+              <div class="message-user-nickname">
+                <i class="author-message">
+                <span><%= message.user.first_name %> <%= message.user.last_name %></span>
+              </i>
+              </div>
+              <div class="message-content" id="message-<%= message.id %>">
+                <span><%= message.content %></span>
+              </div>
+              <div class="message-date">
+                <i class="author-message">
+                  <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+                </i>
+              </div>
+            </div>
           </div>
         <% end %>
       </div>
     </div>
     <div class="add-messages">
       <%= simple_form_for [ @booking, @message ], remote: true do |f| %>
-        <%= f.input :content, input_html: { class: ""}, label: false, placeholder: "Message ##{@booking.name}" %>
+        <%= f.input :content, input_html: { class: "message-input"}, label: false, placeholder: "Votre message" %>
       <% end %>
     </div>
   </div>

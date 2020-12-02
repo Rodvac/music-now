@@ -1,10 +1,12 @@
 .booking-card {
   width: 100%;
-  background-color: $my-green;
+  background-color: #729B79;
   color: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  padding: 15px;
-  margin-bottom: 30px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 9px;
+  padding: 16px 0px 16px 0px;
+  height: 176px;
+  margin-left: 0px;
 }
 
 .booking-card-review {
@@ -19,11 +21,19 @@
 
 .booking-card-infos {
   width: 100%;
-  background-color: #475b6329;
-  color: #040404;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  color: white;
   padding: 15px;
   margin-bottom: 30px;
+  padding-top: 27px;
+  border-right: solid;
 }
 
+.book-details {
+  width: 100%;
+  color: white;
+  padding: 6px 0px 0px 36px;
+}
 
+.book-map {
+width: 100%;
+}

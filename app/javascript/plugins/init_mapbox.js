@@ -65,7 +65,7 @@ const initMapbox = () => {
   if (mapElement) {
     const map = buildMap(mapElement);
     const currentPosition = JSON.parse(mapElement.dataset.currentPosition);
-    console.log(currentPosition.latitude)
+    // console.log(currentPosition.latitude)
     const markers = JSON.parse(mapElement.dataset.markers);
     if (markers.length === 0) return;
 

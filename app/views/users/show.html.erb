@@ -22,6 +22,7 @@
             <div class="row pt-5">
                 <div class="col-lg-8 mx-auto">
                     <h1 class="display-4">Liste de mes Réservations</h1>
+                    <br>
                     <h3 class="underline">Vous avez <%= current_user.bookings.count %> réservations </h3>
                 </div>
             </div>
@@ -35,23 +36,24 @@
                           <thead>
                               <tr>
                                   <th scope="col" class="col-1">#</th>
-                                  <th scope="col" class="col-2">Date</th>
+                                  <th scope="col" class="col-1">Date</th>
                                   <th scope="col" class="col-1">Heure</th>
                                   <th scope="col" class="col-2">Studio</th>
-                                  <th scope="col" class="col-3  ">Room</th>
-                                  <th scope="col" class="col-3">Adresse</th>
-                              </tr>
+                                  <th scope="col" class="col-2 ">Room</th>
+                                  <th scope="col" class="col-4">Adresse</th>
+                                  <th scope="col" class="col-1">Messages</th>
                           </thead>
                           <tbody>
                               <% i = 1 %>
                               <% current_user.bookings.each do |booking| %>
                                 <tr>
-                                  <th scope="row" class="col-1"><%= i %></th>
-                                  <td class="col-2 bold"><%=  booking.date.split("-").pop(2).join("/") %></td>
+                                  <th scope="row" class="col-1"><%= link_to i, booking_path(booking) %></th>
+                                  <td class="col-1 bold"><%=  booking.date.split("-").pop(2).join("/") %></td>
                                   <td class="col-1"><%=  booking.time %></td>
                                   <td class="col-2"><%=  booking.room.studio.name %></td>
-                                  <td class="col-3"><%=  booking.room.name %></td>
-                                  <td class="col-3"><%=  booking.room.studio.address %></td>
+                                  <td class="col-2"><%=  booking.room.name %></td>
+                                  <td class="col-4"><%=  booking.room.studio.address %></td>
+                                  <th scope="col" class="col-1"><%= link_to booking.messages.count, booking_path(booking)%></th>
                                 </tr>
                                 <% i += 1 %>
                               <% end %>
@@ -138,6 +140,7 @@
             <div class="row pt-5">
                 <div class="col-lg-8 mx-auto">
                     <h1 class="display-4"><%=@studios.first.name %> - Liste des réservations</h1>
+                    <br>
                     <h3 class="underline">Vous avez <%= @owner_bookings.count %> réservations </h3>
                 </div>
             </div>

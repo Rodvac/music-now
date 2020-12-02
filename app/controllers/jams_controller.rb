@@ -39,7 +39,7 @@ class JamsController < ApplicationController
         @jam = Jam.find(params[:id])
         @jams_users = JamsUser.where(jam_id: @jam.id)
         @jams_user = JamsUser.new
-        @rooms = Room.all.sample(6)
+        @rooms = Room.all.sample(4)
         @allpaid = 0
         @jams_users.each do |jams_user|
             if jams_user.paid == true 
@@ -47,6 +47,27 @@ class JamsController < ApplicationController
             end 
         end 
         @booking = Booking.new 
+
+        @date = @jam.date.to_date
+        @datearray = []
+        month = @date.month
+        year = @date.year
+        @start = Date.new(year, month, 1)
+        30.times do 
+          @datearray << @start
+          @start = @start + 1
+        end 
+        @start = Date.new(year, month, 1)
+        @jampresent = 0
+        @jams_users.each do |j|
+            if j.user == current_user
+                @jampresent = 1
+            end
+        end 
+        @users = []
+        @jams_users.each do |j|
+            @users << j.user
+        end 
     end 
 
     def update

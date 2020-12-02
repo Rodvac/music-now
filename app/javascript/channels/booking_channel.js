@@ -1,11 +1,11 @@
 import consumer from "./consumer";
 
-const initChatroomCable = () => {
+const initBookingCable = () => {
   const messagesContainer = document.getElementById('messages');
   if (messagesContainer) {
-    const id = messagesContainer.dataset.chatroomId;
+    const id = messagesContainer.dataset.bookingId;
 
-    consumer.subscriptions.create({ channel: "ChatroomChannel", id: id }, {
+    consumer.subscriptions.create({ channel: "BookingChannel", id: id }, {
       received(data) {
         console.log(data); // called when data is broadcast in the cable
       },
@@ -13,4 +13,4 @@ const initChatroomCable = () => {
   }
 }
 
-export { initChatroomCable };
+export { initBookingCable };

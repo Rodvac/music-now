@@ -1,0 +1,4 @@
+meta_product_name: "Music Now"
+meta_title: "Music now - Votre session musique en quelques clics"
+meta_description: "Réservez un studio près de chez vous : trouvez un studio selon vos critères, vérifiez les disponibilités, réservez en ligne."
+meta_image: "cover.jpg" # should exist in `app/assets/images/`

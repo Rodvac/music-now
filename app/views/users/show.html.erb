@@ -133,13 +133,14 @@
       <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
         <div class="tabContent" id="usage">
           <div class="container ptpb row">
-            <div class="col-6 ">
+            <div class="col-6">
               <% if @user.photo.attached? %>
                 <%= cl_image_tag @user.photo.key, class: "avatar-xlg img-thumbnail", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
               <% else %>
                 <%= image_tag "https://i.etsystatic.com/10924369/r/il/96200a/961644812/il_570xN.961644812_fohw.jpg", class: "avatar-medium dropdown-toggle ", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <% end %>
             </div>
+
             <div class="col-6">
               <%= simple_form_for @user do |f| %>
                 <%= f.input :first_name, :label => "First Name" %>

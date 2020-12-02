@@ -41,19 +41,20 @@
   <div class="row booking-card">
     <div class="col-4 text-center booking-card-infos">
       <h5>
-        <i class="far fa-calendar"></i>
-        <%= @booking.date %></p>
+        <p><i class="far fa-calendar"></i>
+        <% date = @booking.date.split('-') %>
+          <%= date[2] %>-<%= date[1] %>-<%= date[0] %></p>
         <br>
-        <i class="far fa-clock"></i>
+        <p><i class="far fa-clock"></i>
         <%= @booking.time %></p>
       </h5>
     </div>
     <div class="col-8 book-details">
       <div class="">
       <p><strong>Nom:</strong> <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
-        <p><strong>Statut de la résa : </strong>
+        <p><strong>Statut : </strong>
         <% if Date.today > @booking.date.to_date %>
-          réalisée</p> <br>
+          réalisée</p>
         <% elsif Date.today <= @booking.date.to_date %>
           confirmée</p>
         <% end %>
@@ -67,7 +68,7 @@
       <div class="your-review">
         <% if @booking.user == current_user %>
           <% if Date.today <= @booking.date.to_date %>
-            <p><strong>Adresse : </strong><%= @booking.room.studio.address %></p>
+            <p><strong><%=@studio.name  %> - </strong><%= @booking.room.studio.address %></p>
               <div class="book-map">
                 <div id="map"
                   style="width: 100%; height: 161px; position: relative;"

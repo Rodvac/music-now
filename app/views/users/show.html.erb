@@ -37,7 +37,8 @@
                     </div> -->
 
                     <% @current_user.bookings.each do |booking| %>
-                      <% if  Time.now.strftime("%Y-%m-%d").to_date > booking.date.to_date %>
+<!--                 incoming event  -->
+                      <% if  Time.now.strftime("%Y-%m-%d").to_date <= booking.date.to_date %>
                         <div class="card-room card-room-index">
                              <%= cl_image_tag booking.room.photo.key, class: "card-studio-img" %>
                           <div class="card-room-infos">
@@ -47,8 +48,12 @@
                             <div class="card-room-description">
                               <h2><%= link_to booking.room.name, booking_path(booking, Date.today) %></h2>
                               <p class="address"><%= booking.room.studio.address %></p>
-                              <h4 class=" mt-2"><%= booking.date.split("-").reverse.join("/")%> (dans <%= (Time.now.strftime("%Y-%m-%d").to_date - booking.date.to_date).to_i %> jours)  </h4>
-
+                              <% if Time.now.strftime("%Y-%m-%d").to_date == booking.date.to_date %>
+                                <h4 class=" mt-2"><%= booking.date.split("-").reverse.join("/")%> (Aujourd'hui) </h4>
+                              <% else %>
+                                <h4 class=" mt-2"><%= booking.date.split("-").reverse.join("/")%> (dans <%= (booking.date.to_date - Time.now.strftime("%Y-%m-%d").to_date).to_i%> jours)  </h4>
+                              <% end %>
+                              <h4> <%= booking.time %> heures </h4>
                               <p class="mt-2 capacity">  <i class="fas fa-users"></i> <%= booking.room.capacity %> </p>
                             </div>
                             <div class="card-room-gears d-flex mt-2">
@@ -66,6 +71,7 @@
                             </div>
                           </div>
                         </div>
+<!--                  past event  -->
                       <% else %>
                         <div class="card-room card-room-index">
                              <%= cl_image_tag booking.room.photo.key, class: "card-studio-img" %>
@@ -114,8 +120,10 @@
                   <div class="font-weight-bold ">
                     <%= date.day %>
                     <% booking = @already_booked.select { |e| e.date == date.to_s }.first %>
-                    <p class=""> <%= link_to booking.time + " => "+booking.room.studio.name, user_booking_path(current_user, booking)  %>
-                    </p>
+                    <button type="button" class="btn btn-primary">
+                      <%= link_to  booking.room.studio.name, user_booking_path(current_user, booking) %>
+                      <span class="badge badge-light"> <%= booking.time  %> </span>
+                    </button>
                   </div>
                 </div>
               <!--past days note proposed -->
@@ -135,14 +143,25 @@
           <div class="container ptpb row">
             <div class="col-6">
               <% if @user.photo.attached? %>
-                <%= cl_image_tag @user.photo.key, class: "avatar-xlg img-thumbnail", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
+                <%= cl_image_tag @user.photo.key, class: "avatar-xlg img-thumbnail", id: "navbarDropdown",  'aria-haspopup': true, 'aria-expanded': false  %>
               <% else %>
-                <%= image_tag "https://i.etsystatic.com/10924369/r/il/96200a/961644812/il_570xN.961644812_fohw.jpg", class: "avatar-medium dropdown-toggle ", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <%= image_tag "https://i.etsystatic.com/10924369/r/il/96200a/961644812/il_570xN.961644812_fohw.jpg", class: "avatar-xlg img-thumbnail ", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
               <% end %>
             </div>
 
             <div class="col-6">
-              <%= simple_form_for @user do |f| %>
+
+              <%= simple_form_for @user,   wrapper: :horizontal_form,
+              wrapper_mappings: {
+              boolean:       :horizontal_boolean,
+              check_boxes:   :horizontal_collection,
+              date:          :horizontal_multi_select,
+              datetime:      :horizontal_multi_select,
+              file:          :horizontal_file,
+              radio_buttons: :horizontal_collection,
+              range:         :horizontal_range,
+              time:          :horizontal_multi_select
+               }  do |f| %>
                 <%= f.input :first_name, :label => "First Name" %>
                 <%= f.input :last_name, :label => "Last Name" %>
                 <%= f.input :email, :label => "Email" %>

@@ -41,8 +41,9 @@
   <div class="row booking-card">
     <div class="col-4 text-center booking-card-infos">
       <h5>
-        <i class="far fa-calendar"></i>
-        <%= @booking.date %></p>
+        <p><i class="far fa-calendar"></i>
+        <% date = @booking.date.split('-') %>
+          <%= date[2] %>-<%= date[1] %>-<%= date[0] %></p>
         <br>
         <i class="far fa-clock"></i>
         <%= @booking.time %></p>
@@ -51,9 +52,9 @@
     <div class="col-8 book-details">
       <div class="">
       <p><strong>Nom:</strong> <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
-        <p><strong>Statut de la résa : </strong>
+        <p><strong>Statut : </strong>
         <% if Date.today > @booking.date.to_date %>
-          réalisée</p> <br>
+          réalisée</p>
         <% elsif Date.today <= @booking.date.to_date %>
           confirmée</p>
         <% end %>

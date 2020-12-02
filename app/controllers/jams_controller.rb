@@ -99,7 +99,7 @@ class JamsController < ApplicationController
     private 
 
     def jam_params
-        params.require(:jam).permit(:name,:description,:date,:time)
+        params.require(:jam).permit(:name,:description,:date,:time,:photo)
     end 
 
     def update_params

@@ -6,7 +6,7 @@
         <a class="nav-link active text-black  " id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true"> <%= current_user.bookings.count %> Réservations</a>
       </li>
       <li class="nav-item underlineHoverBlack" role="presentation">
-        <a class="nav-link text-black" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Mon Calendrier</a>
+        <a class="nav-link text-black " id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Mon Calendrier</a>
       </li>
       <li class="nav-item underlineHoverBlack" role="presentation">
         <a class="nav-link text-black" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Éditez mon Profil</a>
@@ -24,17 +24,17 @@
                 <!-- Card Booking-->
                   <div class="cards-rooms">
                     <!--  switches with checkbox inputs-->
-                    <div class="row mb-5">
+<!--                     <div class="row mb-5">
                         <div class="col-lg-4">
                           <div class="card-body p-4 text-center">
                               <!-- Custom switch -->
-                              <p class="custom-control custom-switch custom-switch-lg">
+                 <!--              <p class="custom-control custom-switch custom-switch-lg">
                                   <input class="custom-control-input" id="customSwitch7" type="checkbox" checked>
                                   <label class="custom-control-label font-italic" for="customSwitch7">Réservations à venir</label>
                               </p>
                           </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <% @current_user.bookings.each do |booking| %>
                       <% if  Time.now.strftime("%Y-%m-%d").to_date > booking.date.to_date %>

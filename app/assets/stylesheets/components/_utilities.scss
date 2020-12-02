@@ -9,8 +9,10 @@ a {
   }
 }
 
-
-
 .noHover{
   pointer-events: none;
+}
+
+img {
+  object-fit: cover;
 }

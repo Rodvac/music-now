@@ -1,94 +1,281 @@
+
+
+<div class="hero-studio">
+  <%= image_tag "jam", class: "hero-studio-img" %>
+  <h1 class="hero-studio-title"> <%= "#{@jams_users[0].user.first_name}'s jam session" %></h1>
+</div>
+
+
+<div class="container">
+
 <% if @jams_users[0].user == current_user %>
 <%= "vous etes admin" %>
 <% end %>
 
-<br>
-<br>
-<%=@jam.name%>
-<br>
-<%=@jam.description%>
-<br>
-<%=@jam.date %>
-<br>
-<%=@jam.time %>
-<br>
-<% @jams_users.each do |jam_user| %>
-<%= jam_user.user.first_name %>
-<%= jam_user.instrument %>
-<% if @jams_users[0].user == current_user && jam_user.user != current_user %>
-<%= link_to "Enlever", jams_user_path(jam_user), method: :delete %>
-<% end %>
-<br>
+  <div class="row">
+    <div class="col-4">
+    <div class="sticky-top">
+      <div class="card-jam">
+          <%= image_tag "jam", class: "card-jam-photo" %>
+          <div class="card-jam-title">
+            <h4><%="#{@jam.name} proposée par #{@jams_users[0].user.first_name}"%></h4>
+          </div>
+          <div class="card-jam-description">
+            <%=@jam.description%>
+          </div>
+          <h4>Date</h4>
+          <h6><%=Date::MONTHNAMES[@jam.date.to_date.month]%></h6>
+          <div class="d-flex ml-3">
+              <div class="daybox-jam">L</div>
+              <div class="daybox-jam">M</div>
+              <div class="daybox-jam">M</div>
+              <div class="daybox-jam">J</div>
+              <div class="daybox-jam">V</div>
+              <div class="daybox-jam">S</div>
+              <div class="daybox-jam">D</div>
+          </div>
+          <div class="d-flex flex-wrap ml-3">
+            <% if @start.wday == 0 %>
+            <% 6.times do %>
+              <div class="datebox-jam text-center" id=""></div>
+            <% end %>
+              <%else%>
+            <% (@start.wday - 1).times do %>
+              <div class="datebox-jam text-center" id=""></div>
+            <% end %>
+            <% end %>
+            <% @datearray.each do |date| %>
+              <% if @date == date %>
+                <div class="datebox-jam text-center red" id="<%date%>"><%=date.day%></div>
+              <% else %>
+                <div class="datebox-jam text-center" id="<%date%>"><%=date.day%></div>
+              <% end %>
+            <%end%>
+          </div>
+      <h4>Heure <i class="far fa-clock"></i></h4>
+      
+      <h5><%=@jam.time %></h5>
+      </div>
+    </div>
+      </div>
+
+<div class="col-8">
+<div class="jam-users">
+<h4>Musiciens</h4>
+<div class="d-flex justify-content-start">
+  <% @jams_users.each do |jam_user| %>
+    <div class="jam-user">
+      <div class="jam-user-name">
+        <strong>
+          <%= jam_user.user.first_name %>
+          <%= jam_user.user.last_name %>
+        </strong>
+            <% if jam_user.user == current_user %>
+            <p>(vous)</p>
+            <% end %>
+      </div>
+      <div class="jam-user-instrument">
+    
+        <% if asset_exist?("#{jam_user.instrument.downcase}.png") %>
+          <%= image_tag "#{jam_user.instrument.downcase}.png", class: "jam-instrument-img" %>
+        <% else %>
+          <%= jam_user.instrument.capitalize %>
+        <% end %>
+      </div>
+        <% if @jams_users[0].user == current_user && jam_user.user != current_user %>
+        <%= link_to "Enlever", jams_user_path(jam_user), method: :delete %>
+        <% end %>
+    </div>
+  <% end %>
+  
+  <% if @jams_users.count == 1 && @jams_users[0].user == current_user %>
+    <div class="jam-user">
+      En attente d'autres players :)  
+    </div>
+  <% end %>
+
+  <% if @jam.groupe == false && @jampresent == 0 %>
+  <div class="jam-user">
+  <h5>Ajoutez-vous à cette jam!</h5>
+    <%= simple_form_for [ @jam, @jams_user ] do |f| %>
+      <%= f.input :instrument, as: :string %>
+      <%= f.submit "S'ajouter", class: 'btn btn-primary book-btn' %>
+    <% end %>
+  <% end %>
+  </div>
+</div>
+<% if @jams_users[0].user != current_user && @jam.groupe == false && @users.include?(current_user) %>
+<div class="float-right">En attente de validation du groupe</div>
 <% end %>
 
-<% if @jam.groupe == false %>
-<%= simple_form_for [ @jam, @jams_user ] do |f| %>
-<%= f.input :instrument, as: :string %>
-<%= f.submit "S'ajouter", class: 'btn btn-primary book-btn' %>
-<% end %>
-<% end %>
+
+
+
+
+
 
 <% if @jams_users[0].user == current_user && @jam.groupe == false %>
 <%= simple_form_for [ @jam ] do |f| %>
-<%= f.input :groupe, as: :boolean %>
-<%= f.submit "Trouver une salle avec ce groupe", class: 'btn btn-primary book-btn' %>
+<%= f.input :groupe, as: :boolean, input_html: {value: true}, as: :hidden %>
+<%= f.submit "Trouver une salle avec ce groupe", class: 'btn btn-primary book-btn float-right' %>
 <% end %>
 <% end %>
-<br>
 
 <% if @jams_users[0].user == current_user && @jam.groupe == true && @jam.room_id == nil %>
+  <div class="jam-rooms">
+  <div class="d-flex flex-wrap justify-content-between">
     <% @rooms.each do |room| %>
-    <%= room.name %>
+
+        <div class="card-room-jam">
+          <div class= "card-room-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),)">
+              <%if room.photo.attached? %>
+                <%= cl_image_tag room.photo.key, class: "card-studio-img" %>
+              <% else %>
+                <div class="card-studio-img" style="background-image: url('http://www.studiobleu.com/wp-content/uploads/2015/06/20181221-INDIGO-02.jpg')">
+                </div>
+              <% end %>
+          </div>
+          <div class="card-room-infos">
+            <div class="studio-name">
+             <p><%= room.studio.name %></p>
+            </div>
+            <div class="card-room-description">
+              <h2><%= room.name %></h2>
+              <p class="address"><%= room.studio.address %></p>
+              <p class="description mt-2"><%= room.description %></p>
+              <p class="mt-2 capacity"><i class="fas fa-users"></i> <%= room.capacity %> </p>
+            </div>
             <%= simple_form_for [ @jam ] do |f| %>
             <%= f.input :room_id, input_html: {value: room.id}, as: :hidden %>
             <%= f.submit "Choisir cette room", class: 'btn btn-primary book-btn' %>
             <% end %>
+            <div class="card-room-gears d-flex mt-2">
+              <div class="d-flex">
+                <i class="fas fa-search"></i>
+                <a class="ml-2" data-toggle="collapse" href="#collapseExample-<%=room.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  Matériel
+                </a>
+              </div>
+            </div>
+           <div class="collapse" id="collapseExample-<%=room.id%>">
+              <% room.items.each do |item| %>
+                <p>- <%= item.name %></p>
+              <% end %>
+            </div>
+          </div>
+        </div>
     <% end %>
+  </div>
+  </div>
 <% end %>
+
 
 <% if  @jam.room_id != nil %>
-<%= "ur room: #{@jam.room.name}" %>
+<div class="jam-rooms">
+<div class="row">
+<div class="col-6">
+<br>
+<br>
+<h4>Votre salle</h4>
+</div>
+<div class="col-6">
+        <div class="card-room-jam">
+          <div class= "card-room-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),)">
+              <%if @jam.room.photo.attached? %>
+                <%= cl_image_tag @jam.room.photo.key, class: "card-studio-img" %>
+              <% else %>
+                <div class="card-studio-img" style="background-image: url('http://www.studiobleu.com/wp-content/uploads/2015/06/20181221-INDIGO-02.jpg')">
+                </div>
+              <% end %>
+          </div>
+          <div class="card-room-infos">
+            <div class="studio-name">
+             <p><%= @jam.room.studio.name %></p>
+            </div>
+            <div class="card-room-description">
+              <h2><%= @jam.room.name %></h2>
+              <p class="address"><%= @jam.room.studio.address %></p>  
+              <p class="mt-2 capacity"><i class="fas fa-users"></i> <%= @jam.room.capacity %> </p>
+            </div>
+            <div class="card-room-gears d-flex mt-2">
+              <div class="d-flex">
+                <i class="fas fa-search"></i>
+                <a class="ml-2" data-toggle="collapse" href="#collapseExample-<%=@jam.room.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  Matériel
+                </a>
+              </div>
+            </div>
+           <div class="collapse" id="collapseExample-<%=@jam.room.id%>">
+              <% @jam.room.items.each do |item| %>
+                <p>- <%= item.name %></p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        </div>
+</div>
+</div>
 <% end %>
 
-<br>
 
-<% if @jam.groupe == true && @jam.room_id != nil %>
-<% @jams_users.each do |jams_user| %>
-<%= jams_user.user.first_name %>
-<br>
-<%= jams_user.priceuser %>
-<br>
-<% if jams_user.user == current_user && jams_user.paid == false %>
-    <%= simple_form_for [ jams_user ] do |f| %>
-    <%= f.input :paid, input_html: {value: true}, as: :hidden %>
-    <%= f.submit "Pay", class: 'btn btn-primary book-btn' %>
-    <% end %>
-<% else %>
-    <%= "status: payé: #{jams_user.paid}" %>
+<% if @jam.groupe == true && @jam.room_id != nil &&  @allpaid != @jams_users.count %>
+<div class="jam-rooms">
+<h4>Partagez l'addition!</h4>
+  <div class="d-flex flex-wrap">
+  <% @jams_users.each do |jams_user| %>
+    <div class="jam-pay">
+    
+    <strong> <%= jams_user.user.first_name %></strong>
+    <br>
+    <br>
+    <h6>A payer:</h6>
+    <%= "#{(@jam.room.price.to_f / @jams_users.count).to_f} €" %>
+      <% if jams_user.user == current_user && jams_user.paid == false %>
+          <%= simple_form_for [ jams_user ] do |f| %>
+          <%= f.input :paid, input_html: {value: true}, as: :hidden %>
+          <%= f.submit "Pay", class: 'btn btn-primary book-btn' %>
+          <% end %>
+      <% else %>
+          <% if jams_user.paid%>
+          <br>
+          <br>
+          <%= "Payé" %>
+          <% else %>
+          <br>
+          <br>
+          <%= "En attente du paiement"%>
+          <% end %>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+    </div>
 <% end %>
 
-<% end %>
-<% end %>
 
-<br>
-<br>
 
-<% if @allpaid == @jams_users.count && @jam.booking_id == nil %>
-<%="all good, we are ready to create your booking"%>
+
+<% if @allpaid == @jams_users.count && @jam.booking_id == nil && @jams_users[0].user == current_user %>
+<div class="jam-rooms">
+<%="C'est tout bon, il ne reste plus qu'à confirmer!"%>
   <%= simple_form_for [ @jam.room, @booking ] do |f| %>
-  <%= f.input :date, as: :string, input_html: { value: @jam.date } %>
-  <%= f.input :time, as: :string, input_html: { value: @jam.time } %>
+  <%= f.input :date, as: :string, input_html: { value: @jam.date }, as: :hidden %>
+  <%= f.input :time, as: :string, input_html: { value: @jam.time }, as: :hidden %>
   <%= simple_fields_for :other do |o| %>
-    <%= o.input :jam_id, input_html: { value: @jam.id } %>
+    <%= o.input :jam_id, input_html: { value: @jam.id }, as: :hidden %>
   <% end %>
-  <%= f.submit "Réserver", class: 'btn btn-primary book-btn' %>
+  <%= f.submit "Confirmer", class: 'btn btn-primary book-btn' %>
   <% end %>
+</div>
 <% end %>
 
 <% if @jam.booking_id != nil %>
-<%= "Your booking" %>
-<%= @jam.booking.date %>
-<%= @jam.booking.time %>
-<%= @jam.booking.room.studio.name %>
-<%= @jam.booking.room.name %>
+<div class="jam-rooms">
+<h4><%= "Votre réservation est faite!" %></h4>
+<%= link_to "Voir ma réservation", booking_path(@jam.booking) %>
 <% end %>
+</div>
+</div>
+</div>
+</div>
+</div>

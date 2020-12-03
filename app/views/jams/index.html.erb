@@ -9,15 +9,15 @@
     <br>
     <h4>Trouver des jamsession</h4>
     <h6>Vous cherchez des musiciens avec qui jouer? Trouvez ici des jam sessions ouvertes, inscrivez-vous, ou alors créez la votre!</h6>
-   <br>
+    <br>
     <%= link_to "Créer ma jam", new_jam_path(Date.today), class:"btn btn-primary" %>
     </div>
+
     </div>
 
     <div class="col-9">
     <h4>Mes sessions</h4>
-    <% @jams.each do |jam| %>
-    <% if jam.groupe == true && @userarray["#{jam.id}".to_sym].include?(current_user) && jam.booking == nil %>
+    <% @myjams.each do |jam| %>
         <div class="jamcard">
             <div class="row">
             <div class="col-4">
@@ -28,8 +28,10 @@
                 <% end %>
             </div>
             <div class="col-8 float-left">
-            <h5><%="#{jam.name}"%></h5>
-
+            <h5><%="#{jam.name}."%></h5>
+            <div class="ownerjam">
+            <h6><%="Créateur : #{jam.jams_users[0].user.first_name}"%></h6>
+            </div>
             <% if jam.description.length > 240  %>
             <p><%="#{jam.description.first(240)}..."%></p>
             <% else %>
@@ -45,7 +47,6 @@
             </div>
             </div>
         </div>
-    <% end %>
     <% end %>
 
     <% if @myjams.length == 0 %>
@@ -68,7 +69,9 @@
             </div>
             <div class="col-8 float-left">
             <h5><%="#{jam.name}"%></h5>
-
+            <div class="ownerjam">
+            <h6><%="Créateur : #{jam.jams_users[0].user.first_name}"%></h6>
+            </div>
             <% if jam.description.length > 240  %>
             <p><%="#{jam.description.first(240)}..."%></p>
             <% else %>

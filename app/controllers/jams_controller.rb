@@ -5,16 +5,12 @@ class JamsController < ApplicationController
         @userarray = {}
         @jams.each do |jam|
             jam.jams_users.each do |j|
-                if @userarray["#{j.id}".to_sym]
-                @userarray["#{j.id}".to_sym] << j.user 
-                else 
-                @userarray["#{j.id}".to_sym] = [j.user]
-                end 
+                @userarray["#{j.jam.id} et #{j.user.id}".to_sym] = 1
             end 
         end 
         @myjams = []
         @jams.each do |jam|
-            if jam.groupe == true && @userarray["#{jam.id}".to_sym].include?(current_user) && jam.booking == nil
+            if @userarray["#{jam.id} et #{current_user.id}".to_sym] == 1 && jam.booking == nil
                 @myjams << jam
             end 
         end 

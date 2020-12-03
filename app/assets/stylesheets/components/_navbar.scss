@@ -27,7 +27,7 @@
   color: white !important;
   font-family: Oswald;
   font-style: normal;
-  font-weight: normal;
+  font-weight: lighter;
   font-size: 24px;
   line-height: 36px;
 }
@@ -36,17 +36,17 @@
   color: #fff;
   text-transform: uppercase;
   text-decoration: none;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   display: inline-block;
-  padding: 0px 20px;
+  padding: 0px 10px;
   position: relative;
 
   a:after {
     background: none repeat scroll 0 0 transparent;
-    bottom: 0;
+    bottom: 5px;
     content: "";
     display: block;
-    height: 2px;
+    height: 1px;
     left: 50%;
     position: absolute;
     background: #fff;
@@ -63,10 +63,10 @@
 .selectedItem {
   a:after {
     background: none repeat scroll 0 0 transparent;
-    bottom: 0;
+    bottom: 5px;
     content: "";
     display: block;
-    height: 2px;
+    height: 1px;
     left: 0;
     position: absolute;
     background: #fff;

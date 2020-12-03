@@ -5,6 +5,13 @@ class MessagesController < ApplicationController
     @message.booking = @booking
     @message.user = current_user
     if @message.save
+      BookingChannel.broadcast_to(
+        @booking,
+        {
+          message: render_to_string(partial: "message", locals: { message: @message }),
+          user_id: current_user.id
+        }
+      )
       redirect_to booking_path(@booking, anchor: "message-#{@message.id}")
     else
       render "bookings/show"

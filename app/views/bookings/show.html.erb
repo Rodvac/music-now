@@ -125,7 +125,7 @@
   <br>
   <div class = "card-message">
     <div class="message-box">
-      <div id="messages" data-booking-id="<%= @booking.id %>">
+      <div id="messages" data-booking-id="<%= @booking.id %>" data-user-id="<%= current_user.id %> ">
         <div class="welcoming-message">
           <% if @booking.messages == [] %>
             <p> Des questions à propos de votre réservation ?</p>
@@ -133,7 +133,7 @@
         </div>
         <% @booking.messages.each do |message| %>
           <% flex_direction = (message.user == current_user ? "flex-row" : "flex-row-reverse")%>
-          <div class="d-flex w-100 <%= flex_direction %>">
+          <div class="message-container d-flex w-100 <%= flex_direction %>">
             <% background = (message.user == current_user ? "m-sender" : "m-receiver")%>
             <div class="message-block <%= background %>">
               <div class="message-user-nickname">

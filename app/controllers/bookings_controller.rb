@@ -42,7 +42,6 @@ class BookingsController < ApplicationController
   end
 
   def show
-
     @booking = Booking.find(params[:id])
     @review = Review.new
     @id = @booking.room.studio.id

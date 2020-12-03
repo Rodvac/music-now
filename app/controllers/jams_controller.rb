@@ -2,6 +2,18 @@ class JamsController < ApplicationController
 
     def index
         @jams = Jam.all
+        @userarray = []
+        @jams.each do |jam|
+            jam.jams_users.each do |j|
+                @userarray << j.user 
+            end 
+        end 
+        @myjams = []
+        @jams.each do |jam|
+            if jam.groupe == true && @userarray.include?(current_user) && jam.booking == nil
+                @myjams << jam
+            end 
+        end 
     end 
 
     def new

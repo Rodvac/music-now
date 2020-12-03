@@ -152,45 +152,59 @@ puts "create rooms"
 
 room_description = [
 "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!",
-"Pour une simple prise de voix ou bien la production d’un album une équipe d’ingénieurs du son vous apportera son expérience et l'expertise nécessaire à la réalisation de vos projets.",
+"Pour une simple prise de voix ou bien la production d’un album une équipe d’ingénieurs du son est à votre service.",
 "Enregistrement, montage, mixage, musiques libres de droits ou création musicale et sound-design à votre image.",
-"Salle réalisée par un acousticien reconnu, pour garantir une qualité de son optimale. Le son y est pur et facile d'écoute pour les groupes les plus exigeants.",
-"Salle ouverte à toutes les disciplines : musique, danse, performance, théâtre, etc. Convient également pour des formats réunions, séminaires, workshop, cours et formation."
+"Salle réalisée par un acousticien reconnu, pour garantir une qualité de son optimale, peu importe la formation.",
+"Salle ouverte à toutes les disciplines. Convient également pour des formats séminaires, cours et formation."
 ]
 
+
+room_names = []
+100.times do
+  room_names << Faker::Music::RockBand.name
+end
+short_names = room_names.reject { |name| name.length > 20}
+
+
+
 Studio.all.each do |studio|
-  rand(2..4).times {
-  room = Room.create!(name: Faker::Music::RockBand.name, description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: studio)
-  file = URI.open(room_pic_url.sample)
-  room.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
-  i += 1
-  puts "#{i} room"
+  rand(5..7).times {
+  name = short_names.sample
+  if Room.where(name: name).count == 0
+    room = Room.create!(name: name, description: room_description.sample, capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: studio)
+    file = URI.open(room_pic_url.sample)
+    room.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
+    i += 1
+    puts "#{i} room"
+  end
 }
 end
 
 puts "create bookings"
 
 
-booking1 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "2020-11-28", :time => "13:00"
+
+booking1 = Booking.create! :starts_at => DateTime.strptime("28/11/2020 13:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "2020-11-28", :time => "13:00"
 booking2 = Booking.create! :starts_at => DateTime.strptime("29/11/2020 14:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-11-29", :time => "14:00"
-booking3 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-12-11", :time => "15:00"
-booking4 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-12-11", :time => "16:00"
-booking5 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-11-30", :time => "17:00"
-booking6 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-12-6", :time => "15:00"
-booking7 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-12-5", :time => "09:00"
-booking8 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-12-4", :time => "11:00"
-booking9 = Booking.create! :starts_at => DateTime.strptime("08/12/2020 11:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-12-8", :time => "11:00"
-booking10 = Booking.create! :starts_at => DateTime.strptime("05/12/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-12-5", :time => "17:00"
-booking11 = Booking.create! :starts_at => DateTime.strptime("04/12/2020 12:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-12-4", :time => "12:00"
-booking12 = Booking.create! :starts_at => DateTime.strptime("03/12/2020 13:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-12-3", :time => "13:00"
-booking13 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-12-4", :time => "17:00"
-booking14 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-10-5", :time => "13:00"
-booking15 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-11-27", :time => "13:00"
-booking16 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-12-15", :time => "13:00"
-booking17 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-12-1", :time => "18:00"
-booking18 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "2020-12-1", :time => "10:00"
-booking19 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "2020-12-2", :time => "18:00"
-booking20 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "2020-11-30", :time => "10:00"
+booking3 = Booking.create! :starts_at => DateTime.strptime("11/12/2020 15:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-12-11", :time => "15:00"
+booking4 = Booking.create! :starts_at => DateTime.strptime("11/12/2020 16:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-12-11", :time => "16:00"
+booking5 = Booking.create! :starts_at => DateTime.strptime("30/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-11-30", :time => "17:00"
+booking6 = Booking.create! :starts_at => DateTime.strptime("6/12/2020 15:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-12-6", :time => "15:00"
+booking7 = Booking.create! :starts_at => DateTime.strptime("5/12/2020 09:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-12-5", :time => "09:00"
+booking8 = Booking.create! :starts_at => DateTime.strptime("24/12/2020 11:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-12-4", :time => "11:00"
+booking9 = Booking.create! :starts_at => DateTime.strptime("8/12/2020 11:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-12-8", :time => "11:00"
+booking10 = Booking.create! :starts_at => DateTime.strptime("5/12/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-12-5", :time => "17:00"
+booking11 = Booking.create! :starts_at => DateTime.strptime("4/12/2020 12:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-12-4", :time => "12:00"
+booking12 = Booking.create! :starts_at => DateTime.strptime("3/12/2020 13:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-12-3", :time => "13:00"
+booking13 = Booking.create! :starts_at => DateTime.strptime("4/12/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-12-4", :time => "17:00"
+booking14 = Booking.create! :starts_at => DateTime.strptime("5/10/2020 13:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-10-5", :time => "13:00"
+booking15 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 13:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-11-27", :time => "13:00"
+booking16 = Booking.create! :starts_at => DateTime.strptime("15/12/2020 13:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-12-15", :time => "13:00"
+booking17 = Booking.create! :starts_at => DateTime.strptime("1/12/2020 18:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-12-1", :time => "18:00"
+booking18 = Booking.create! :starts_at => DateTime.strptime("1/12/2020 10:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "2020-12-1", :time => "10:00"
+booking19 = Booking.create! :starts_at => DateTime.strptime("2/12/2020 18:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "2020-12-2", :time => "18:00"
+booking20 = Booking.create! :starts_at => DateTime.strptime("30/11/2020 10:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "2020-11-30", :time => "10:00"
+
 
 
 puts "create messages"
@@ -221,11 +235,49 @@ review20 = Review.create! :title => 'Je reviendrai !', :content => "Super moment
 
 
 puts "create items"
-30.times do
-  Item.create! :name => Faker::Music.instrument, :description => 'Superbe instrument', :category => 'Instruments'
+
+items = [
+  "Batterie",
+  "Batterie électronique",
+  "Piano droit",
+  "Piano à queue",
+  "Piano numérique",
+  "Guitare acoustique",
+  "Guitare électrique",
+  "Guitare classique",
+  "Harpe",
+  "Basse",
+  "Table de mixage",
+  "Micro SM 58",
+  "Contrebasse",
+  "Violoncelle",
+  "Amplificateur",
+  "Djembé",
+  "Clavier arrangeur",
+  "Trompette",
+  "Accordéon",
+  "Saxophone"
+]
+
+
+items.each do |item|
+  Item.create! :name => item, :description => 'Superbe instrument', :category => 'Instruments'
 end
+# 20.times do
+#   Item.create! :name => item, :description => 'Superbe instrument', :category => 'Instruments'
+# end
+
+# puts "assigning items to rooms"
+# 70.times do
+# ItemsRoom.create! :room => Room.all.sample, :item => Item.all.sample
+# end
 
 puts "assigning items to rooms"
-50.times do
-ItemsRoom.create! :room => Room.all.sample, :item => Item.all.sample
+Room.all.each do |room|
+  rand(3..8).times {
+  item_room = Item.all.sample
+  if room.items_rooms.where(item: item_room).count == 0
+    item = ItemsRoom.create! :room => room, :item => item_room
+  end
+}
 end

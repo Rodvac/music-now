@@ -9,15 +9,15 @@
     <br>
     <h4>Trouver des jamsession</h4>
     <h6>Vous cherchez des musiciens avec qui jouer? Trouvez ici des jam sessions ouvertes, inscrivez-vous, ou alors créez la votre!</h6>
-   <br>
+    <br>
     <%= link_to "Créer ma jam", new_jam_path(Date.today), class:"btn btn-primary" %>
     </div>
+
     </div>
 
     <div class="col-9">
     <h4>Mes sessions</h4>
-    <% @jams.each do |jam| %>
-    <% if jam.groupe == true && @userarray.include?(current_user) && jam.booking == nil %>
+    <% @myjams.each do |jam| %>
         <div class="jamcard">
             <div class="row">
             <div class="col-4">
@@ -28,8 +28,19 @@
                 <% end %>
             </div>
             <div class="col-8 float-left">
-            <h5><%="#{jam.name}"%></h5>
-
+            <h5><%="#{jam.name}."%></h5>
+            <div class="ownerjam">
+            <h6><%="Créateur : #{jam.jams_users[0].user.first_name}"%></h6>
+            </div>
+            <div class="countjam">
+            <h6>
+                <%="Inscrits: #{jam.jams_users.count}"%>
+                -
+                <% jam.jams_users.each do |j| %>
+                <%= j.instrument.downcase.strip %> 
+                <% end %>
+            </h6>
+            </div>
             <% if jam.description.length > 240  %>
             <p><%="#{jam.description.first(240)}..."%></p>
             <% else %>
@@ -46,7 +57,6 @@
             </div>
         </div>
     <% end %>
-    <% end %>
 
     <% if @myjams.length == 0 %>
     <div class="nojam">Vous n'avez pas encore de jam!
@@ -56,38 +66,50 @@
 
     <h4>Jam sessions ouvertes</h4>
     <% @jams.each do |jam| %>
-    <% if jam.groupe == false %>
+    <% if jam.groupe == false && jam.jams_users[0].user != current_user && @myjams.include?(jam) == false %>
         <div class="jamcard">
             <div class="row">
-            <div class="col-4">
-                <% if jam.photo.attached? %>
-                <%= cl_image_tag jam.photo.key %>
-                <% else %>
-                <%= image_tag "https://blog.reverbnation.com/wp-content/uploads/2017/12/why-your-band-needs-to-practice-1500px.jpg" %>
-                <% end %>
-            </div>
+                <div class="col-4">
+                    <% if jam.photo.attached? %>
+                    <%= cl_image_tag jam.photo.key %>
+                    <% else %>
+                    <%= image_tag "https://blog.reverbnation.com/wp-content/uploads/2017/12/why-your-band-needs-to-practice-1500px.jpg" %>
+                    <% end %>
+                </div>
             <div class="col-8 float-left">
-            <h5><%="#{jam.name}"%></h5>
-
-            <% if jam.description.length > 240  %>
-            <p><%="#{jam.description.first(240)}..."%></p>
-            <% else %>
-            <p><%="#{jam.description}"%></p>
-            <% end %>
+                <h5><%="#{jam.name}"%></h5>
+                <div class="ownerjam">
+                <h6><%="Créateur : #{jam.jams_users[0].user.first_name}"%></h6>
+                </div>
+                <div class="countjam">
+                <h6>
+                    <%="Inscrits: #{jam.jams_users.count}"%>
+                    -
+                    <% jam.jams_users.each do |j| %>
+                    <%= j.instrument.downcase.strip %> 
+                    <% end %>
+                </h6>
+                </div>
+                <% if jam.description.length > 240  %>
+                <p><%="#{jam.description.first(240)}..."%></p>
+                <% else %>
+                <p><%="#{jam.description}"%></p>
+                <% end %>
                 <div class="jamcalendar">
                 <div class="row">
                 <div class="jam-date"><i class="far fa-calendar"></i><%= " #{I18n.l(jam.date.to_date, :format => :long)}" %></div>
                 <div class="jam-date"><i class="far fa-clock"></i><%=" #{jam.time}"%></div>
                 </div>
                 </div>
-            <%= link_to "Rejoindre cette jam", jam_path(jam), class:"btn btn-primary jam-btn" %></h5>
-            </div>
-            </div>
+                <%= link_to "Rejoindre cette jam", jam_path(jam), class:"btn btn-primary jam-btn" %></h5>
+                </div>
+                </div>
         </div>
     <% end %>
     <% end %>
     </div>
 </div>
+
 
 
 

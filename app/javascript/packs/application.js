@@ -19,9 +19,31 @@ import { displayGraduation } from '../components/graduation';
 import { initAutocomplete } from '../plugins/init_autocomplete';
 import { initBookingCable } from "../channels/booking_channel";
 import { tabsDash } from "../components/tabs_dashboard";
+import { dynamicRating } from "../plugins/starsInReviewForm";
 
-ScrollReveal().reveal('.card-studio', {delay: 500});
-ScrollReveal().reveal('.card-room', {delay: 500});
+
+ScrollReveal().reveal('.card-studio', {delay: 350});
+ScrollReveal().reveal('.jamcard', {delay: 350});
+
+ScrollReveal().reveal('.card0', {delay: 350});
+ScrollReveal().reveal('.card1', {delay: 450});
+ScrollReveal().reveal('.card2', {delay: 550});
+ScrollReveal().reveal('.card3', {delay: 350});
+ScrollReveal().reveal('.card4', {delay: 450});
+ScrollReveal().reveal('.card5', {delay: 550});
+ScrollReveal().reveal('.card6', {delay: 350});
+ScrollReveal().reveal('.card7', {delay: 450});
+ScrollReveal().reveal('.card8', {delay: 550});
+ScrollReveal().reveal('.card9', {delay: 350});
+ScrollReveal().reveal('.card10', {delay: 450});
+ScrollReveal().reveal('.card11', {delay: 550});
+ScrollReveal().reveal('.card12', {delay: 350});
+ScrollReveal().reveal('.card13', {delay: 450});
+ScrollReveal().reveal('.card14', {delay: 550});
+ScrollReveal().reveal('.card15', {delay: 350});
+ScrollReveal().reveal('.card16', {delay: 450});
+ScrollReveal().reveal('.card17', {delay: 550});
+ScrollReveal().reveal('.card18', {delay: 350});
 
 document.addEventListener('turbolinks:load', () => {
   initGeoloc();
@@ -30,11 +52,11 @@ document.addEventListener('turbolinks:load', () => {
   timeSelect();
   initMapbox();
   ScrollReveal();
-  ScrollReveal().reveal();
   displayGraduation();
   initAutocomplete();
   initBookingCable();
   tabsDash();
+  dynamicRating();
 })
 
 

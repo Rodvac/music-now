@@ -37,7 +37,7 @@
   <br>
   <div class="cards-rooms">
     <% @studio.rooms.each do |room| %>
-        <div class="card-room">
+        <div class="card-room card-room-studio-show">
           <div class= "card-room-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),)">
               <%if room.photo.attached? %>
                 <%= cl_image_tag room.photo.key, class: "card-studio-img" %>
@@ -77,7 +77,10 @@
     <% end %>
   </div>
 
-  <h2><%= pluralize @studio.reviews.size, "avis"%></h2>
+  <h2>
+    <i class="fas fa-star"></i> <%= @studio.reviews.average(:rating).round(1)%>
+    <span class= "review-counter">(<%= pluralize @studio.reviews.size, "avis"%>)</span>
+  </h2>
   <% @studio.reviews.each do |review| %>
     <div class="review">
       <% if review.booking.room.studio == @studio %>

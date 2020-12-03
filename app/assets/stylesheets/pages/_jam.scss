@@ -197,7 +197,7 @@
 
 .jamcalendar {
     position: absolute;
-    bottom: -5px; 
+    bottom: -3px; 
     left: 10px; 
 }
 
@@ -211,4 +211,26 @@
     position: absolute; 
     right: 30px;
     bottom: 0px; 
+}
+
+.ownerjam {
+    position: absolute;
+    right: 35px; 
+    top: 5px;
+    font-size: 14px;
+}
+
+.ownerjam h6 {
+    font-size: 14px;
+}
+
+.countjam {
+    position: absolute;
+    right: 35px; 
+    top: 25px;
+    font-size: 14px;
+}
+
+.countjam h6 {
+    font-size: 14px;
 }

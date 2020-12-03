@@ -2,15 +2,15 @@ class JamsController < ApplicationController
 
     def index
         @jams = Jam.all
-        @userarray = []
+        @userarray = {}
         @jams.each do |jam|
             jam.jams_users.each do |j|
-                @userarray << j.user 
+                @userarray["#{j.jam.id} et #{j.user.id}".to_sym] = 1
             end 
         end 
         @myjams = []
         @jams.each do |jam|
-            if jam.groupe == true && @userarray.include?(current_user) && jam.booking == nil
+            if @userarray["#{jam.id} et #{current_user.id}".to_sym] == 1 && jam.booking == nil
                 @myjams << jam
             end 
         end 

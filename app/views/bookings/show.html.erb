@@ -39,15 +39,21 @@
   <h3>Détails de la réservation</h3>
   <br>
   <div class="row booking-card">
-    <div class="col-4 text-center booking-card-infos">
-      <h5>
-        <p><i class="far fa-calendar"></i>
-        <% date = @booking.date.split('-') %>
-          <%= date[2] %>-<%= date[1] %>-<%= date[0] %></p>
-        <br>
-        <p><i class="far fa-clock"></i>
-        <%= @booking.time %></p>
-      </h5>
+    <div class="col-4 text-center d-flex flex-column align-items-center booking-card-infos">
+        <div class="dflex mb-1 calendar-book-infos">
+          <h5>
+            <i class="far fa-calendar"></i>
+            <br>
+            <%= I18n.l(@booking.starts_at.to_date, :format => :long) %>
+          </h5>
+        </div>
+        <div class="d-flex">
+          <h5>
+            <p><i class="far fa-clock"></i>
+              <br>
+            <%= @booking.time %></p>
+          </h5>
+        </div>
     </div>
     <div class="col-8 book-details">
       <div class="">
@@ -58,7 +64,7 @@
         <% elsif Date.today <= @booking.date.to_date %>
           confirmée</p>
         <% end %>
-      <p><strong>Paiement</strong> reçu le 12/11/2020 <br> Mastercard **** **** **** 2345</p>
+      <p><strong>Paiement</strong> reçu le <%=I18n.l(Date.today, :format => :default)%> <br> Mastercard **** **** **** 2345</p>
       </div>
     </div>
   </div>
@@ -86,12 +92,29 @@
               <p><%= @booking.review.content %> </p>
             <% else %>
               <div class="booking-card-review">
-                <h4>Etes-vous satisfait de l'expérience?</h4>
                 <%= simple_form_for [@booking, @review] do |f| %>
-                  <%= f.input :title, label: "Titre" %>
-                  <%= f.input :rating, wrapper_html: { class: 'fas fa-star' }, collection: 0..5, label: "Note" %>
-                  <%= f.input :content, as: :text, label: "Commentaire" %>
-                  <%= f.submit "Valider", class: "btn btn-primary" %>
+                  <div class="first-line-review">
+                    <h5>Etes-vous satisfait de l'expérience?</h5>
+                      <div class="stars-rating">
+                        <%= f.input :rating, as: :hidden %>
+                        <% 5.times do |index| %>
+                        <i id="<%= index + 1 %>" class="review-rating far fa-star"></i>
+                        <% end %>
+                      </div>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <div class="review_title_container">
+                      <%= f.input :title, label: "Titre", class: "title-input" %>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <div class="review_comment_container">
+                      <%= f.input :content, as: :text, label: "Commentaire" %>
+                    </div>
+                    <div class="review_validation_button">
+                      <%= f.submit "Valider", class: "btn btn-primary" %>
+                    </div>
+                  </div>
                 <% end %>
               </div>
             <% end %>

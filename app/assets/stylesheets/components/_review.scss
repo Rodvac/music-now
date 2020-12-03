@@ -1,7 +1,7 @@
 .review {
   background-color: $light-gray;
   margin-bottom: 15px;
-  padding: 15px; 
+  padding: 15px;
 
   p {
   margin-top: 15px;
@@ -14,7 +14,53 @@
   }
 }
 
+.title-review {
+  display: flex;
+  align-items: baseline;
+}
+
 .author {
   color: $gray;
   font-size: 10px;
+}
+
+.fa-star {
+  color:  $my-green;
+  cursor: pointer;
+}
+
+
+.review_title_container {
+  width: 79%;
+}
+
+
+.review_comment_container {
+  width: 90%;
+}
+
+.title-input {
+  font-size :20px;
+  font-family: Oswald;
+}
+
+.review_validation_button {
+  margin: 13px 0px 17px 30px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.first-line-review {
+  position: relative;
+}
+
+.stars-rating {
+  position: absolute;
+  top: -13px;
+  right: 110px;
+}
+
+.review-counter {
+  font-weight: lighter;
 }

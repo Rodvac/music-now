@@ -37,7 +37,7 @@
   <br>
   <div class="cards-rooms">
     <% @studio.rooms.each do |room| %>
-        <div class="card-room">
+        <div class="card-room card-room-studio-show">
           <div class= "card-room-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),)">
               <%if room.photo.attached? %>
                 <%= cl_image_tag room.photo.key, class: "card-studio-img" %>

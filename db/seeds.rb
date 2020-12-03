@@ -33,7 +33,6 @@ puts "destroying all Jams"
 Jam.destroy_all
 
 
-
 #DATA BASE
 
 room_pic_url = [
@@ -184,6 +183,7 @@ end
 puts "create bookings"
 
 
+
 booking1 = Booking.create! :starts_at => DateTime.strptime("28/11/2020 13:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "2020-11-28", :time => "13:00"
 booking2 = Booking.create! :starts_at => DateTime.strptime("29/11/2020 14:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-11-29", :time => "14:00"
 booking3 = Booking.create! :starts_at => DateTime.strptime("11/12/2020 15:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-12-11", :time => "15:00"
@@ -204,6 +204,7 @@ booking17 = Booking.create! :starts_at => DateTime.strptime("1/12/2020 18:00", "
 booking18 = Booking.create! :starts_at => DateTime.strptime("1/12/2020 10:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "2020-12-1", :time => "10:00"
 booking19 = Booking.create! :starts_at => DateTime.strptime("2/12/2020 18:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "2020-12-2", :time => "18:00"
 booking20 = Booking.create! :starts_at => DateTime.strptime("30/11/2020 10:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "2020-11-30", :time => "10:00"
+
 
 
 puts "create messages"

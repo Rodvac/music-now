@@ -3,9 +3,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @bookings = Booking.where(user_id: @user.id).order(date: :asc)
+    @bookings = Booking.where(user_id: @user.id).order(starts_at: :desc)
     @studios = Studio.where(user_id: @user.id)
     @already_booked = []
+    @message = Message.new
     @user.bookings.all.each do |booked|
       @already_booked << booked
     end

@@ -166,7 +166,7 @@
               <div class="message-user-nickname">
                 <i class="author-message">
                 <span><%= message.user.first_name %> <%= message.user.last_name %></span>
-              </i>
+                </i>
               </div>
               <div class="message-content" id="message-<%= message.id %>">
                 <span><%= message.content %></span>
@@ -174,7 +174,6 @@
               <div class="message-date">
                 <i class="author-message">
                   <small><%= I18n.l(message.created_at, :format => :long) %></small>
-
                 </i>
               </div>
             </div>

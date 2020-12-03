@@ -89,7 +89,11 @@
                 <h4>Etes-vous satisfait de l'expérience?</h4>
                 <%= simple_form_for [@booking, @review] do |f| %>
                   <%= f.input :title, label: "Titre" %>
-                  <%= f.input :rating, wrapper_html: { class: 'fas fa-star' }, collection: 0..5, label: "Note" %>
+                  <%#= f.input :rating, wrapper_html: { class: 'fas fa-star' }, collection: 0..5, label: "Note" %>
+                  <%= f.input :rating, as: :hidden %>
+                    <% 5.times do |index| %>
+                      <i id="<%= index + 1 %>" class="review-rating far fa-star"></i>
+                    <% end %>
                   <%= f.input :content, as: :text, label: "Commentaire" %>
                   <%= f.submit "Valider", class: "btn btn-primary" %>
                 <% end %>

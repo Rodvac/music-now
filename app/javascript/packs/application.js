@@ -19,6 +19,8 @@ import { displayGraduation } from '../components/graduation';
 import { initAutocomplete } from '../plugins/init_autocomplete';
 import { initBookingCable } from "../channels/booking_channel";
 import { tabsDash } from "../components/tabs_dashboard";
+import { dynamicRating } from "../plugins/starsInReviewForm";
+
 
 ScrollReveal().reveal('.card-studio', {delay: 500});
 ScrollReveal().reveal('.card-room', {delay: 500});
@@ -35,6 +37,7 @@ document.addEventListener('turbolinks:load', () => {
   initAutocomplete();
   initBookingCable();
   tabsDash();
+  dynamicRating();
 })
 
 

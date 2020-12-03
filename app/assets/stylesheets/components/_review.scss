@@ -14,10 +14,24 @@
   }
 }
 
+.title-review {
+  display: flex;
+  align-items: baseline;
+}
+
 .author {
   color: $gray;
   font-size: 10px;
 }
+
+.fa-star {
+  color:  $my-green;
+  cursor: pointer;
+}
+
+.review-counter {
+  color: $gray;
+  font-weight: lighter;
 
 .review_title_container {
   width: 79%;

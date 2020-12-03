@@ -153,10 +153,10 @@ puts "create rooms"
 
 room_description = [
 "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!",
-"Pour une simple prise de voix ou bien la production d’un album une équipe d’ingénieurs du son vous apportera son expérience.",
+"Pour une simple prise de voix ou bien la production d’un album une équipe d’ingénieurs du son est à votre service.",
 "Enregistrement, montage, mixage, musiques libres de droits ou création musicale et sound-design à votre image.",
 "Salle réalisée par un acousticien reconnu, pour garantir une qualité de son optimale.",
-"Salle ouverte à toutes les disciplines. Convient également pour des formats réunions, séminaires, cours et formation!"
+"Salle ouverte à toutes les disciplines. Convient également pour des formats séminaires, cours et formation."
 ]
 
 

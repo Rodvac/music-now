@@ -1,5 +1,4 @@
 
-
 <div class="hero-studio">
   <% if @jam.photo.attached? %>
   <%= cl_image_tag @jam.photo.key, class: "hero-studio-img" %>
@@ -62,7 +61,7 @@
             <%end%>
           </div>
       <h4>Heure <i class="far fa-clock"></i></h4>
-      
+
       <h5><%=@jam.time %></h5>
       </div>
     </div>
@@ -79,7 +78,7 @@
           <%= cl_image_tag jam_user.user.photo.key, class: "card-jam-photo-small" %>
           <% else %>
           <%= image_tag "user", class: "card-jam-photo-small" %>
-          <% end %> 
+          <% end %>
       </div>
       <div class="jam-user-name">
         <strong>
@@ -91,7 +90,7 @@
             <% end %>
       </div>
       <div class="jam-user-instrument">
-    
+
         <% if asset_exist?("#{jam_user.instrument.downcase}.png") %>
           <%= image_tag "#{jam_user.instrument.downcase}.png", class: "jam-instrument-img" %>
         <% else %>
@@ -103,10 +102,10 @@
         <% end %>
     </div>
   <% end %>
-  
+
   <% if @jams_users.count == 1 && @jams_users[0].user == current_user %>
     <div class="jam-user">
-      En attente d'autres players :)  
+      En attente d'autres players :)
     </div>
   <% end %>
 
@@ -205,7 +204,7 @@
             </div>
             <div class="card-room-description">
               <h2><%= @jam.room.name %></h2>
-              <p class="address"><%= @jam.room.studio.address %></p>  
+              <p class="address"><%= @jam.room.studio.address %></p>
               <p class="mt-2 capacity"><i class="fas fa-users"></i> <%= @jam.room.capacity %> </p>
             </div>
             <div class="card-room-gears d-flex mt-2">

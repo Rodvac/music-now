@@ -2,15 +2,15 @@
 fr:
   date:
     abbr_day_names:
-    - dim
-    - lun
-    - mar
-    - mer
-    - jeu
-    - ven
-    - sam
+    - Dim
+    - Lun
+    - Mar
+    - Mer
+    - Jeu
+    - Ven
+    - Sam
     abbr_month_names:
-    - 
+    -
     - jan.
     - fév.
     - mar.
@@ -36,7 +36,7 @@ fr:
       long: "%A %e %B %Y"
       short: "%e %b"
     month_names:
-    - 
+    -
     - janvier
     - février
     - mars
@@ -101,3 +101,10 @@ fr:
       day: Jour
       month: Mois
       year: Année
+  time:
+    am: am
+    formats:
+      default: "%d %B %Y %Hh %Mmin %Ss"
+      long: "%a %d %b %Y à %Hh%M"
+      short: "%d %b %Hh%M"
+    pm: pm

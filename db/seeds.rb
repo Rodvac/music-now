@@ -159,13 +159,25 @@ room_description = [
 "Salle ouverte à toutes les disciplines : musique, danse, performance, théâtre, etc. Convient également pour des formats réunions, séminaires, workshop, cours et formation."
 ]
 
+
+room_names = []
+100.times do
+  room_names << Faker::Music::RockBand.name
+end
+short_names = room_names.reject { |name| name.length > 25}
+
+
+
 Studio.all.each do |studio|
-  rand(2..4).times {
-  room = Room.create!(name: Faker::Music::RockBand.name, description: room_description.sample, capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: studio)
-  file = URI.open(room_pic_url.sample)
-  room.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
-  i += 1
-  puts "#{i} room"
+  rand(5..7).times {
+  name = short_names.sample
+  if Room.where(name: name).count == 0
+    room = Room.create!(name: name, description: room_description.sample, capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: studio)
+    file = URI.open(room_pic_url.sample)
+    room.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
+    i += 1
+    puts "#{i} room"
+  end
 }
 end
 
@@ -226,7 +238,6 @@ puts "create items"
 items = [
   "Batterie",
   "Batterie électronique",
-  "Micros",
   "Piano droit",
   "Piano à queue",
   "Piano numérique",
@@ -236,7 +247,7 @@ items = [
   "Harpe",
   "Basse",
   "Table de mixage",
-  "Micro",
+  "Micro SM 58",
   "Contrebasse",
   "Violoncelle",
   "Amplificateur",
@@ -247,9 +258,13 @@ items = [
   "Saxophone"
 ]
 
-20.times do
-  Item.create! :name => items.sample, :description => 'Superbe instrument', :category => 'Instruments'
+
+items.each do |item|
+  Item.create! :name => item, :description => 'Superbe instrument', :category => 'Instruments'
 end
+# 20.times do
+#   Item.create! :name => item, :description => 'Superbe instrument', :category => 'Instruments'
+# end
 
 # puts "assigning items to rooms"
 # 70.times do
@@ -259,6 +274,9 @@ end
 puts "assigning items to rooms"
 Room.all.each do |room|
   rand(3..8).times {
-  item = ItemsRoom.create! :room => Room.all.sample, :item => Item.all.sample
+  item_room = Item.all.sample
+  if room.items_rooms.where(item: item_room).count == 0
+    item = ItemsRoom.create! :room => room, :item => item_room
+  end
 }
 end

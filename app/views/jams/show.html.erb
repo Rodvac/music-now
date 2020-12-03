@@ -21,7 +21,7 @@
           <% if @jams_users[0].user.photo.attached? %>
           <%= cl_image_tag @jams_users[0].user.photo.key, class: "card-jam-photo" %>
           <% else %>
-          <%= image_tag "jam", class: "card-jam-photo" %>
+          <%= image_tag "user", class: "card-jam-photo" %>
           <% end %>
           <div class="card-jam-title">
             <h4><%="#{@jam.name} proposée par #{@jams_users[0].user.first_name}"%></h4>

@@ -42,10 +42,11 @@
     <div class="col-4 text-center booking-card-infos">
       <h5>
         <p><i class="far fa-calendar"></i>
+          <br>
         <%= I18n.l(@booking.starts_at.to_date, :format => :long) %>
-
         <br>
         <p><i class="far fa-clock"></i>
+          <br>
         <%= @booking.time %></p>
       </h5>
     </div>

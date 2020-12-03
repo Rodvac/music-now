@@ -36,7 +36,6 @@ class StudiosController < ApplicationController
   def show
     @studio = Studio.find(params[:id])
     @reviews = Review.all
-    @average_rating = @reviews.average(:rating)
   end
 
   def new

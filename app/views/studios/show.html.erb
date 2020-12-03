@@ -78,7 +78,7 @@
   </div>
 
   <h2>
-    <i class="fas fa-star"></i> <%= @average_rating.round(1)%>
+    <i class="fas fa-star"></i> <%= @studio.reviews.average(:rating).round(1)%>
     <span class= "review-counter">(<%= pluralize @studio.reviews.size, "avis"%>)</span>
   </h2>
   <% @studio.reviews.each do |review| %>

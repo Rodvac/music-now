@@ -31,6 +31,4 @@ Rails.application.routes.draw do
   resources :jams do
     resources :jams_users
   end
-
-  get '/about' => 'pages#about'
 end

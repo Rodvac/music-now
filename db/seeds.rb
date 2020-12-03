@@ -26,6 +26,12 @@ Message.destroy_all
 puts "destroying all users"
 User.destroy_all
 
+puts "destroying all Jams"
+Jam.destroy_all
+
+puts "destroying all jams-user"
+JamsUser.destroy_all
+
 #DATA BASE
 
 room_pic_url = [
@@ -71,10 +77,17 @@ elisa = User.create! :email => 'elisa@gmail.com', :password => '123456', :passwo
 mathilde = User.create! :email => 'mathilde@gmail.com', :password => '123456', :password_confirmation => '123456', :first_name => 'Mathilde', :last_name => 'Causse',:nickname => 'MC'
 
 puts "create studios"
-studio_bleu = Studio.create! :name => 'Studio Bleu', :user_id  => matthieu.id,:address => '7 rue des petites ecuries, 75010 Paris', :description => 'Studio bleu: location d espaces artistiques parisiens / 5 sites / 42 studios de répétition de musique : de 120 à 20 m2 / 15 halls de danse et de théatre : de 185 m2 à 40 m2 / une équipe professionnelle à votre écoute / une centrale de réservation pour les pros / du matériel de qualité pour vos répétitions et cours'
-hf_music = Studio.create! :name => 'HF Music Studio', :user_id  => julien.id, :address => '20-22 rue Richer, 75009 Paris', :description => 'La nouvelle référence pour vos répétitions. En plein cœur de Paris, ces studios de toute dernière génération, insonorisés, climatisés et équipés de matériel haut de gamme à votre disposition 7J/7.'
-hbs = Studio.create! :name => 'Studios HBS', :user_id  => elisa.id, :address => '25 Avenue Corentin Cariou, 75019 Paris', :description => 'HBS Écuries est l un des premiers studios de répétitions musicales à ouvrir dans le centre de Paris et voilà désormais plus de trente ans que groupes et musiciens de tous styles (Jazz, Pop, Rock, Funk, Afro, Punk...), professionnels et amateurs, se succèdent dans nos locaux toujours en expansion.'
+studio_bleu = Studio.create! :name => 'Studio Bleu', :user_id  => mathilde.id,:address => '7 rue des petites ecuries, 75010 Paris', :description => 'Studio bleu: location d espaces artistiques parisiens - 5 sites - 42 studios de répétition de musique : de 120 à 20 m2 - 15 halls de danse et de théatre : de 185 m2 à 40 m2 - une équipe professionnelle à votre écoute - une centrale de réservation pour les pros - du matériel de qualité pour vos répétitions et cours'
+hf_music = Studio.create! :name => 'HF Music Studio', :user_id  => mathilde.id, :address => '20-22 rue Richer, 75009 Paris', :description => 'La nouvelle référence pour vos répétitions. En plein cœur de Paris, ces studios de toute dernière génération, insonorisés, climatisés et équipés de matériel haut de gamme à votre disposition 7J/7.'
+hbs = Studio.create! :name => 'Studios HBS', :user_id  => mathilde.id, :address => '25 Avenue Corentin Cariou, 75019 Paris', :description => 'HBS Écuries est l un des premiers studios de répétitions musicales à ouvrir dans le centre de Paris et voilà désormais plus de trente ans que groupes et musiciens de tous styles (Jazz, Pop, Rock, Funk, Afro, Punk...), professionnels et amateurs, se succèdent dans nos locaux toujours en expansion.'
 luna_rossa = Studio.create! :name => 'Luna Rossa', :user_id  => mathilde.id, :address => '24 rue Primo Levi, 75013 Paris', :description => 'Créé en 1985 et situé dans le 13ème, le Studio Luna Rossa est le plus grand studio de répétitions de Paris. Après 3 déménagements, le studio est depuis 2011 situé au 24 rue Primo Lévi, au cœur d un arrondissement en pleine explosion artistique et culturelle.'
+les_studios_de_la_seine = Studio.create! :name => 'Les studios de la Seine', :user_id  => mathilde.id, :address => '80 Rue Traversière, 75012 Paris', :description => 'Dans un cadre professionnel et chaleureux en plein cœur de Paris, les Studios de la Seine vous proposent des studios d’enregistrement et de mixage sur 950m².'
+cité_internationale_des_arts = Studio.create! :name => 'Cité internationale des arts', :user_id  => mathilde.id, :address => "18 Rue de l'Hôtel de ville, 75004 Paris", :description => 'La Cité internationale des arts, qui accueille en résidence à Paris plus de 300 artistes de toutes nationalités et de toutes disciplines dans des ateliers-logements, propose à la location 8 studios de répétition et un auditorium ouverts tous les jours de 10h à 20h, pour un large public autour de pratiques confirmées ou amateurs* : professionnels, associations, compagnies, entreprises, individuels, etc.'
+studio_de_la_bastille = Studio.create! :name => 'Studio de la Bastille', :user_id  => mathilde.id, :address => "8 passage Saint Sébastien, 75011 Paris", :description => "La société Plan 2 Music, spécialisée dans la production phonographique et la réalisation d'albums, a collaboré pendant des années avec divers artistes, producteurs indépendants ou multinationales. Nous comptons des participations sur des courts métrages tant au niveau musical, qu’en pure prestation."
+sparkle_studio = Studio.create! :name => 'Sparkle Studio', :user_id  => mathilde.id, :address => "76 rue de Turenne, 75003 Paris", :description => "Le studio sparkle a été concu et réalisé par David Dahan et Joseph Guigui, tout deux compositeurs-producteurs. Notre volonté est de rassembler le meilleur matériel audio des années 60-70."
+translab = Studio.create! :name => 'Translab', :user_id  => mathilde.id, :address => "12-14 Boulevard de l'hopital, 75005 Paris", :description => "Translab appartient au cercle des studios haut de gamme Français dont les prestations correspondent aux meilleurs standards de qualité. Nos studios sont installés à Paris depuis 1976 dans un cadre unique datant de la révolution française. Considéré aujourd’hui comme l’un des meilleurs studios existant, de très nombreux albums de qualité y ont été enregistrés et produits par des majors ainsi que des producteurs indépendants français et internationaux."
+scopitone = Studio.create! :name => 'Scopitone', :user_id  => matthieu.id, :address => "22 Rue Saint-Ambroise, 75011 Paris", :description => "Au cœur de Paris, le studio d’enregistrement Scopitone vous accompagne depuis 1991. 4 Studios d’enregistrements et régies conçues spécifiquement pour l’enregistrement de voix-off. Casting de comédiens professionnels : voix françaises et étrangères natives. Enregistrement, montage, mixage, musiques libres de droits ou création musicale et sound-design à votre image."
+
 
 file = URI.open('http://www.studiobleu.com/wp-content/uploads/2015/06/20181221-INDIGO-08.jpg')
 studio_bleu.photo.attach(io:file, filename: 'roompicture.png', content_type: 'image/png')
@@ -88,6 +101,23 @@ hbs.photo.attach(io:file, filename: 'roompicture.png', content_type: 'image/png'
 file = URI.open('https://www.studiolunarossa.com/wp-content/uploads/2018/02/DSC7994-1-2000x951.jpg')
 luna_rossa.photo.attach(io:file, filename: 'roompicture.png', content_type: 'image/png')
 
+file = URI.open('https://static1.laseinemusicale.com/articles/6/66/@/3569-studios-riffx-article_content-2.png')
+les_studios_de_la_seine.photo.attach(io:file, filename: 'roompicture.png', content_type: 'image/png')
+
+file = URI.open('https://www.citedesartsparis.net/media/cia/183726-maurine_tric-1002-1.jpg')
+cité_internationale_des_arts.photo.attach(io:file, filename: 'roompicture.png', content_type: 'image/png')
+
+file = URI.open('https://www.milongamusic.com/wordpress/wp-content/uploads/2019/08/Des-mousses-acoustiques-pour-Studio.jpg')
+studio_de_la_bastille.photo.attach(io:file, filename: 'roompicture.png', content_type: 'image/png')
+
+file = URI.open('https://www.montmartrerecording.com/wp-content/uploads/2015/03/cabine-studioenregistrement-paris18-son-750x450.jpg')
+sparkle_studio.photo.attach(io:file, filename: 'roompicture.png', content_type: 'image/png')
+
+file = URI.open('https://www.studiocandp.com/blog/uploads/images/image_big_14_5cb5e21c70016.jpg')
+translab.photo.attach(io:file, filename: 'roompicture.png', content_type: 'image/png')
+
+file = URI.open('https://www.occase-music.com/wp-content/uploads/2019/05/321941.jpg')
+scopitone.photo.attach(io:file, filename: 'roompicture.png', content_type: 'image/png')
 
 # puts "in france"
 # 1.times {
@@ -111,22 +141,31 @@ luna_rossa.photo.attach(io:file, filename: 'roompicture.png', content_type: 'ima
 
 puts "create rooms"
 
-room_pic_url.length.times {
-  room = Room.create!(name: "#{key_word_band.sample}/#{key_word_style.sample}", description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: Studio.all.sample)
+# room_pic_url.length.times {
+#   room = Room.create!(name: Faker::Music::RockBand.name, description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: Studio.all.sample)
+#   file = URI.open(room_pic_url.sample)
+#   room.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
+#   i += 1
+#   puts "#{i} room"
+# }
+
+room_description = [
+"Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!",
+"Pour une simple prise de voix ou bien la production d’un album une équipe d’ingénieurs du son vous apportera son expérience et l'expertise nécessaire à la réalisation de vos projets.",
+"Enregistrement, montage, mixage, musiques libres de droits ou création musicale et sound-design à votre image.",
+"Salle réalisée par un acousticien reconnu, pour garantir une qualité de son optimale. Le son y est pur et facile d'écoute pour les groupes les plus exigeants.",
+"Salle ouverte à toutes les disciplines : musique, danse, performance, théâtre, etc. Convient également pour des formats réunions, séminaires, workshop, cours et formation."
+]
+
+Studio.all.each do |studio|
+  rand(2..4).times {
+  room = Room.create!(name: Faker::Music::RockBand.name, description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: studio)
   file = URI.open(room_pic_url.sample)
   room.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
   i += 1
   puts "#{i} room"
 }
-
-
-# Studio.all.each do |studio|
-#   rand(2..7).times {
-#   room = Room.create!(name: "#{key_word_band.sample} #{key_word_style.sample}", description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: studio)
-#   file = URI.open(room_pic_url.sample)
-#   room.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
-#   }
-# end
+end
 
 puts "create bookings"
 
@@ -135,6 +174,22 @@ booking1 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "
 booking2 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-11-29", :time => "14:00"
 booking3 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-12-11", :time => "15:00"
 booking4 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-12-11", :time => "16:00"
+booking5 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-11-30", :time => "17:00"
+booking6 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-12-6", :time => "15:00"
+booking7 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-12-5", :time => "09:00"
+booking8 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-12-4", :time => "11:00"
+booking9 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-12-8", :time => "11:00"
+booking10 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-12-5", :time => "17:00"
+booking11 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-12-4", :time => "12:00"
+booking12 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-12-3", :time => "13:00"
+booking13 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-12-4", :time => "17:00"
+booking14 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-10-5", :time => "13:00"
+booking15 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-11-27", :time => "13:00"
+booking16 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-12-15", :time => "13:00"
+booking17 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-12-1", :time => "18:00"
+booking18 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "2020-12-1", :time => "10:00"
+booking19 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "2020-12-2", :time => "18:00"
+booking20 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "2020-11-30", :time => "10:00"
 
 
 puts "create messages"
@@ -144,6 +199,21 @@ review1 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un b
 review2 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user => tanguy, :booking => booking2
 review3 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user => delphine, :booking => booking3
 review4 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user => rodolphe, :booking => booking4
+review5 = Review.create! :title => 'Mauvaise expérience', :content => 'Pas assez de matériel !', :rating => 2, :user => rodolphe, :booking => booking5
+review6 = Review.create! :title => 'Mauvaise expérience', :content => 'Salle mal entretenue', :rating => 1, :user => rodolphe, :booking => booking6
+review7 = Review.create! :title => 'Génial !', :content => "Super moment entre potes. Très satisfait de l'acceuil." , :rating => 5, :user => rodolphe, :booking => booking7
+review8 = Review.create! :title => 'Correct', :content => "Matériel satisfaisant mais le prix est élevé." , :rating => 3, :user => rodolphe, :booking => booking8
+review9 = Review.create! :title => 'Correct', :content => "Matériel satisfaisant mais le prix est élevé." , :rating => 3, :user => tanguy, :booking => booking9
+review10 = Review.create! :title => 'Mauvaise expérience', :content => 'Salle mal entretenue', :rating => 1, :user => tanguy, :booking => booking10
+review11 = Review.create! :title => 'Je reviendrai !', :content => 'Prix abordable, matériel bien entretenu.', :rating => 4, :user => tanguy, :booking => booking11
+review12 = Review.create! :title => 'Extraordinaire !', :content => 'Tout était parfait : matériel, acceuil, propreté ! Je recommande.', :rating => 5, :user => tanguy, :booking => booking12
+review13 = Review.create! :title => 'Bof bof...', :content => "Matériel satisfaisant mais le prix est élevé.", :rating => 2, :user => delphine, :booking => booking13
+review14 = Review.create! :title => 'Génial !', :content => "Super moment entre potes. Très satisfaite de l'acceuil.", :rating => 4, :user => delphine, :booking => booking14
+review15 = Review.create! :title => 'Je reviendrai !', :content => 'Tout était parfait : matériel, acceuil, propreté ! Je recommande.', :rating => 5, :user => delphine, :booking => booking15
+review16 = Review.create! :title => 'Je reviendrai !', :content => 'Tout était parfait : matériel, acceuil, propreté ! Je recommande.', :rating => 5, :user => delphine, :booking => booking16
+review17 = Review.create! :title => 'Super rapport qualité / prix !', :content => 'Tout était parfait : matériel, acceuil, propreté ! Je recommande.', :rating => 4, :user => delphine, :booking => booking17
+review18 = Review.create! :title => 'Super rapport qualité / prix !', :content => "Super moment entre potes. Très satisfait de l'acceuil.", :rating => 5, :user => antoine, :booking => booking18
+review20 = Review.create! :title => 'Je reviendrai !', :content => "Super moment entre potes. Très satisfait de l'acceuil.", :rating => 4, :user => antoine, :booking => booking20
 
 # puts "create chatrooms"
 # chatroom1 = Chatroom

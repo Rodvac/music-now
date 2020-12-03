@@ -1,5 +1,4 @@
 
-
 <div class="hero-studio">
   <% if @jam.photo.attached? %>
   <%= cl_image_tag @jam.photo.key, class: "hero-studio-img" %>
@@ -32,7 +31,8 @@
             <%=@jam.description%>
           </div>
           <h4>Date</h4>
-          <h6><%=Date::MONTHNAMES[@jam.date.to_date.month]%></h6>
+          <% I18n.default_locale = :fr %>
+          <h6><%=I18n.l(Date.today, :format => :long).split(" ")[2].capitalize%></h6>
           <div class="d-flex ml-3">
               <div class="daybox-jam">L</div>
               <div class="daybox-jam">M</div>
@@ -61,7 +61,7 @@
             <%end%>
           </div>
       <h4>Heure <i class="far fa-clock"></i></h4>
-      
+
       <h5><%=@jam.time %></h5>
       </div>
     </div>
@@ -73,6 +73,13 @@
 <div class="d-flex justify-content-start">
   <% @jams_users.each do |jam_user| %>
     <div class="jam-user">
+      <div class="jam-user-photo">
+      <% if jam_user.user.photo.attached? %>
+          <%= cl_image_tag jam_user.user.photo.key, class: "card-jam-photo-small" %>
+          <% else %>
+          <%= image_tag "user", class: "card-jam-photo-small" %>
+          <% end %>
+      </div>
       <div class="jam-user-name">
         <strong>
           <%= jam_user.user.first_name %>
@@ -83,7 +90,7 @@
             <% end %>
       </div>
       <div class="jam-user-instrument">
-    
+
         <% if asset_exist?("#{jam_user.instrument.downcase}.png") %>
           <%= image_tag "#{jam_user.instrument.downcase}.png", class: "jam-instrument-img" %>
         <% else %>
@@ -95,10 +102,10 @@
         <% end %>
     </div>
   <% end %>
-  
+
   <% if @jams_users.count == 1 && @jams_users[0].user == current_user %>
     <div class="jam-user">
-      En attente d'autres players :)  
+      En attente d'autres players :)
     </div>
   <% end %>
 
@@ -113,7 +120,7 @@
   </div>
 </div>
 <% if @jams_users[0].user != current_user && @jam.groupe == false && @users.include?(current_user) %>
-<div class="float-right">En attente de validation du groupe</div>
+<div class="float-right">En attente de validation du groupe par le créateur de la jam</div>
 <% end %>
 
 
@@ -177,17 +184,12 @@
   </div>
 <% end %>
 
-
-<% if  @jam.room_id != nil %>
-<div class="jam-rooms">
 <div class="row">
+<% if  @jam.room_id != nil %>
 <div class="col-6">
-<br>
-<br>
+<div class="jam-rooms">
 <h4>Votre salle</h4>
-</div>
-<div class="col-6">
-        <div class="card-room-jam">
+        <div class="card-room-jam-chosen">
           <div class= "card-room-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),)">
               <%if @jam.room.photo.attached? %>
                 <%= cl_image_tag @jam.room.photo.key, class: "card-studio-img" %>
@@ -202,7 +204,7 @@
             </div>
             <div class="card-room-description">
               <h2><%= @jam.room.name %></h2>
-              <p class="address"><%= @jam.room.studio.address %></p>  
+              <p class="address"><%= @jam.room.studio.address %></p>
               <p class="mt-2 capacity"><i class="fas fa-users"></i> <%= @jam.room.capacity %> </p>
             </div>
             <div class="card-room-gears d-flex mt-2">
@@ -221,46 +223,49 @@
           </div>
         </div>
         </div>
-</div>
-</div>
+        </div>
 <% end %>
 
 
-<% if @jam.groupe == true && @jam.room_id != nil &&  @allpaid != @jams_users.count %>
+<% if @jam.groupe == true && @jam.room_id != nil %>
+<div class="col-6">
 <div class="jam-rooms">
 <h4>Partagez l'addition!</h4>
-  <div class="d-flex flex-wrap">
+<br>
   <% @jams_users.each do |jams_user| %>
-    <div class="jam-pay">
-    
+    <div class="row">
+    <div class="col-6">
     <strong> <%= jams_user.user.first_name %></strong>
-    <br>
-    <br>
     <h6>A payer:</h6>
     <%= "#{(@jam.room.price.to_f / @jams_users.count).to_f} €" %>
+    </div>
+    <div class="col-6">
       <% if jams_user.user == current_user && jams_user.paid == false %>
           <%= simple_form_for [ jams_user ] do |f| %>
           <%= f.input :paid, input_html: {value: true}, as: :hidden %>
-          <%= f.submit "Pay", class: 'btn btn-primary book-btn' %>
+          <%= f.submit "Pay", class: 'btn btn-primary' %>
           <% end %>
       <% else %>
-          <% if jams_user.paid%>
+          <% if jams_user.paid %>
           <br>
-          <br>
-          <%= "Payé" %>
+          <i class="fas fa-check"></i><%= " Payé" %>
           <% else %>
           <br>
-          <br>
-          <%= "En attente du paiement"%>
+          <%= "En attente du paiement" %>
           <% end %>
       <% end %>
     </div>
+    </div>
+    <br>
   <% end %>
-  </div>
+    </div>
     </div>
 <% end %>
+</div>
 
-
+<% if @allpaid == @jams_users.count && @jam.booking_id == nil && @jams_users[0].user != current_user %>
+<div class="float-right">En attente de confirmation par le créateur de la jam</div>
+<% end %>
 
 
 <% if @allpaid == @jams_users.count && @jam.booking_id == nil && @jams_users[0].user == current_user %>

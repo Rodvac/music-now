@@ -20,8 +20,10 @@
         <li class="nav-item underlineHover <%= 'selectedItem' if controller.controller_name == 'jams' %>">
           <%= link_to "JAM SESSION", jams_path, id: "navbar-btn", class: "nav-link" %>
         </li>
+
         <li class="nav-item underlineHover <%= 'selectedItem' if controller.controller_name == 'users' %>">
           <%= link_to "MON ESPACE", user_path(current_user), id: "navbar-btn", class: "nav-link" %>
+
         </li>
         <li class="nav-item dropdown ">
           <% if current_user.photo.attached? %>

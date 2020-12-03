@@ -77,16 +77,16 @@ elisa = User.create! :email => 'elisa@gmail.com', :password => '123456', :passwo
 mathilde = User.create! :email => 'mathilde@gmail.com', :password => '123456', :password_confirmation => '123456', :first_name => 'Mathilde', :last_name => 'Causse',:nickname => 'MC'
 
 puts "create studios"
-studio_bleu = Studio.create! :name => 'Studio Bleu', :user_id  => matthieu.id,:address => '7 rue des petites ecuries, 75010 Paris', :description => 'Studio bleu: location d espaces artistiques parisiens - 5 sites - 42 studios de répétition de musique : de 120 à 20 m2 - 15 halls de danse et de théatre : de 185 m2 à 40 m2 - une équipe professionnelle à votre écoute - une centrale de réservation pour les pros - du matériel de qualité pour vos répétitions et cours'
-hf_music = Studio.create! :name => 'HF Music Studio', :user_id  => julien.id, :address => '20-22 rue Richer, 75009 Paris', :description => 'La nouvelle référence pour vos répétitions. En plein cœur de Paris, ces studios de toute dernière génération, insonorisés, climatisés et équipés de matériel haut de gamme à votre disposition 7J/7.'
-hbs = Studio.create! :name => 'Studios HBS', :user_id  => elisa.id, :address => '25 Avenue Corentin Cariou, 75019 Paris', :description => 'HBS Écuries est l un des premiers studios de répétitions musicales à ouvrir dans le centre de Paris et voilà désormais plus de trente ans que groupes et musiciens de tous styles (Jazz, Pop, Rock, Funk, Afro, Punk...), professionnels et amateurs, se succèdent dans nos locaux toujours en expansion.'
+studio_bleu = Studio.create! :name => 'Studio Bleu', :user_id  => mathilde.id,:address => '7 rue des petites ecuries, 75010 Paris', :description => 'Studio bleu: location d espaces artistiques parisiens - 5 sites - 42 studios de répétition de musique : de 120 à 20 m2 - 15 halls de danse et de théatre : de 185 m2 à 40 m2 - une équipe professionnelle à votre écoute - une centrale de réservation pour les pros - du matériel de qualité pour vos répétitions et cours'
+hf_music = Studio.create! :name => 'HF Music Studio', :user_id  => mathilde.id, :address => '20-22 rue Richer, 75009 Paris', :description => 'La nouvelle référence pour vos répétitions. En plein cœur de Paris, ces studios de toute dernière génération, insonorisés, climatisés et équipés de matériel haut de gamme à votre disposition 7J/7.'
+hbs = Studio.create! :name => 'Studios HBS', :user_id  => mathilde.id, :address => '25 Avenue Corentin Cariou, 75019 Paris', :description => 'HBS Écuries est l un des premiers studios de répétitions musicales à ouvrir dans le centre de Paris et voilà désormais plus de trente ans que groupes et musiciens de tous styles (Jazz, Pop, Rock, Funk, Afro, Punk...), professionnels et amateurs, se succèdent dans nos locaux toujours en expansion.'
 luna_rossa = Studio.create! :name => 'Luna Rossa', :user_id  => mathilde.id, :address => '24 rue Primo Levi, 75013 Paris', :description => 'Créé en 1985 et situé dans le 13ème, le Studio Luna Rossa est le plus grand studio de répétitions de Paris. Après 3 déménagements, le studio est depuis 2011 situé au 24 rue Primo Lévi, au cœur d un arrondissement en pleine explosion artistique et culturelle.'
 les_studios_de_la_seine = Studio.create! :name => 'Les studios de la Seine', :user_id  => mathilde.id, :address => '80 Rue Traversière, 75012 Paris', :description => 'Dans un cadre professionnel et chaleureux en plein cœur de Paris, les Studios de la Seine vous proposent des studios d’enregistrement et de mixage sur 950m².'
 cité_internationale_des_arts = Studio.create! :name => 'Cité internationale des arts', :user_id  => mathilde.id, :address => "18 Rue de l'Hôtel de ville, 75004 Paris", :description => 'La Cité internationale des arts, qui accueille en résidence à Paris plus de 300 artistes de toutes nationalités et de toutes disciplines dans des ateliers-logements, propose à la location 8 studios de répétition et un auditorium ouverts tous les jours de 10h à 20h, pour un large public autour de pratiques confirmées ou amateurs* : professionnels, associations, compagnies, entreprises, individuels, etc.'
 studio_de_la_bastille = Studio.create! :name => 'Studio de la Bastille', :user_id  => mathilde.id, :address => "8 passage Saint Sébastien, 75011 Paris", :description => "La société Plan 2 Music, spécialisée dans la production phonographique et la réalisation d'albums, a collaboré pendant des années avec divers artistes, producteurs indépendants ou multinationales. Nous comptons des participations sur des courts métrages tant au niveau musical, qu’en pure prestation."
 sparkle_studio = Studio.create! :name => 'Sparkle Studio', :user_id  => mathilde.id, :address => "76 rue de Turenne, 75003 Paris", :description => "Le studio sparkle a été concu et réalisé par David Dahan et Joseph Guigui, tout deux compositeurs-producteurs. Notre volonté est de rassembler le meilleur matériel audio des années 60-70."
-translab = Studio.create! :name => 'Translab', :user_id  => elisa.id, :address => "12-14 Boulevard de l'hopital, 75005 Paris", :description => "Translab appartient au cercle des studios haut de gamme Français dont les prestations correspondent aux meilleurs standards de qualité. Nos studios sont installés à Paris depuis 1976 dans un cadre unique datant de la révolution française. Considéré aujourd’hui comme l’un des meilleurs studios existant, de très nombreux albums de qualité y ont été enregistrés et produits par des majors ainsi que des producteurs indépendants français et internationaux."
-scopitone = Studio.create! :name => 'Scopitone', :user_id  => matthieu.id, :address => "Au cœur de Paris, le studio d’enregistrement Scopitone vous accompagne depuis 1991. 4 Studios d’enregistrements et régies conçues spécifiquement pour l’enregistrement de voix-off. Casting de comédiens professionnels : voix françaises et étrangères natives. Enregistrement, montage, mixage, musiques libres de droits ou création musicale et sound-design à votre image."
+translab = Studio.create! :name => 'Translab', :user_id  => mathilde.id, :address => "12-14 Boulevard de l'hopital, 75005 Paris", :description => "Translab appartient au cercle des studios haut de gamme Français dont les prestations correspondent aux meilleurs standards de qualité. Nos studios sont installés à Paris depuis 1976 dans un cadre unique datant de la révolution française. Considéré aujourd’hui comme l’un des meilleurs studios existant, de très nombreux albums de qualité y ont été enregistrés et produits par des majors ainsi que des producteurs indépendants français et internationaux."
+scopitone = Studio.create! :name => 'Scopitone', :user_id  => matthieu.id, :address => "22 Rue Saint-Ambroise, 75011 Paris", :description => "Au cœur de Paris, le studio d’enregistrement Scopitone vous accompagne depuis 1991. 4 Studios d’enregistrements et régies conçues spécifiquement pour l’enregistrement de voix-off. Casting de comédiens professionnels : voix françaises et étrangères natives. Enregistrement, montage, mixage, musiques libres de droits ou création musicale et sound-design à votre image."
 
 
 file = URI.open('http://www.studiobleu.com/wp-content/uploads/2015/06/20181221-INDIGO-08.jpg')
@@ -141,22 +141,31 @@ scopitone.photo.attach(io:file, filename: 'roompicture.png', content_type: 'imag
 
 puts "create rooms"
 
-room_pic_url.length.times {
-  room = Room.create!(name: "#{key_word_band.sample}/#{key_word_style.sample}", description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: Studio.all.sample)
+# room_pic_url.length.times {
+#   room = Room.create!(name: Faker::Music::RockBand.name, description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: Studio.all.sample)
+#   file = URI.open(room_pic_url.sample)
+#   room.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
+#   i += 1
+#   puts "#{i} room"
+# }
+
+room_description = [
+"Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!",
+"Pour une simple prise de voix ou bien la production d’un album une équipe d’ingénieurs du son vous apportera son expérience et l'expertise nécessaire à la réalisation de vos projets.",
+"Enregistrement, montage, mixage, musiques libres de droits ou création musicale et sound-design à votre image.",
+"Salle réalisée par un acousticien reconnu, pour garantir une qualité de son optimale. Le son y est pur et facile d'écoute pour les groupes les plus exigeants.",
+"Salle ouverte à toutes les disciplines : musique, danse, performance, théâtre, etc. Convient également pour des formats réunions, séminaires, workshop, cours et formation."
+]
+
+Studio.all.each do |studio|
+  rand(2..4).times {
+  room = Room.create!(name: Faker::Music::RockBand.name, description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: studio)
   file = URI.open(room_pic_url.sample)
   room.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
   i += 1
   puts "#{i} room"
 }
-
-
-# Studio.all.each do |studio|
-#   rand(2..7).times {
-#   room = Room.create!(name: "#{key_word_band.sample} #{key_word_style.sample}", description: "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!", capacity: "#{capacity.sample}", price: "#{prices.sample}", studio: studio)
-#   file = URI.open(room_pic_url.sample)
-#   room.photo.attach(io: file, filename: 'roompicture.png', content_type: 'image/png')
-#   }
-# end
+end
 
 puts "create bookings"
 

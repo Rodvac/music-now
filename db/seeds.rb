@@ -23,14 +23,16 @@ Review.destroy_all
 puts "destroying all messages"
 Message.destroy_all
 
+puts "destroying all jams-user"
+JamsUser.destroy_all
+
 puts "destroying all users"
 User.destroy_all
 
 puts "destroying all Jams"
 Jam.destroy_all
 
-puts "destroying all jams-user"
-JamsUser.destroy_all
+
 
 #DATA BASE
 

@@ -259,13 +259,14 @@
     <br>
   <% end %>
     </div>
+    <% if @allpaid == @jams_users.count && @jam.booking_id == nil && @jams_users[0].user != current_user %>
+<div class="float-right">En attente de confirmation par le créateur de la jam</div>
+<% end %>
     </div>
 <% end %>
 </div>
 
-<% if @allpaid == @jams_users.count && @jam.booking_id == nil && @jams_users[0].user != current_user %>
-<div class="float-right">En attente de confirmation par le créateur de la jam</div>
-<% end %>
+
 
 
 <% if @allpaid == @jams_users.count && @jam.booking_id == nil && @jams_users[0].user == current_user %>

@@ -17,7 +17,7 @@
     <div class="col-9">
     <h4>Mes sessions</h4>
     <% @jams.each do |jam| %>
-    <% if jam.groupe == true && @userarray.include?(current_user) && jam.booking == nil %>
+    <% if jam.groupe == true && @userarray["#{jam.id}".to_sym].include?(current_user) && jam.booking == nil %>
         <div class="jamcard">
             <div class="row">
             <div class="col-4">
@@ -56,7 +56,7 @@
 
     <h4>Jam sessions ouvertes</h4>
     <% @jams.each do |jam| %>
-    <% if jam.groupe == false %>
+    <% if jam.groupe == false && jam.jams_users[0].user != current_user %>
         <div class="jamcard">
             <div class="row">
             <div class="col-4">

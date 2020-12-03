@@ -36,7 +36,7 @@ class BookingsController < ApplicationController
       end
       redirect_to booking_path(@booking) and return
     else
-      render :new
+      redirect_to new_room_booking_path(@room, Date.today)
     end
 
   end

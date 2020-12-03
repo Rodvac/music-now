@@ -155,7 +155,7 @@ room_description = [
 "Idéal pour pratiquer votre instrument en toute tranquilité ou répéter en groupe avec tout le matériel nécessaire!",
 "Pour une simple prise de voix ou bien la production d’un album une équipe d’ingénieurs du son est à votre service.",
 "Enregistrement, montage, mixage, musiques libres de droits ou création musicale et sound-design à votre image.",
-"Salle réalisée par un acousticien reconnu, pour garantir une qualité de son optimale.",
+"Salle réalisée par un acousticien reconnu, pour garantir une qualité de son optimale, peu importe la formation.",
 "Salle ouverte à toutes les disciplines. Convient également pour des formats séminaires, cours et formation."
 ]
 
@@ -164,7 +164,7 @@ room_names = []
 100.times do
   room_names << Faker::Music::RockBand.name
 end
-short_names = room_names.reject { |name| name.length > 25}
+short_names = room_names.reject { |name| name.length > 20}
 
 
 

@@ -1,4 +1,4 @@
-<% flex_direction = (message.user == current_user ? "flex-row-reverse" : "flex-row")%>
+<% flex_direction = (message.user == current_user ? "flex-row" : "flex-row-reverse")%>
   <div class="message-container d-flex w-100 <%= flex_direction %>">
     <% background = (message.user == current_user ? "m-receiver" : "m-sender" )%>
     <div class="message-block <%=background%>">

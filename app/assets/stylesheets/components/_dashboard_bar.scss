@@ -78,6 +78,61 @@
 //   background-color: grey !important ;
 // }
 
+
+/*
+*
+* ==========================================
+* MES RESA
+* ==========================================
+*
+*/
+.table-fixed tbody {
+    height: 300px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.booking-card-dash {
+  width: 150px;
+  background-color: $light-green;
+  color: black;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 9px;
+  padding: 16px 0px 16px 0px;
+  height: 150px;
+  margin-left: 0px;
+  border-radius: 5px;
+}
+
+.past-event {
+  background-color: $my-blue;
+}
+
+.booking-card-review-dash {
+  width: 100%;
+  background-color: $my-green;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  height: 100px;
+}
+
+
+.booking-card-infos-dash {
+  width: 3fr;
+  color: white;
+  border-right: solid;
+}
+
+.book-details-dash {
+  width: 100%;
+  color: black;
+}
+
+.book-map {
+width: 100%;
+}
+
+
+
 /*
 *
 * ==========================================
@@ -116,19 +171,6 @@
 }
 
 
-/*
-*
-* ==========================================
-* TABLE DATA
-* ==========================================
-*
-*/
-.table-fixed tbody {
-    height: 300px;
-    overflow-y: auto;
-    width: 100%;
-}
-
 
 /*
 *
@@ -137,6 +179,15 @@
 * ==========================================
 *
 */
+.list-group-item.active {
+  border-color: transparent;
+}
+
+#message-box-pills {
+  .nav-pills .nav-link.active::after{
+    background:transparent;
+  }
+}
 
 ::-webkit-scrollbar {
   width: 5px;

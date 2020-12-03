@@ -6,6 +6,15 @@
   // margin-bottom: 5px;
 }
 
+
+/*
+*
+* ==========================================
+* Tabs MENU
+* ==========================================
+*
+*/
+
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   background-color: transparent;
     &:after {
@@ -20,16 +29,11 @@
     width: 100%;
     left: 0;
   }
-
 }
 
-/*
-*
-* ==========================================
-* Tabs MENU
-* ==========================================
-*
-*/
+.chatbtn {
+  background-color: $light-green;
+}
 
 .underlineHoverBlack {
   color: #fff;
@@ -123,6 +127,50 @@
     height: 300px;
     overflow-y: auto;
     width: 100%;
+}
+
+
+/*
+*
+* ==========================================
+* CONVERSATION
+* ==========================================
+*
+*/
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  width: 5px;
+  background: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 1em;
+  background-color: #ddd;
+  outline: 1px solid slategrey;
+  border-radius: 1rem;
+}
+
+.text-small {
+  font-size: 0.9rem;
+}
+
+.messages-box,
+.chat-box {
+  height: 510px;
+  overflow-y: scroll;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+input::placeholder {
+  font-size: 0.9rem;
+  color: #999;
 }
 
 

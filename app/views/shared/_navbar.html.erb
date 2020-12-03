@@ -11,17 +11,19 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item underlineHover">
+        <li class="nav-item underlineHover <%= 'selectedItem' if controller.controller_name == 'studios' %>">
           <%= link_to "NOS STUDIOS", studios_path, id: "navbar-btn", class: "nav-link" %>
         </li>
-        <li class="nav-item underlineHover">
+        <li class="nav-item underlineHover <%= 'selectedItem' if controller.controller_name == 'rooms' %>">
           <%= link_to "NOS SALLES", rooms_path, id: "navbar-btn", class: "nav-link" %>
         </li>
-        <li class="nav-item underlineHover">
+        <li class="nav-item underlineHover <%= 'selectedItem' if controller.controller_name == 'jams' %>">
           <%= link_to "JAM SESSION", jams_path, id: "navbar-btn", class: "nav-link" %>
         </li>
-        <li class="nav-item underlineHover">
-          <%= link_to "MES RESERVATIONS", user_path(current_user), id: "navbar-btn", class: "nav-link" %>
+
+        <li class="nav-item underlineHover <%= 'selectedItem' if controller.controller_name == 'users' %>">
+          <%= link_to "MON ESPACE", user_path(current_user), id: "navbar-btn", class: "nav-link" %>
+
         </li>
         <li class="nav-item dropdown ">
           <% if current_user.photo.attached? %>

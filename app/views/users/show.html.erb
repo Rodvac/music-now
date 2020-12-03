@@ -11,6 +11,9 @@
       <li class="nav-item underlineHoverBlack" role="presentation">
         <a class="nav-link text-black" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Éditez mon Profil</a>
       </li>
+      <li class="nav-item underlineHoverBlack" role="presentation">
+        <a class="nav-link text-black" id="pills-contact-tab" data-toggle="pill" href="#pills-jams" role="tab" aria-controls="pills-jams" aria-selected="false">Mes Conversations</a>
+      </li>
     </ul>
 
     <!-- content -->
@@ -36,73 +39,84 @@
                         </div>
                     </div> -->
 
-                    <% @current_user.bookings.each do |booking| %>
 <!--                 incoming event  -->
-                      <% if  Time.now.strftime("%Y-%m-%d").to_date <= booking.date.to_date %>
-                        <div class="card-room card-room-index">
-                             <%= cl_image_tag booking.room.photo.key, class: "card-studio-img" %>
-                          <div class="card-room-infos">
-                            <div class="studio-name">
-                             <p><%= booking.room.studio.name %></p>
-                            </div>
-                            <div class="card-room-description">
-                              <h2><%= link_to booking.room.name, booking_path(booking, Date.today) %></h2>
-                              <p class="address"><%= booking.room.studio.address %></p>
-                              <% if Time.now.strftime("%Y-%m-%d").to_date == booking.date.to_date %>
-                                <h4 class=" mt-2"><%= booking.date.split("-").reverse.join("/")%> (Aujourd'hui) </h4>
-                              <% else %>
-                                <h4 class=" mt-2"><%= booking.date.split("-").reverse.join("/")%> (dans <%= (booking.date.to_date - Time.now.strftime("%Y-%m-%d").to_date).to_i%> jours)  </h4>
-                              <% end %>
-                              <h4> <%= booking.time %> heures </h4>
-                              <p class="mt-2 capacity">  <i class="fas fa-users"></i> <%= booking.room.capacity %> </p>
-                            </div>
-                            <div class="card-room-gears d-flex mt-2">
-                              <div class="d-flex">
-                                Matériel
-                                <a class="ml-2" data-toggle="collapse" href="#collapseExample-<%=booking.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                  <i class="fas fa-plus"></i>
-                                </a>
+                        <h4><%= @bookings.select { |booking|  booking.date.to_date >= Time.now.strftime("%Y-%m-%d").to_date}.count %> Réservations à venir</h4>
+                        <div class="container futur d-flex">
+                          <% @current_user.bookings.each do |booking| %>
+                            <% if  Time.now.strftime("%Y-%m-%d").to_date <= booking.date.to_date %>
+                              <div class="card-room card-room-index">
+                                   <%= cl_image_tag booking.room.photo.key, class: "card-studio-img" %>
+                                <div class="card-room-infos">
+                                  <div class="studio-name">
+                                   <p><%= booking.room.studio.name %></p>
+                                  </div>
+                                  <div class="card-room-description">
+                                    <h2><%= link_to booking.room.name, booking_path(booking, Date.today) %></h2>
+                                    <p class="address"><%= booking.room.studio.address %></p>
+                                    <% if Time.now.strftime("%Y-%m-%d").to_date == booking.date.to_date %>
+                                      <h4 class=" mt-2"><%= booking.date.split("-").reverse.join("/")%> (Aujourd'hui) </h4>
+                                    <% else %>
+                                      <h4 class=" mt-2"><%= booking.date.split("-").reverse.join("/")%> (dans <%= (booking.date.to_date - Time.now.strftime("%Y-%m-%d").to_date).to_i%> jours)  </h4>
+                                    <% end %>
+                                    <h4> <%= booking.time %> heures </h4>
+                                    <p class="mt-2 capacity">  <i class="fas fa-users"></i> <%= booking.room.capacity %> </p>
+                                  </div>
+                                  <div class="card-room-gears d-flex mt-2">
+                                    <div class="d-flex">
+                                      Matériel
+                                      <a class="ml-2" data-toggle="collapse" href="#collapseExample-<%=booking.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        <i class="fas fa-plus"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div class="collapse" id="collapseExample-<%=booking.id%>">
+                                    <% booking.room.items.each do |item| %>
+                                      <p>- <%= item.name %></p>
+                                    <% end %>
+                                  </div>
+                                </div>
                               </div>
-                            </div>
-                            <div class="collapse" id="collapseExample-<%=booking.id%>">
-                              <% booking.room.items.each do |item| %>
-                                <p>- <%= item.name %></p>
-                              <% end %>
-                            </div>
-                          </div>
+                            <% end %>
+                          <% end %>
                         </div>
-<!--                  past event  -->
-                      <% else %>
-                        <div class="card-room card-room-index">
-                             <%= cl_image_tag booking.room.photo.key, class: "card-studio-img" %>
-                          <div class="card-room-infos">
-                            <div class="studio-name">
-                             <p><%= booking.room.studio.name %></p>
-                            </div>
-                            <div class="card-room-description">
-                              <h2><%= link_to booking.room.name, booking_path(booking, Date.today) %></h2>
-                              <p class="address"><%= booking.room.studio.address %></p>
-                              <h4 class=" mt-2"><%= booking.date.split("-").reverse.join("/")%> (passé)  </h4>
 
-                              <p class="mt-2 capacity">  <i class="fas fa-users"></i> <%= booking.room.capacity %> </p>
-                            </div>
-                            <div class="card-room-gears d-flex mt-2">
-                              <div class="d-flex">
-                                Matériel
-                                <a class="ml-2" data-toggle="collapse" href="#collapseExample-<%=booking.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                  <i class="fas fa-plus"></i>
-                                </a>
+<!--                  past event  -->
+
+                      <h4><%= @bookings.select { |booking|  booking.date.to_date < Time.now.strftime("%Y-%m-%d").to_date}.count %> Réservations Passées</h4>
+                      <div class="container past d-flex">
+                        <% @current_user.bookings.each do |booking| %>
+                          <% if Time.now.strftime("%Y-%m-%d").to_date > booking.date.to_date %>
+                            <div class="card-room card-room-index">
+                                 <%= cl_image_tag booking.room.photo.key, class: "card-studio-img" %>
+                              <div class="card-room-infos">
+                                <div class="studio-name">
+                                 <p><%= booking.room.studio.name %></p>
+                                </div>
+                                <div class="card-room-description">
+                                  <h2><%= link_to booking.room.name, booking_path(booking, Date.today) %></h2>
+                                  <p class="address"><%= booking.room.studio.address %></p>
+                                  <h4 class=" mt-2"><%= booking.date.split("-").reverse.join("/")%> (passé)  </h4>
+
+                                  <p class="mt-2 capacity">  <i class="fas fa-users"></i> <%= booking.room.capacity %> </p>
+                                </div>
+                                <div class="card-room-gears d-flex mt-2">
+                                  <div class="d-flex">
+                                    Matériel
+                                    <a class="ml-2" data-toggle="collapse" href="#collapseExample-<%=booking.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                      <i class="fas fa-plus"></i>
+                                    </a>
+                                  </div>
+                                </div>
+                                <div class="collapse" id="collapseExample-<%=booking.id%>">
+                                  <% booking.room.items.each do |item| %>
+                                    <p>- <%= item.name %></p>
+                                  <% end %>
+                                </div>
                               </div>
                             </div>
-                            <div class="collapse" id="collapseExample-<%=booking.id%>">
-                              <% booking.room.items.each do |item| %>
-                                <p>- <%= item.name %></p>
-                              <% end %>
-                            </div>
-                          </div>
-                        </div>
-                      <% end %>
-                    <% end %>
+                          <% end %>
+                        <% end %>
+                    </div>
                 </div>
               </div>
             </div>
@@ -172,6 +186,143 @@
                 <%= f.submit "Save", class: 'btn btn-primary mt-2' %>
               <% end %>
             </div>
+          </div>
+        </div>
+      </div>
+
+
+<!--  Mes Conversations  -->
+      <div class="tab-pane fade" id="pills-jams" role="tabpanel" aria-labelledby="pills-jams-tab">
+        <div class="tabContent" id="usage">
+          <div class="container ptpb row">
+
+            <div class="container py-5 px-4">
+              <div class="row rounded-lg overflow-hidden shadow">
+                <!-- Users box-->
+                <div class="col-5 px-0">
+                  <div class="bg-white">
+
+                    <div class="bg-gray px-4 py-2 bg-light">
+                      <p class="h5 mb-0 py-1">Recent</p>
+                    </div>
+                    <!-- chat-box -->
+                    <div class="messages-box">
+                      <div class="list-group rounded-0">
+                        <!-- element chat -->
+                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+                          <li class="nav-item" role="presentation">
+                            <a class="list-group-item list-group-item-action active text-white rounded-0 nav-link text-black chatbtn" id="pills-chat1-tab" data-toggle="pill" href="#pills-chat1" role="tab" aria-controls="pills-home" aria-selected="true">
+                              <div class="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                                <div class="media-body ml-4">
+                                  <div class="d-flex align-items-center justify-content-between mb-1">
+                                    <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">25 Dec</small>
+                                  </div>
+                                  <p class="font-italic mb-0 text-small">1</p>
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+
+                          <% @user.bookings.each do |booking| %>
+                            <li class="nav-item" role="presentation">
+                              <a class="list-group-item list-group-item-action text-white rounded-0 nav-link text-black chatbtn" id="pills-contact-tab" data-toggle="pill" href="#pills-chat2" role="tab" aria-controls="pills-chat1" aria-selected="false">
+                                <div class="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                                  <div class="media-body ml-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                      <h6 class="mb-0"> <%= booking.date.split("-").reverse.join("/")%></h6>
+                                      <small class="small font-weight-bold"> <%= booking.room.studio.name  %> </small>
+                                    </div>
+                                    <p class="font-italic text-muted mb-0 text-small">2</p>
+                                  </div>
+                                </div>
+                              </a>
+                            </li>
+                          <% end %>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Chat Box-->
+                <div class="col-7 px-0">
+                  <div class="px-4 py-5 chat-box bg-white">
+                    <!-- Sender Message-->
+                    <div class="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                      <div class="media-body ml-3">
+                        <div class="bg-light rounded py-2 px-3 mb-2">
+                          <p class="text-small mb-0 text-muted">Test which is a new approach all solutions</p>
+                        </div>
+                        <p class="small text-muted">12:00 PM | Aug 13</p>
+                      </div>
+                    </div>
+
+                    <!-- Reciever Message-->
+                    <div class="media w-50 ml-auto mb-3">
+                      <div class="media-body">
+                        <div class="bg-primary rounded py-2 px-3 mb-2">
+                          <p class="text-small mb-0 text-white">Test which is a new approach to have all solutions</p>
+                        </div>
+                        <p class="small text-muted">12:00 PM | Aug 13</p>
+                      </div>
+                    </div>
+
+                    <!-- Sender Message-->
+                    <div class="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                      <div class="media-body ml-3">
+                        <div class="bg-light rounded py-2 px-3 mb-2">
+                          <p class="text-small mb-0 text-muted">Test, which is a new approach to have</p>
+                        </div>
+                        <p class="small text-muted">12:00 PM | Aug 13</p>
+                      </div>
+                    </div>
+
+                    <!-- Reciever Message-->
+                    <div class="media w-50 ml-auto mb-3">
+                      <div class="media-body">
+                        <div class="bg-primary rounded py-2 px-3 mb-2">
+                          <p class="text-small mb-0 text-white">Apollo University, Delhi, India Test</p>
+                        </div>
+                        <p class="small text-muted">12:00 PM | Aug 13</p>
+                      </div>
+                    </div>
+
+                    <!-- Sender Message-->
+                    <div class="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                      <div class="media-body ml-3">
+                        <div class="bg-light rounded py-2 px-3 mb-2">
+                          <p class="text-small mb-0 text-muted">Test, which is a new approach</p>
+                        </div>
+                        <p class="small text-muted">12:00 PM | Aug 13</p>
+                      </div>
+                    </div>
+
+                    <!-- Reciever Message-->
+                    <div class="media w-50 ml-auto mb-3">
+                      <div class="media-body">
+                        <div class="bg-primary rounded py-2 px-3 mb-2">
+                          <p class="text-small mb-0 text-white">Apollo University, Delhi, India Test</p>
+                        </div>
+                        <p class="small text-muted">12:00 PM | Aug 13</p>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- Typing area -->
+                  <form action="#" class="bg-light">
+                    <div class="input-group">
+                      <input type="text" placeholder="Type a message" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
+                      <div class="input-group-append">
+                        <button id="button-addon2" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
+                      </div>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

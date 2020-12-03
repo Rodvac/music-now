@@ -9,7 +9,7 @@
     <br>
   <div class="d-flex">
     <div class="monthdir"><%= link_to "<", new_jam_path(@date - 30) %></div>
-    <div class="monthbox"><h4><%=Date::MONTHNAMES[@date.month]%></h4></div>
+    <div class="monthbox"><h4><%=I18n.l(@date.to_date, :format => :long).split(" ")[2].capitalize %></h4></div>
     <div class="monthdir"><%= link_to ">", new_jam_path(@date + 30) %></div>
   </div>
   <br>

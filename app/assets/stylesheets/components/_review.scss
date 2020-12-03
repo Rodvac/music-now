@@ -1,7 +1,7 @@
 .review {
   background-color: $light-gray;
   margin-bottom: 15px;
-  padding: 15px; 
+  padding: 15px;
 
   p {
   margin-top: 15px;
@@ -17,4 +17,34 @@
 .author {
   color: $gray;
   font-size: 10px;
+}
+
+.review_title_container {
+  width: 79%;
+}
+
+.review_rating_container {
+  width: 10%;
+  padding-left: 10px;
+   label {
+    height: 23px;
+  }
+  .form-group {
+    width: 100%;
+  }
+}
+.review_comment_container {
+  width: 90%;
+}
+
+.title-input {
+  font-size :20px;
+  font-family: Oswald;
+}
+
+.review_validation_button {
+  margin: 13px 0px 17px 30px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }

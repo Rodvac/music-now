@@ -32,6 +32,15 @@
             <div class="ownerjam">
             <h6><%="Créateur : #{jam.jams_users[0].user.first_name}"%></h6>
             </div>
+            <div class="countjam">
+            <h6>
+                <%="Inscrits: #{jam.jams_users.count}"%>
+                -
+                <% jam.jams_users.each do |j| %>
+                <%= j.instrument.downcase.strip %> 
+                <% end %>
+            </h6>
+            </div>
             <% if jam.description.length > 240  %>
             <p><%="#{jam.description.first(240)}..."%></p>
             <% else %>
@@ -72,6 +81,14 @@
             <div class="ownerjam">
             <h6><%="Créateur : #{jam.jams_users[0].user.first_name}"%></h6>
             </div>
+            <div class="countjam">
+            <h6>
+                <%="Inscrits: #{jam.jams_users.count}"%>
+                -
+                <% jam.jams_users.each do |j| %>
+                <%= j.instrument.downcase.strip %> 
+                <% end %>
+            </h6>
             <% if jam.description.length > 240  %>
             <p><%="#{jam.description.first(240)}..."%></p>
             <% else %>

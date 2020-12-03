@@ -26,7 +26,7 @@ class BookingsController < ApplicationController
     @booking.room = @room
     @user = current_user
     @booking.user = @user
-
+    @booking.starts_at = DateTime.parse("#{@booking.date} #{@booking.time}")
     if @booking.save
       if params[:other]
         @jam = Jam.find(params[:other][:jam_id])

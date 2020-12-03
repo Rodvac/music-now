@@ -165,6 +165,22 @@ booking1 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "
 booking2 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-11-29", :time => "14:00"
 booking3 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-12-11", :time => "15:00"
 booking4 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-12-11", :time => "16:00"
+booking5 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-11-30", :time => "17:00"
+booking6 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-12-6", :time => "15:00"
+booking7 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-12-5", :time => "09:00"
+booking8 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => rodolphe, :room => Room.all.sample, :date => "2020-12-4", :time => "11:00"
+booking9 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-12-8", :time => "11:00"
+booking10 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-12-5", :time => "17:00"
+booking11 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-12-4", :time => "12:00"
+booking12 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => tanguy, :room => Room.all.sample, :date => "2020-12-3", :time => "13:00"
+booking13 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-12-4", :time => "17:00"
+booking14 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-10-5", :time => "13:00"
+booking15 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-11-27", :time => "13:00"
+booking16 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-12-15", :time => "13:00"
+booking17 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => delphine, :room => Room.all.sample, :date => "2020-12-1", :time => "18:00"
+booking18 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "2020-12-1", :time => "10:00"
+booking19 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "2020-12-2", :time => "18:00"
+booking20 = Booking.create! :starts_at => DateTime.strptime("27/11/2020 17:00", "%d/%m/%Y %H:%M"), :duration => 120, :user => antoine, :room => Room.all.sample, :date => "2020-11-30", :time => "10:00"
 
 
 puts "create messages"
@@ -174,6 +190,21 @@ review1 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un b
 review2 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user => tanguy, :booking => booking2
 review3 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user => delphine, :booking => booking3
 review4 = Review.create! :title => 'Un bon moment', :content => 'Jai passé un bon moment avec mon groupe dans cette salle de repetition', :rating => 4, :user => rodolphe, :booking => booking4
+review5 = Review.create! :title => 'Mauvaise expérience', :content => 'Pas assez de matériel !', :rating => 2, :user => rodolphe, :booking => booking5
+review6 = Review.create! :title => 'Mauvaise expérience', :content => 'Salle mal entretenue', :rating => 1, :user => rodolphe, :booking => booking6
+review7 = Review.create! :title => 'Génial !', :content => "Super moment entre potes. Très satisfait de l'acceuil." , :rating => 5, :user => rodolphe, :booking => booking7
+review8 = Review.create! :title => 'Correct', :content => "Matériel satisfaisant mais le prix est élevé." , :rating => 3, :user => rodolphe, :booking => booking8
+review9 = Review.create! :title => 'Correct', :content => "Matériel satisfaisant mais le prix est élevé." , :rating => 3, :user => tanguy, :booking => booking9
+review10 = Review.create! :title => 'Mauvaise expérience', :content => 'Salle mal entretenue', :rating => 1, :user => tanguy, :booking => booking10
+review11 = Review.create! :title => 'Je reviendrai !', :content => 'Prix abordable, matériel bien entretenu.', :rating => 4, :user => tanguy, :booking => booking11
+review12 = Review.create! :title => 'Extraordinaire !', :content => 'Tout était parfait : matériel, acceuil, propreté ! Je recommande.', :rating => 5, :user => tanguy, :booking => booking12
+review13 = Review.create! :title => 'Bof bof...', :content => "Matériel satisfaisant mais le prix est élevé.", :rating => 2, :user => delphine, :booking => booking13
+review14 = Review.create! :title => 'Génial !', :content => "Super moment entre potes. Très satisfaite de l'acceuil.", :rating => 4, :user => delphine, :booking => booking14
+review15 = Review.create! :title => 'Je reviendrai !', :content => 'Tout était parfait : matériel, acceuil, propreté ! Je recommande.', :rating => 5, :user => delphine, :booking => booking15
+review16 = Review.create! :title => 'Je reviendrai !', :content => 'Tout était parfait : matériel, acceuil, propreté ! Je recommande.', :rating => 5, :user => delphine, :booking => booking16
+review17 = Review.create! :title => 'Super rapport qualité / prix !', :content => 'Tout était parfait : matériel, acceuil, propreté ! Je recommande.', :rating => 4, :user => delphine, :booking => booking17
+review18 = Review.create! :title => 'Super rapport qualité / prix !', :content => "Super moment entre potes. Très satisfait de l'acceuil.", :rating => 5, :user => antoine, :booking => booking18
+review20 = Review.create! :title => 'Je reviendrai !', :content => "Super moment entre potes. Très satisfait de l'acceuil.", :rating => 4, :user => antoine, :booking => booking20
 
 # puts "create chatrooms"
 # chatroom1 = Chatroom

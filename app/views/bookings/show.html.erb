@@ -146,8 +146,8 @@
               </div>
               <div class="message-date">
                 <i class="author-message">
-                  <small><%= message.created_at%></small>
-                  <small><%= message.created_at.to_date %></small>
+                  <small><%= I18n.l(message.created_at, :format => :long) %></small>
+
                 </i>
               </div>
             </div>

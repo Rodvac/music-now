@@ -156,7 +156,7 @@ room_description = [
 "Pour une simple prise de voix ou bien la production d’un album une équipe d’ingénieurs du son vous apportera son expérience.",
 "Enregistrement, montage, mixage, musiques libres de droits ou création musicale et sound-design à votre image.",
 "Salle réalisée par un acousticien reconnu, pour garantir une qualité de son optimale.",
-"Salle ouverte à toutes les disciplines. Convient également pour des formats réunions, séminaires, cours et formation!"
+"Salle ouverte à toutes les disciplines. Convient également pour des formats réunions, séminaires, cours et formation."
 ]
 
 

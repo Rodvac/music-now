@@ -30,7 +30,6 @@ document.addEventListener('turbolinks:load', () => {
   timeSelect();
   initMapbox();
   ScrollReveal();
-  ScrollReveal().reveal();
   displayGraduation();
   initAutocomplete();
   initBookingCable();

@@ -42,8 +42,8 @@
     <div class="col-4 text-center booking-card-infos">
       <h5>
         <p><i class="far fa-calendar"></i>
-        <% date = @booking.date.split('-') %>
-          <%= date[2] %>-<%= date[1] %>-<%= date[0] %></p>
+        <%= I18n.l(@booking.starts_at.to_date, :format => :long) %>
+
         <br>
         <p><i class="far fa-clock"></i>
         <%= @booking.time %></p>
@@ -58,7 +58,7 @@
         <% elsif Date.today <= @booking.date.to_date %>
           confirmée</p>
         <% end %>
-      <p><strong>Paiement</strong> reçu le 12/11/2020 <br> Mastercard **** **** **** 2345</p>
+      <p><strong>Paiement</strong> reçu le <%=I18n.l(Date.today, :format => :default)%> <br> Mastercard **** **** **** 2345</p>
       </div>
     </div>
   </div>

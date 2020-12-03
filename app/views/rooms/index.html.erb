@@ -1,5 +1,6 @@
 <div class="d-flex m-0 mt-5">
   <div class="filter">
+  <div class="sticky-top">
     <h5>Filtrer par :</h5>
     <div>
       <%= simple_form_for :search, url: rooms_path, method: :get  do |f|%>
@@ -16,6 +17,7 @@
         </div>
       <% end %>
     </div>
+  </div>
   </div>
   <div class="cards-rooms">
     <% @rooms.each do |room| %>

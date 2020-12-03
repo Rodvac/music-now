@@ -136,14 +136,14 @@
           <% end %>
         </div>
         <% @booking.messages.each do |message| %>
-          <% flex_direction = (message.user == current_user ? "flex-row" : "flex-row-reverse")%>
+          <% flex_direction = (message.user == current_user ? "flex-row-reverse" : "flex-row")%>
           <div class="message-container d-flex w-100 <%= flex_direction %>">
             <% background = (message.user == current_user ? "m-sender" : "m-receiver")%>
             <div class="message-block <%= background %>">
               <div class="message-user-nickname">
                 <i class="author-message">
                 <span><%= message.user.first_name %> <%= message.user.last_name %></span>
-              </i>
+                </i>
               </div>
               <div class="message-content" id="message-<%= message.id %>">
                 <span><%= message.content %></span>
@@ -151,7 +151,6 @@
               <div class="message-date">
                 <i class="author-message">
                   <small><%= I18n.l(message.created_at, :format => :long) %></small>
-
                 </i>
               </div>
             </div>

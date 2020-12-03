@@ -1,4 +1,3 @@
-<% if current_user.studio.nil? %>
 <div class="dashboard-container">
 <!-- bar nav -->
   <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -19,60 +18,64 @@
 <!-- content -->
   <div class="tab-content " id="pills-tabContent">
 
-<!--   Mes Reservation -->
-    <div class="tab-pane fade show active" id="pills-resa" role="tabpanel" aria-labelledby="pills-resa-tab">
-      <div class="tabContent" id="about">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12 mx-auto  rounded ">
-
-  <!-- Card Booking-->
-              <div class="cards-rooms">
-                <h4 class="font-thin m-4"><%= @bookings.select { |booking|  booking.starts_at >= Time.now.strftime("%Y-%m-%d").to_date}.count %> Réservations à venir</h4>
-                <div class="container futur d-flex flex-wrap">
-                  <div class="d-flex justify-content-between">
-                    <% @user.bookings.reverse.each do |booking| %>
-                      <% if  Time.now.strftime("%Y-%m-%d").to_date <= booking.date.to_date %>
-                        <a href="/bookings/<%=booking.id%>">
-                          <div class=" text-center booking-card-dash text-black m-2">
-                            <h5>
-                              <p><i class="far fa-calendar"></i>
-                              <% date = booking.date.split('-') %>
-                                <%= date[2] %>-<%= date[1] %>-<%= date[0] %></p>
-                              <br>
-                              <p><i class="far fa-clock"></i>
-                              <%= booking.time %></p>
-                            </h5>
-                          </div>
-                        </a>
-                      <% end %>
-                    <% end %>
+<!--   Tableau OWNER -->
+    <% unless current_user.studio.nil? %>
+     <div class="dashboard-container">
+      <div class="container">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active text-black" id="pills-resa-tab" data-toggle="pill" href="#pills-resa" role="tab" aria-controls="pills-resa" aria-selected="true">Mes Réservations</a>
+          </li>
+          <li class="nav-item " role="presentation">
+            <a class="nav-link text-black" id="pills-calendar-tab" data-toggle="pill" href="#pills-calendar" role="tab" aria-controls="pills-calendar" aria-selected="false">
+            <%= link_to "Mon Studio", studio_path(@studios.first)%></a>
+          </li>
+        </ul>
+        <div class="tab-content " id="pills-tabContent">
+          <!--   Editer mon profil -->
+          <div class="tab-pane fade show active" id="pills-resa" role="tabpanel" aria-labelledby="pills-resa-tab">
+            <div class="tabContent" id="about">
+              <div class="container text-center">
+                  <div class="row pt-5">
+                      <div class="col-lg-8 mx-auto">
+                          <h1 class="display-4"><%=@studios.first.name %> - Liste des réservations</h1>
+                          <br>
+                          <h3 class="underline">Vous avez <%= @owner_bookings.count %> réservations </h3>
+                      </div>
                   </div>
-                </div>
               </div>
-
-  <!-- past event  -->
-              <div class="cards-rooms">
-                <h4 class="font-thin m-4"><%= @bookings.select { |booking|  booking.starts_at < Time.now.strftime("%Y-%m-%d").to_date}.count %> Réservations Passées</h4>
-                <div class="container past d-flex">
-                  <div class="d-flex justify-content-between">
-                    <% @user.bookings.reverse.each do |booking| %>
-                      <% if  Time.now.strftime("%Y-%m-%d").to_date > booking.date.to_date %>
-                        <a href="/bookings/<%=booking.id%>">
-                          <div class=" text-center booking-card-dash past-event text-black m-2">
-                            <h5>
-                              <p><i class="far fa-calendar"></i>
-                              <% date = booking.date.split('-') %>
-                                <%= date[2] %>-<%= date[1] %>-<%= date[0] %></p>
-                              <br>
-                              <p><i class="far fa-clock"></i>
-                              <%= booking.time %></p>
-                              <span>Laisser un avis</span>
-                            </h5>
-                          </div>
-                        </a>
-                      <% end %>
-                    <% end %>
+              <div class="container py-5">
+                <div class="row">
+                  <div class="col-lg-12 mx-auto bg-white rounded shadow">
+                    <!-- Fixed header table-->
+                    <div class="table-responsive">
+                      <table class="table table-fixed">
+                        <thead>
+                          <tr>
+                              <th scope="col" class="col-1">#</th>
+                              <th scope="col" class="col-2">Date</th>
+                              <th scope="col" class="col-2">Heure</th>
+                              <th scope="col" class="col-2">Client</th>
+                              <th scope="col" class="col-3">Room</th>
+                              <th scope="col" class="col-2">Messages</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% i = 1 %>
+                          <% @owner_bookings.each do |booking| %>
+                            <tr>
+                              <th scope="row" class="col-1"><%= link_to i, booking_path(booking) %></th>
+                              <td class="col-2 bold"><%=  booking.date.split("-").pop(2).join("/") %></td>
+                              <td class="col-2"><%=  booking.time %></td>
+                              <td class="col-2"><%=  booking.user.first_name %></td>
+                              <td class="col-3"><%=  booking.room.name %></td>
+                              <th scope="col" class="col-2"><%= link_to booking.messages.count, booking_path(booking)%></th>
+                              <% i += 1 %>
+                            </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -81,6 +84,71 @@
         </div>
       </div>
     </div>
+    <% end %>
+<!--   Mes Reservation -->
+    <% if current_user.studio.nil? %>
+      <div class="tab-pane fade show active" id="pills-resa" role="tabpanel" aria-labelledby="pills-resa-tab">
+        <div class="tabContent" id="about">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 mx-auto  rounded ">
+
+    <!-- Card Booking-->
+                <div class="cards-rooms ">
+                  <h4 class="font-thin m-4"><%= @bookings.select { |booking|  booking.starts_at >= Time.now.strftime("%Y-%m-%d").to_date}.count %> Réservations à venir</h4>
+                  <div class="container futur d-flex flex-wrap ">
+                    <div class="d-flex justify-content-between flex-wrap w-75">
+                      <% @user.bookings.reverse.each do |booking| %>
+                        <% if  Time.now.strftime("%Y-%m-%d").to_date <= booking.date.to_date %>
+                          <a href="/bookings/<%=booking.id%>">
+                            <div class=" text-center booking-card-dash text-black m-2 ">
+                              <h5>
+                                <p><i class="far fa-calendar "></i>
+                                <% date = booking.date.split('-') %>
+                                  <%= date[2] %>-<%= date[1] %>-<%= date[0] %></p>
+                                <br>
+                                <p class="text-decoration-none"><i class="far fa-clock"></i>
+                                <%= booking.time %></p>
+                              </h5>
+                            </div>
+                          </a>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+
+    <!-- past event  -->
+                <div class="cards-rooms">
+                  <h4 class="font-thin m-4"><%= @bookings.select { |booking|  booking.starts_at < Time.now.strftime("%Y-%m-%d").to_date}.count %> Réservations Passées</h4>
+                  <div class="container past d-flex">
+                    <div class="d-flex justify-content-between flex-wrap">
+                      <% @user.bookings.reverse.each do |booking| %>
+                        <% if  Time.now.strftime("%Y-%m-%d").to_date > booking.date.to_date %>
+                          <a href="/bookings/<%=booking.id%>">
+                            <div class=" text-center booking-card-dash past-event text-black m-2">
+                              <h5>
+                                <p><i class="far fa-calendar"></i>
+                                <% date = booking.date.split('-') %>
+                                  <%= date[2] %>-<%= date[1] %>-<%= date[0] %></p>
+                                <br>
+                                <p><i class="far fa-clock"></i>
+                                <%= booking.time %></p>
+                                <span>Laisser un avis</span>
+                              </h5>
+                            </div>
+                          </a>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
 <!--   Mon Calendrier -->
     <div class="tab-pane fade" id="pills-calendar" role="tabpanel" aria-labelledby="pills-calendar-tab">
       <div class="calendar_show">
@@ -154,8 +222,7 @@
     <div class="tab-pane fade" id="pills-messenger" role="tabpanel" aria-labelledby="pills-messenger-tab">
       <div class="tabContent" id="usage">
         <div class="container ptpb row">
-
-          <div class="container py-5 px-4">
+          <div class="container py-5 px-0">
             <div class="row rounded-lg overflow-hidden shadow">
               <!-- Users box-->
               <div class="col-5 px-0">
@@ -175,9 +242,15 @@
                         <% @user.bookings.each_with_index do |booking, idx| %>
                           <li class="nav-item w-100" role="presentation">
                             <a class="list-group-item list-group-item-action text-white rounded-0 nav-link text-black chatbtn <%= 'active ' if idx == 0 %>" id="pills-chatroom<%=idx%>-tab" data-toggle="pill" href="#pills-chatroom<%=idx%>" role="tab" aria-controls="pills-chatroom<%=idx%>" aria-selected="false">
-                              <div class="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                              <div class="media">
+                                <%  if booking.room.studio.user.photo.attached? %>
+                                  <%=cl_image_tag booking.room.studio.user.photo.key, :width => 50, :height => 50, :class => "rounded-circle", :alt => "user"%>
+                                <% else %>
+                                  <img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                                <% end %>
                                 <div class="media-body ml-4">
                                   <div class="d-flex align-items-center justify-content-between mb-1">
+
                                     <small class="mb-0"><%= booking.room.studio.name%></small>
                                     <small class="small font-weight-lighter" style="font-size: 12px">  <%= booking.date.split("-").reverse.join("/")%></small>
                                   </div>
@@ -197,121 +270,68 @@
 
 <!-- Chat Box-->
               <div class="col-7 px-0">
-                  <div class="tab-content" id="pills-tabContent">
-
-
-
-                    <% @user.bookings.each_with_index do |booking, idx|  %>
-                      <div class="tab-pane fade <%= 'show active' if idx == 0%>" id="pills-chatroom<%=idx%>" role="tabpanel" aria-labelledby="pills-chatroom<%=idx%>-tab">
-                        <span class="btn-primary rounded text-white m-4 mt-8"><%=link_to "Aller à la reservation", booking_path(booking)%></span>
-                        <div class="px-4 py-5 chat-box bg-white">
-
-                          <!-- Sender Message-->
-                          <% booking.messages.each do |message| %>
-                            <% if message.user == current_user %>
-                              <div class="media w-50 mb-3"><img src=<%cl_image_tag @user.photo.key %> alt="user" width="50" class="rounded-circle">
-                                <div class="media-body ml-3">
-                                  <div class="bg-light rounded py-2 px-3 mb-2">
-                                    <p class="text-small mb-0 text-muted"><%= message.content%></p>
-                                  </div>
-                                  <p class="small text-muted"><%= message.created_at.strftime("%F %H:%M")%></p>
+                <div class="tab-content" id="pills-tabContent">
+                  <% @user.bookings.each_with_index do |booking, idx|  %>
+                    <div class="tab-pane fade <%= 'show active' if idx == 0%>" id="pills-chatroom<%=idx%>" role="tabpanel" aria-labelledby="pills-chatroom<%=idx%>-tab">
+                      <div class="btn-primary rounded text-white m-4 mt-8 sticky-top">
+                        <%=link_to "Aller à la reservation", booking_path(booking)%>
+                      </div>
+                      <div class="px-4 py-5 chat-box bg-white">
+                        <!-- Sender Message-->
+                        <% booking.messages.each do |message| %>
+                          <% if message.user == current_user %>
+                            <div class="media w-50 ml-auto mb-3">
+                              <div class="media-body ml-3">
+                                <div class="bg-primary rounded py-2 px-3 mb-2">
+                                  <i class="author-message">
+                                    <span><%= message.user.first_name %> <%= message.user.last_name %></span>
+                                  </i>
+                                  <p class="text-small mb-0 text-white"><%= message.content%></p>
                                 </div>
+                                <p class="small text-muted"><%= message.created_at.strftime("%F %H:%M")%></p>
                               </div>
-                            <% else %>
-                              <!-- Reciever Message-->
-                              <div class="media w-50 ml-auto mb-3">
-                                <div class="media-body">
-                                  <div class="bg-primary rounded py-2 px-3 mb-2">
-                                    <p class="text-small mb-0 text-white"><%= message.content%></p>
-                                  </div>
-                                  <p class="small text-muted">12:00 PM | Aug 13</p>
+                            </div>
+                          <% else %>
+                            <!-- Reciever Message-->
+                            <div class="media w-50 mb-3">
+                              <%  if booking.room.studio.user.photo.attached? %>
+                                <%=cl_image_tag booking.room.studio.user.photo.key, :width => 50, :height => 50, :class => "rounded-circle", :alt => "user"%>
+                              <% else %>
+                                <img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                              <% end %>
+                              <div class="media-body">
+                                <div class="bg-light rounded py-2 px-3 mb-2">
+                                  <i class="author-message text-black">
+                                    <span><%= message.user.first_name %> <%= message.user.last_name %></span>
+                                  </i>
+                                  <p class="text-small mb-0 text-muted "><%= message.content%></p>
                                 </div>
+                                <p class="small text-muted"><%= message.created_at.strftime("%F %H:%M")%></p>
                               </div>
-                            <% end %>
+                            </div>
                           <% end %>
+                        <% end %>
+                      </div>
 
+                    <form action="#" class="bg-light">
+                      <div class="input-group">
+                        <input type="text" placeholder="Type a message <%= booking.id %>" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
+                        <div class="input-group-append">
+                          <button id="button-addon2" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
                         </div>
                       </div>
-                    <% end %>
+                    </form>
+                        <div class="add-messages">
+                          <%= simple_form_for [ booking, @message ], remote: true do |f| %>
+                            <%= f.input :content, input_html: { class: "message-input"}, label: false, placeholder: "Votre message" %>
+                          <% end %>
+                        </div>
 
-                </div>
-
-                <!-- Typing area -->
-                <form action="#" class="bg-light">
-                  <div class="input-group">
-                    <input type="text" placeholder="Type a message" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
-                    <div class="input-group-append">
-                      <button id="button-addon2" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
                     </div>
-                  </div>
-                </form>
+                  <% end %>
+                <!-- Typing area -->
 
-              </div>
-            </div>
-          </div>
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<% else %>
-<div class="dashboard-container">
-  <div class="container">
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <a class="nav-link active text-black" id="pills-resa-tab" data-toggle="pill" href="#pills-resa" role="tab" aria-controls="pills-resa" aria-selected="true">Mes Réservations</a>
-      </li>
-      <li class="nav-item " role="presentation">
-        <a class="nav-link text-black" id="pills-calendar-tab" data-toggle="pill" href="#pills-calendar" role="tab" aria-controls="pills-calendar" aria-selected="false">
-        <%= link_to "Mon Studio", studio_path(@studios.first)%></a>
-      </li>
-    </ul>
-    <div class="tab-content " id="pills-tabContent">
-      <!--   Editer mon profil -->
-      <div class="tab-pane fade show active" id="pills-resa" role="tabpanel" aria-labelledby="pills-resa-tab">
-        <div class="tabContent" id="about">
-          <div class="container text-center">
-              <div class="row pt-5">
-                  <div class="col-lg-8 mx-auto">
-                      <h1 class="display-4"><%=@studios.first.name %> - Liste des réservations</h1>
-                      <br>
-                      <h3 class="underline">Vous avez <%= @owner_bookings.count %> réservations </h3>
-                  </div>
-              </div>
-          </div>
-          <div class="container py-5">
-            <div class="row">
-              <div class="col-lg-12 mx-auto bg-white rounded shadow">
-                <!-- Fixed header table-->
-                <div class="table-responsive">
-                  <table class="table table-fixed">
-                    <thead>
-                      <tr>
-                          <th scope="col" class="col-1">#</th>
-                          <th scope="col" class="col-2">Date</th>
-                          <th scope="col" class="col-2">Heure</th>
-                          <th scope="col" class="col-2">Client</th>
-                          <th scope="col" class="col-3">Room</th>
-                          <th scope="col" class="col-2">Messages</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% i = 1 %>
-                      <% @owner_bookings.each do |booking| %>
-                        <tr>
-                          <th scope="row" class="col-1"><%= link_to i, booking_path(booking) %></th>
-                          <td class="col-2 bold"><%=  booking.date.split("-").pop(2).join("/") %></td>
-                          <td class="col-2"><%=  booking.time %></td>
-                          <td class="col-2"><%=  booking.user.first_name %></td>
-                          <td class="col-3"><%=  booking.room.name %></td>
-                          <th scope="col" class="col-2"><%= link_to booking.messages.count, booking_path(booking)%></th>
-                          <% i += 1 %>
-                        </tr>
-                      <% end %>
-                    </tbody>
-                  </table>
                 </div>
               </div>
             </div>
@@ -321,4 +341,3 @@
     </div>
   </div>
 </div>
-<% end %>

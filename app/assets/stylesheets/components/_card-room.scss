@@ -7,10 +7,6 @@
   margin-bottom: 50px;
 }
 
-.cards-rooms::after {
-  content: '';
-  flex: auto;
-}
 
 .card-room {
   border-radius: 5px;
@@ -118,7 +114,6 @@
   min-width: 200px;
   margin-right: 15px;
   height: max-content;
-
 }
 
 

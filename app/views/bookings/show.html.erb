@@ -39,16 +39,21 @@
   <h3>Détails de la réservation</h3>
   <br>
   <div class="row booking-card">
-    <div class="col-4 text-center booking-card-infos">
-      <h5>
-        <p><i class="far fa-calendar"></i>
-          <br>
-        <%= I18n.l(@booking.starts_at.to_date, :format => :long) %>
-        <br>
-        <p><i class="far fa-clock"></i>
-          <br>
-        <%= @booking.time %></p>
-      </h5>
+    <div class="col-4 text-center d-flex flex-column align-items-center booking-card-infos">
+        <div class="dflex mb-1 calendar-book-infos">
+          <h5>
+            <i class="far fa-calendar"></i>
+            <br>
+            <%= I18n.l(@booking.starts_at.to_date, :format => :long) %>
+          </h5>
+        </div>
+        <div class="d-flex">
+          <h5>
+            <p><i class="far fa-clock"></i>
+              <br>
+            <%= @booking.time %></p>
+          </h5>
+        </div>
     </div>
     <div class="col-8 book-details">
       <div class="">

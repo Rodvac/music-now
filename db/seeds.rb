@@ -26,6 +26,12 @@ Message.destroy_all
 puts "destroying all users"
 User.destroy_all
 
+puts "destroying all Jams"
+Jam.destroy_all
+
+puts "destroying all jams-user"
+JamsUser.destroy_all
+
 #DATA BASE
 
 room_pic_url = [
@@ -71,10 +77,17 @@ elisa = User.create! :email => 'elisa@gmail.com', :password => '123456', :passwo
 mathilde = User.create! :email => 'mathilde@gmail.com', :password => '123456', :password_confirmation => '123456', :first_name => 'Mathilde', :last_name => 'Causse',:nickname => 'MC'
 
 puts "create studios"
-studio_bleu = Studio.create! :name => 'Studio Bleu', :user_id  => matthieu.id,:address => '7 rue des petites ecuries, 75010 Paris', :description => 'Studio bleu: location d espaces artistiques parisiens / 5 sites / 42 studios de répétition de musique : de 120 à 20 m2 / 15 halls de danse et de théatre : de 185 m2 à 40 m2 / une équipe professionnelle à votre écoute / une centrale de réservation pour les pros / du matériel de qualité pour vos répétitions et cours'
+studio_bleu = Studio.create! :name => 'Studio Bleu', :user_id  => matthieu.id,:address => '7 rue des petites ecuries, 75010 Paris', :description => 'Studio bleu: location d espaces artistiques parisiens - 5 sites - 42 studios de répétition de musique : de 120 à 20 m2 - 15 halls de danse et de théatre : de 185 m2 à 40 m2 - une équipe professionnelle à votre écoute - une centrale de réservation pour les pros - du matériel de qualité pour vos répétitions et cours'
 hf_music = Studio.create! :name => 'HF Music Studio', :user_id  => julien.id, :address => '20-22 rue Richer, 75009 Paris', :description => 'La nouvelle référence pour vos répétitions. En plein cœur de Paris, ces studios de toute dernière génération, insonorisés, climatisés et équipés de matériel haut de gamme à votre disposition 7J/7.'
 hbs = Studio.create! :name => 'Studios HBS', :user_id  => elisa.id, :address => '25 Avenue Corentin Cariou, 75019 Paris', :description => 'HBS Écuries est l un des premiers studios de répétitions musicales à ouvrir dans le centre de Paris et voilà désormais plus de trente ans que groupes et musiciens de tous styles (Jazz, Pop, Rock, Funk, Afro, Punk...), professionnels et amateurs, se succèdent dans nos locaux toujours en expansion.'
 luna_rossa = Studio.create! :name => 'Luna Rossa', :user_id  => mathilde.id, :address => '24 rue Primo Levi, 75013 Paris', :description => 'Créé en 1985 et situé dans le 13ème, le Studio Luna Rossa est le plus grand studio de répétitions de Paris. Après 3 déménagements, le studio est depuis 2011 situé au 24 rue Primo Lévi, au cœur d un arrondissement en pleine explosion artistique et culturelle.'
+les_studios_de_la_seine = Studio.create! :name => 'Les studios de la Seine', :user_id  => mathilde.id, :address => '80 Rue Traversière, 75012 Paris', :description => 'Dans un cadre professionnel et chaleureux en plein cœur de Paris, les Studios de la Seine vous proposent des studios d’enregistrement et de mixage sur 950m².'
+cité_internationale_des_arts = Studio.create! :name => 'Cité internationale des arts', :user_id  => mathilde.id, :address => "18 Rue de l'Hôtel de ville, 75004 Paris", :description => 'La Cité internationale des arts, qui accueille en résidence à Paris plus de 300 artistes de toutes nationalités et de toutes disciplines dans des ateliers-logements, propose à la location 8 studios de répétition et un auditorium ouverts tous les jours de 10h à 20h, pour un large public autour de pratiques confirmées ou amateurs* : professionnels, associations, compagnies, entreprises, individuels, etc.'
+studio_de_la_bastille = Studio.create! :name => 'Studio de la Bastille', :user_id  => mathilde.id, :address => "8 passage Saint Sébastien, 75011 Paris", :description => "La société Plan 2 Music, spécialisée dans la production phonographique et la réalisation d'albums, a collaboré pendant des années avec divers artistes, producteurs indépendants ou multinationales. Nous comptons des participations sur des courts métrages tant au niveau musical, qu’en pure prestation."
+sparkle_studio = Studio.create! :name => 'Sparkle Studio', :user_id  => mathilde.id, :address => "76 rue de Turenne, 75003 Paris", :description => "Le studio sparkle a été concu et réalisé par David Dahan et Joseph Guigui, tout deux compositeurs-producteurs. Notre volonté est de rassembler le meilleur matériel audio des années 60-70."
+translab = Studio.create! :name => 'Translab', :user_id  => elisa.id, :address => "12-14 Boulevard de l'hopital, 75005 Paris", :description => "Translab appartient au cercle des studios haut de gamme Français dont les prestations correspondent aux meilleurs standards de qualité. Nos studios sont installés à Paris depuis 1976 dans un cadre unique datant de la révolution française. Considéré aujourd’hui comme l’un des meilleurs studios existant, de très nombreux albums de qualité y ont été enregistrés et produits par des majors ainsi que des producteurs indépendants français et internationaux."
+scopitone = Studio.create! :name => 'Scopitone', :user_id  => matthieu.id, :address => "Au cœur de Paris, le studio d’enregistrement Scopitone vous accompagne depuis 1991. 4 Studios d’enregistrements et régies conçues spécifiquement pour l’enregistrement de voix-off. Casting de comédiens professionnels : voix françaises et étrangères natives. Enregistrement, montage, mixage, musiques libres de droits ou création musicale et sound-design à votre image."
+
 
 file = URI.open('http://www.studiobleu.com/wp-content/uploads/2015/06/20181221-INDIGO-08.jpg')
 studio_bleu.photo.attach(io:file, filename: 'roompicture.png', content_type: 'image/png')
@@ -88,6 +101,23 @@ hbs.photo.attach(io:file, filename: 'roompicture.png', content_type: 'image/png'
 file = URI.open('https://www.studiolunarossa.com/wp-content/uploads/2018/02/DSC7994-1-2000x951.jpg')
 luna_rossa.photo.attach(io:file, filename: 'roompicture.png', content_type: 'image/png')
 
+file = URI.open('https://static1.laseinemusicale.com/articles/6/66/@/3569-studios-riffx-article_content-2.png')
+les_studios_de_la_seine.photo.attach(io:file, filename: 'roompicture.png', content_type: 'image/png')
+
+file = URI.open('https://www.citedesartsparis.net/media/cia/183726-maurine_tric-1002-1.jpg')
+cité_internationale_des_arts.photo.attach(io:file, filename: 'roompicture.png', content_type: 'image/png')
+
+file = URI.open('https://www.milongamusic.com/wordpress/wp-content/uploads/2019/08/Des-mousses-acoustiques-pour-Studio.jpg')
+studio_de_la_bastille.photo.attach(io:file, filename: 'roompicture.png', content_type: 'image/png')
+
+file = URI.open('https://www.montmartrerecording.com/wp-content/uploads/2015/03/cabine-studioenregistrement-paris18-son-750x450.jpg')
+sparkle_studio.photo.attach(io:file, filename: 'roompicture.png', content_type: 'image/png')
+
+file = URI.open('https://www.studiocandp.com/blog/uploads/images/image_big_14_5cb5e21c70016.jpg')
+translab.photo.attach(io:file, filename: 'roompicture.png', content_type: 'image/png')
+
+file = URI.open('https://www.occase-music.com/wp-content/uploads/2019/05/321941.jpg')
+scopitone.photo.attach(io:file, filename: 'roompicture.png', content_type: 'image/png')
 
 # puts "in france"
 # 1.times {

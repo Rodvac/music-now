@@ -57,7 +57,7 @@
 
     <h4>Jam sessions ouvertes</h4>
     <% @jams.each do |jam| %>
-    <% if jam.groupe == false && jam.jams_users[0].user != current_user %>
+    <% if jam.groupe == false && jam.jams_users[0].user != current_user && @myjams.include?(jam) == false %>
         <div class="jamcard">
             <div class="row">
             <div class="col-4">

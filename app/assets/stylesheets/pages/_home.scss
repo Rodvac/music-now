@@ -66,17 +66,18 @@ height: 120px;
 
 .etape{
   width: 30%;
-  box-shadow: 3px 3px 22px #c1c1c1;
   height: 208px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 20px;
-  border-radius: 5px;
 
   i {
     font-size: 60px;
     margin-top: 10px;
+  }
+  p {
+    color: #7D7D7D;
   }
 }
 

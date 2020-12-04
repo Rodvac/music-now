@@ -28,7 +28,7 @@
                 <% end %>
             </div>
             <div class="col-8 float-left">
-            <h5><%="#{jam.name}."%></h5>
+            <h5><%="#{jam.name}"%></h5>
             <div class="ownerjam">
             <h6><%="Créateur : #{jam.jams_users[0].user.first_name}"%></h6>
             </div>
@@ -40,16 +40,18 @@
                     <% if asset_exist?("#{j.instrument.downcase}.png") %>
                     <%= image_tag "#{j.instrument.downcase}.png", class: "jam-instrument-index" %>
                     <% else %>
-                    <%= jam_user.instrument.capitalize %>
+                    <%= j.instrument.capitalize %>
                     <% end %>
                 <% end %>
             </h6>
             </div>
-            <% if jam.description.length > 240  %>
-            <p><%="#{jam.description.first(240)}..."%></p>
+            <div class="jam-desc">
+            <% if jam.description.length > 200  %>
+            <p><%="#{jam.description.first(200)}..."%></p>
             <% else %>
             <p><%="#{jam.description}"%></p>
             <% end %>
+            </div>
                 <div class="jamcalendar">
                 <div class="row">
                 <div class="jam-date"><i class="far fa-calendar"></i><%= " #{I18n.l(jam.date.to_date, :format => :long)}" %></div>
@@ -90,19 +92,21 @@
                     <%="Inscrits: #{jam.jams_users.count}"%>
                     -
                     <% jam.jams_users.each do |j| %>
-                                        <% if asset_exist?("#{j.instrument.downcase}.png") %>
+                    <% if asset_exist?("#{j.instrument.downcase}.png") %>
                     <%= image_tag "#{j.instrument.downcase}.png", class: "jam-instrument-index" %>
                     <% else %>
-                    <%= jam_user.instrument.capitalize %>
+                    <%= j.instrument.capitalize %>
                     <% end %>
                     <% end %>
                 </h6>
                 </div>
-                <% if jam.description.length > 240  %>
-                <p><%="#{jam.description.first(240)}..."%></p>
+                <div class="jam-desc">
+                <% if jam.description.length > 200  %>
+                <p><%="#{jam.description.first(200)}..."%></p>
                 <% else %>
                 <p><%="#{jam.description}"%></p>
                 <% end %>
+                </div>
                 <div class="jamcalendar">
                 <div class="row">
                 <div class="jam-date"><i class="far fa-calendar"></i><%= " #{I18n.l(jam.date.to_date, :format => :long)}" %></div>

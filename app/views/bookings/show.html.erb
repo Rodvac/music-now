@@ -33,6 +33,20 @@
       </div>
     </div>
     <br>
+    <% if Jam.where(booking_id: @booking.id).count == 1 %>
+    <h3>Vos musiciens</h3>
+    <% Jam.where(booking_id: @booking.id)[0].jams_users.each do |j| %>
+  
+    <%= "#{j.user.first_name} #{j.user.last_name}" %>
+      <% if asset_exist?("#{j.instrument.downcase}.png") %>
+            <%= image_tag "#{j.instrument.downcase}.png", class: "jam-instrument-list" %><br>
+      <% else %>
+            <%= jam_user.instrument.capitalize %>
+            <br>
+      <% end %>
+  
+    <% end %>
+    <% end %>
   </div>
 
 <div class="col-6">

@@ -97,7 +97,7 @@
         <% end %>
       </div>
         <% if @jams_users[0].user == current_user && jam_user.user != current_user %>
-        <%= link_to "Enlever", jams_user_path(jam_user), method: :delete %>
+        <%= link_to "Refuser", jams_user_path(jam_user), method: :delete %>
         <% end %>
     </div>
   <% end %>

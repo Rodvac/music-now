@@ -12,7 +12,12 @@ class MessagesController < ApplicationController
           user_id: current_user.id
         }
       )
-      redirect_to booking_path(@booking, anchor: "message-#{@message.id}")
+      if request.referer.include?("/bookings/")
+        redirect_to booking_path(@booking, anchor: "message-#{@message.id}")
+      else
+        redirect_to user_path(current_user, anchor: "message-#{@message.id}")
+      end
+
     else
       render "bookings/show"
     end

@@ -180,6 +180,19 @@ width: 100%;
 * ==========================================
 *
 */
+
+
+
+.btn-chat-render{
+  width: 100px;
+  color: white !important;
+  background-color: $light-green;
+}
+
+.btn-chat-render a{
+  text-decoration: none;
+}
+
 .list-group-item.active {
   border-color: transparent;
   background-color: $light-green;
@@ -223,7 +236,7 @@ width: 100%;
 
 .messages-box,
 .chat-box {
-  height: 510px;
+  height: 560px;
   overflow-y: scroll;
 }
 

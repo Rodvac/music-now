@@ -101,15 +101,18 @@
                       <% @user.bookings.reverse.each do |booking| %>
                         <% if  Time.now.strftime("%Y-%m-%d").to_date <= booking.date.to_date %>
                           <a href="/bookings/<%=booking.id%>">
-                            <div class=" text-center booking-card-dash text-black m-2 ">
-                              <h5>
-                                <p><i class="far fa-calendar "></i>
+                            <div class="booking-card-dash">
+                              <p class="text-booking-card-dash">
+                                <p><strong><%= booking.room.studio.name %></strong></p>
+                                <span><i class="far fa-calendar "></i>
                                 <% date = booking.date.split('-') %>
-                                  <%= date[2] %>-<%= date[1] %>-<%= date[0] %></p>
-                                <br>
-                                <p class="text-decoration-none"><i class="far fa-clock"></i>
-                                <%= booking.time %></p>
-                              </h5>
+                                  <%= date[2] %>-<%= date[1] %>-<%= date[0] %></span>
+                                  <br>
+                                <span><i class="far fa-clock"></i>
+                                <%= booking.time %></span>
+
+
+                              </p>
                             </div>
                           </a>
                         <% end %>
@@ -126,15 +129,15 @@
                       <% @user.bookings.reverse.each do |booking| %>
                         <% if  Time.now.strftime("%Y-%m-%d").to_date > booking.date.to_date %>
                           <a href="/bookings/<%=booking.id%>">
-                            <div class=" text-center booking-card-dash past-event text-black m-2">
-                              <h5>
-                                <p><i class="far fa-calendar"></i>
+                            <div class="booking-card-dash past-event">
+                              <p class="text-booking-card-dash">
+                                <p><strong><%= booking.room.studio.name %></strong></p>
+                                <span><i class="far fa-calendar"></i>
                                 <% date = booking.date.split('-') %>
-                                  <%= date[2] %>-<%= date[1] %>-<%= date[0] %></p>
+                                  <%= date[2] %>-<%= date[1] %>-<%= date[0] %></span>
                                 <br>
-                                <p><i class="far fa-clock"></i>
-                                <%= booking.time %></p>
-                                <span>Laisser un avis</span>
+                                <span><i class="far fa-clock"></i>
+                                <%= booking.time %></p></span>
                               </h5>
                             </div>
                           </a>

@@ -60,8 +60,9 @@
             <%end%>
           </div>
       <h4>Heure <i class="far fa-clock"></i></h4>
-
       <h5><%=@jam.time %></h5>
+      <br>
+      <%= link_to "Supprimer cette jam", jam_path(@jam), method: :delete %>
       </div>
     </div>
       </div>
@@ -236,7 +237,7 @@
     <div class="col-6">
     <strong> <%= jams_user.user.first_name %></strong>
     <h6>A payer:</h6>
-    <%= "#{(@jam.room.price.to_f / @jams_users.count).to_f} €" %>
+    <%= "#{(@jam.room.price.to_f / @jams_users.count).to_f.round(2)} €" %>
     </div>
     <div class="col-6">
       <% if jams_user.user == current_user && jams_user.paid == false %>

@@ -108,6 +108,12 @@ class JamsController < ApplicationController
 
     end 
 
+    def destroy
+        @jam = Jam.find(params[:id])
+        @jam.destroy
+        redirect_to jams_path
+      end 
+
     private 
 
     def jam_params

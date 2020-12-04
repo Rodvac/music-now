@@ -55,6 +55,12 @@ class BookingsController < ApplicationController
     @message = Message.new
   end
 
+  def destroy
+    @jam = Jam.find(params[:id])
+    @jam.destroy
+    redirect_to jams_path
+  end 
+
   private
 
   def booking_params

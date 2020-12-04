@@ -1,5 +1,5 @@
 <br>
-<h3>Créez votre jam session et rencontrez des musiciens!</h3>
+<h3>Créez votre jam session et rencontrez des musiciens !</h3>
 <br>
 
 <div class="row">
@@ -53,11 +53,11 @@
     <% end %>
   <%end%>
   </div>
-  
+
   <div class="col-4">
   <h4>Votre jam session</h4>
   <%= simple_form_for [ @jam ] do |f| %>
-  <%= f.input :name, as: :string, label: "Nom du jam" %>
+  <%= f.input :name, as: :string, label: "Nom de la jam" %>
   <%= f.input :description, as: :text, label: "Qu'est ce que vous voulez jouer ?" %>
   <%= f.input :date, as: :string, input_html: { value: params[:format] }, as: :hidden %>
   <%= f.input :time, as: :string, as: :hidden%>

@@ -103,7 +103,7 @@
     padding: 50px; 
     text-align: center;
     border-radius: 5px; 
-    min-height: 555px;
+    min-height: 528px;
 }
 
 .card-room-jam {
@@ -245,4 +245,12 @@
 
 .countjam h6 {
     font-size: 14px;
+}
+
+.jam-instrument-list {
+    width: 30px; 
+    height: 30px; 
+    filter: sepia(13%) saturate(0%) contrast(200%);
+    position: relative;
+    margin-bottom: 15px;
 }

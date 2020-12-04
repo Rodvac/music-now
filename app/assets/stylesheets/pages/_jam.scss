@@ -198,7 +198,7 @@
     height: 180px; 
 }
 
-.jamcard img {
+.jam-hero-img {
     width: 100%;
     height: 150px;
 }
@@ -253,4 +253,13 @@
     filter: sepia(13%) saturate(0%) contrast(200%);
     position: relative;
     margin-bottom: 15px;
+}
+
+
+.jam-instrument-index {
+    width: 20px; 
+    height: 20px; 
+    filter: sepia(13%) saturate(0%) contrast(200%);
+    position: relative;
+    margin-bottom: 5px;
 }

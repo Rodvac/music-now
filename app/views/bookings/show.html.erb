@@ -33,6 +33,7 @@
       </div>
     </div>
     <br>
+
   </div>
 
 <div class="col-6">
@@ -71,6 +72,42 @@
   <br>
 <!--   <div class="row mr-2 ml-2">
     <div class="col-12"> -->
+
+        <% if Jam.where(booking_id: @booking.id).count == 1 %>
+        <div class="jam-users-book">
+<h3>Musiciens</h3>
+<div class="d-flex justify-content-start">
+    <% Jam.where(booking_id: @booking.id)[0].jams_users.each do |jam_user| %>
+  
+      <div class="jam-user">
+      <div class="jam-user-photo">
+      <% if jam_user.user.photo.attached? %>
+          <%= cl_image_tag jam_user.user.photo.key, class: "card-jam-photo-small" %>
+          <% else %>
+          <%= image_tag "https://media.vogue.fr/photos/5c2f43509662b10dc0b3ffc5/master/pass/sub_david_bowie_8714.jpeg", class: "card-jam-photo-small" %>
+          <% end %>
+      </div>
+      <div class="jam-user-name">
+        <strong>
+          <%= jam_user.user.first_name %>
+          <%= jam_user.user.last_name %>
+        </strong>
+      </div>
+      <div class="jam-user-instrument">
+
+        <% if asset_exist?("#{jam_user.instrument.downcase}.png") %>
+          <%= image_tag "#{jam_user.instrument.downcase}.png", class: "jam-instrument-img" %>
+        <% else %>
+          <%= jam_user.instrument.capitalize %>
+        <% end %>
+      </div>
+    </div>
+  
+    <% end %>
+    <% end %>
+      </div>
+</div>
+
       <div class="your-review">
         <% if @booking.user == current_user %>
           <% if Date.today <= @booking.date.to_date %>

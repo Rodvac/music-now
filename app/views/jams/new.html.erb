@@ -55,7 +55,7 @@
   </div>
   
   <div class="col-4">
-  <h4>Votre jamsession</h4>
+  <h4>Votre jam session</h4>
   <%= simple_form_for [ @jam ] do |f| %>
   <%= f.input :name, as: :string, label: "Nom du jam" %>
   <%= f.input :description, as: :text, label: "Qu'est ce que vous voulez jouer ?" %>
@@ -65,7 +65,7 @@
   <%= simple_fields_for :other do |o| %>
     <%= o.input :instrument, as: :string, label: 'Quel instrument jouez vous ?' %>
   <% end %>
-  <%= f.submit "Creer session", class: 'btn btn-primary book-btn' %>
+  <%= f.submit "Créer ma session", class: 'btn btn-primary book-btn' %>
   <% end %>
   </div>
   </div>

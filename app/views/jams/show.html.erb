@@ -97,7 +97,7 @@
         <% end %>
       </div>
         <% if @jams_users[0].user == current_user && jam_user.user != current_user %>
-        <%= link_to "Enlever", jams_user_path(jam_user), method: :delete %>
+        <%= link_to "Refuser", jams_user_path(jam_user), method: :delete %>
         <% end %>
     </div>
   <% end %>
@@ -165,9 +165,9 @@
             <% end %>
             <div class="card-room-gears d-flex mt-2">
               <div class="d-flex">
-                <i class="fas fa-search"></i>
+                Matériel
                 <a class="ml-2" data-toggle="collapse" href="#collapseExample-<%=room.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
-                  Matériel
+                  <i class="fas fa-plus"></i>
                 </a>
               </div>
             </div>
@@ -228,7 +228,7 @@
 
 <% if @jam.groupe == true && @jam.room_id != nil %>
 <div class="col-6">
-<div class="jam-rooms">
+<div class="jam-rooms-add">
 <h4>Partagez l'addition!</h4>
 <br>
   <% @jams_users.each do |jams_user| %>

@@ -7,7 +7,7 @@
     <%= image_tag "https://blog.reverbnation.com/wp-content/uploads/2017/12/why-your-band-needs-to-practice-1500px.jpg", class: "jamimg" %>
     <br>
     <br>
-    <h4>Trouver des jamsession</h4>
+    <h4>Trouver des jam sessions</h4>
     <h6>Vous cherchez des musiciens avec qui jouer? Trouvez ici des jam sessions ouvertes, inscrivez-vous, ou alors créez la votre!</h6>
     <br>
     <%= link_to "Créer ma jam", new_jam_path(Date.today), class:"btn btn-primary" %>
@@ -22,9 +22,9 @@
             <div class="row">
             <div class="col-4">
                 <% if jam.photo.attached? %>
-                <%= cl_image_tag jam.photo.key %>
+                <%= cl_image_tag jam.photo.key, class: "jam-hero-img" %>
                 <% else %>
-                <%= image_tag "https://blog.reverbnation.com/wp-content/uploads/2017/12/why-your-band-needs-to-practice-1500px.jpg" %>
+                <%= image_tag "https://blog.reverbnation.com/wp-content/uploads/2017/12/why-your-band-needs-to-practice-1500px.jpg", class: "jam-hero-img" %>
                 <% end %>
             </div>
             <div class="col-8 float-left">
@@ -37,15 +37,21 @@
                 <%="Inscrits: #{jam.jams_users.count}"%>
                 -
                 <% jam.jams_users.each do |j| %>
-                <%= j.instrument.downcase.strip %> 
+                    <% if asset_exist?("#{j.instrument.downcase}.png") %>
+                    <%= image_tag "#{j.instrument.downcase}.png", class: "jam-instrument-index" %>
+                    <% else %>
+                    <%= j.instrument.capitalize %>
+                    <% end %>
                 <% end %>
             </h6>
             </div>
-            <% if jam.description.length > 240  %>
-            <p><%="#{jam.description.first(240)}..."%></p>
+            <div class="jam-desc">
+            <% if jam.description.length > 200  %>
+            <p><%="#{jam.description.first(200)}..."%></p>
             <% else %>
             <p><%="#{jam.description}"%></p>
             <% end %>
+            </div>
                 <div class="jamcalendar">
                 <div class="row">
                 <div class="jam-date"><i class="far fa-calendar"></i><%= " #{I18n.l(jam.date.to_date, :format => :long)}" %></div>
@@ -59,7 +65,7 @@
     <% end %>
 
     <% if @myjams.length == 0 %>
-    <div class="nojam">Vous n'avez pas encore de jam!
+    <div class="nojam">Vous n'avez pas encore de session!
     </div>
     <br>
     <% end %>
@@ -71,9 +77,9 @@
             <div class="row">
                 <div class="col-4">
                     <% if jam.photo.attached? %>
-                    <%= cl_image_tag jam.photo.key %>
+                    <%= cl_image_tag jam.photo.key, class: "jam-hero-img" %>
                     <% else %>
-                    <%= image_tag "https://blog.reverbnation.com/wp-content/uploads/2017/12/why-your-band-needs-to-practice-1500px.jpg" %>
+                    <%= image_tag "https://blog.reverbnation.com/wp-content/uploads/2017/12/why-your-band-needs-to-practice-1500px.jpg", class: "jam-hero-img" %>
                     <% end %>
                 </div>
             <div class="col-8 float-left">
@@ -86,15 +92,21 @@
                     <%="Inscrits: #{jam.jams_users.count}"%>
                     -
                     <% jam.jams_users.each do |j| %>
-                    <%= j.instrument.downcase.strip %> 
+                    <% if asset_exist?("#{j.instrument.downcase}.png") %>
+                    <%= image_tag "#{j.instrument.downcase}.png", class: "jam-instrument-index" %>
+                    <% else %>
+                    <%= j.instrument.capitalize %>
+                    <% end %>
                     <% end %>
                 </h6>
                 </div>
-                <% if jam.description.length > 240  %>
-                <p><%="#{jam.description.first(240)}..."%></p>
+                <div class="jam-desc">
+                <% if jam.description.length > 200  %>
+                <p><%="#{jam.description.first(200)}..."%></p>
                 <% else %>
                 <p><%="#{jam.description}"%></p>
                 <% end %>
+                </div>
                 <div class="jamcalendar">
                 <div class="row">
                 <div class="jam-date"><i class="far fa-calendar"></i><%= " #{I18n.l(jam.date.to_date, :format => :long)}" %></div>

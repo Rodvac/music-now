@@ -7,7 +7,7 @@
     <%= image_tag "https://blog.reverbnation.com/wp-content/uploads/2017/12/why-your-band-needs-to-practice-1500px.jpg", class: "jamimg" %>
     <br>
     <br>
-    <h4>Trouver des jamsession</h4>
+    <h4>Trouver des jam sessions</h4>
     <h6>Vous cherchez des musiciens avec qui jouer? Trouvez ici des jam sessions ouvertes, inscrivez-vous, ou alors créez la votre!</h6>
     <br>
     <%= link_to "Créer ma jam", new_jam_path(Date.today), class:"btn btn-primary" %>
@@ -59,7 +59,7 @@
     <% end %>
 
     <% if @myjams.length == 0 %>
-    <div class="nojam">Vous n'avez pas encore de jam!
+    <div class="nojam">Vous n'avez pas encore de session!
     </div>
     <br>
     <% end %>

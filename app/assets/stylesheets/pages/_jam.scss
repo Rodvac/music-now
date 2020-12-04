@@ -94,6 +94,18 @@
     border-radius: 5px; 
 }
 
+.jam-rooms-add {
+    background: $light-gray;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    width: 100%;
+    position: relative;
+    margin-bottom: 30px;
+    padding: 50px; 
+    text-align: center;
+    border-radius: 5px; 
+    min-height: 555px;
+}
+
 .card-room-jam {
     background: $light-gray;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);

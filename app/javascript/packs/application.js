@@ -44,6 +44,26 @@ ScrollReveal().reveal('.card15', {delay: 350});
 ScrollReveal().reveal('.card16', {delay: 450});
 ScrollReveal().reveal('.card17', {delay: 550});
 ScrollReveal().reveal('.card18', {delay: 350});
+ScrollReveal().reveal('.card19', {delay: 450});
+ScrollReveal().reveal('.card20', {delay: 550});
+ScrollReveal().reveal('.card21', {delay: 350});
+ScrollReveal().reveal('.card22', {delay: 450});
+ScrollReveal().reveal('.card23', {delay: 550});
+ScrollReveal().reveal('.card24', {delay: 350});
+ScrollReveal().reveal('.card25', {delay: 450});
+ScrollReveal().reveal('.card26', {delay: 550});
+ScrollReveal().reveal('.card27', {delay: 350});
+ScrollReveal().reveal('.card28', {delay: 450});
+ScrollReveal().reveal('.card29', {delay: 550});
+ScrollReveal().reveal('.card30', {delay: 350});
+ScrollReveal().reveal('.card31', {delay: 450});
+ScrollReveal().reveal('.card32', {delay: 550});
+ScrollReveal().reveal('.card33', {delay: 350});
+ScrollReveal().reveal('.card34', {delay: 450});
+ScrollReveal().reveal('.card35', {delay: 550});
+ScrollReveal().reveal('.card36', {delay: 350});
+ScrollReveal().reveal('.card37', {delay: 450});
+ScrollReveal().reveal('.card38', {delay: 550});
 
 document.addEventListener('turbolinks:load', () => {
   initGeoloc();

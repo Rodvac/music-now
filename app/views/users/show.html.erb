@@ -2,10 +2,7 @@
 <!-- bar nav -->
   <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
     <li class="nav-item underlineHoverBlack" role="presentation">
-      <a class="nav-link active text-black  " id="pills-resa-tab" data-toggle="pill" href="#pills-resa" role="tab" aria-controls="pills-resa" aria-selected="true"> <%= current_user.bookings.count %> Réservations</a>
-    </li>
-    <li class="nav-item underlineHoverBlack" role="presentation">
-      <a class="nav-link text-black " id="pills-calendar-tab" data-toggle="pill" href="#pills-calendar" role="tab" aria-controls="pills-calendar" aria-selected="false">Mon Calendrier</a>
+      <a class="nav-link text-black " id="pills-calendar-tab" data-toggle="pill" href="#pills-calendar" role="tab" aria-controls="pills-calendar" aria-selected="true">Mon Calendrier</a>
     </li>
     <li class="nav-item underlineHoverBlack" role="presentation">
       <a class="nav-link text-black" id="pills-profil-tab" data-toggle="pill" href="#pills-profil" role="tab" aria-controls="pills-profil" aria-selected="false">Éditer mon Profil</a>
@@ -85,72 +82,9 @@
       </div>
     </div>
     <% end %>
-<!--   Mes Reservation -->
-    <% if current_user.studio.nil? %>
-      <div class="tab-pane fade show active" id="pills-resa" role="tabpanel" aria-labelledby="pills-resa-tab">
-        <div class="tabContent" id="about">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-12 mx-auto  rounded ">
 
-    <!-- Card Booking-->
-                <div class="cards-rooms ">
-                  <h4 class="font-thin m-4"><%= @bookings.select { |booking|  booking.starts_at >= Time.now.strftime("%Y-%m-%d").to_date}.count %> Réservations à venir</h4>
-                  <div class="container futur d-flex flex-wrap ">
-                    <div class="d-flex justify-content-between flex-wrap w-75">
-                      <% @user.bookings.reverse.each do |booking| %>
-                        <% if  Time.now.strftime("%Y-%m-%d").to_date <= booking.date.to_date %>
-                          <a href="/bookings/<%=booking.id%>">
-                            <div class=" text-center booking-card-dash text-black m-2 ">
-                              <h5>
-                                <p><i class="far fa-calendar "></i>
-                                <% date = booking.date.split('-') %>
-                                  <%= date[2] %>-<%= date[1] %>-<%= date[0] %></p>
-                                <br>
-                                <p class="text-decoration-none"><i class="far fa-clock"></i>
-                                <%= booking.time %></p>
-                              </h5>
-                            </div>
-                          </a>
-                        <% end %>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-
-    <!-- past event  -->
-                <div class="cards-rooms">
-                  <h4 class="font-thin m-4"><%= @bookings.select { |booking|  booking.starts_at < Time.now.strftime("%Y-%m-%d").to_date}.count %> Réservations Passées</h4>
-                  <div class="container past d-flex">
-                    <div class="d-flex justify-content-between flex-wrap">
-                      <% @user.bookings.reverse.each do |booking| %>
-                        <% if  Time.now.strftime("%Y-%m-%d").to_date > booking.date.to_date %>
-                          <a href="/bookings/<%=booking.id%>">
-                            <div class=" text-center booking-card-dash past-event text-black m-2">
-                              <h5>
-                                <p><i class="far fa-calendar"></i>
-                                <% date = booking.date.split('-') %>
-                                  <%= date[2] %>-<%= date[1] %>-<%= date[0] %></p>
-                                <br>
-                                <p><i class="far fa-clock"></i>
-                                <%= booking.time %></p>
-                                <span>Laisser un avis</span>
-                              </h5>
-                            </div>
-                          </a>
-                        <% end %>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
 <!--   Mon Calendrier -->
-    <div class="tab-pane fade" id="pills-calendar" role="tabpanel" aria-labelledby="pills-calendar-tab">
+    <div class="tab-pane fade show active" id="pills-calendar" role="tabpanel" aria-labelledby="pills-calendar-tab">
       <div class="calendar_show">
         <div class="calendar_container">
           <%= month_calendar studio: @bookings do |date, bookings| %>

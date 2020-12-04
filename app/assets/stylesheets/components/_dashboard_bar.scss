@@ -96,10 +96,11 @@
   color: black;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   margin-bottom: 9px;
-  padding: 16px 0px 16px 0px;
+  padding: 8px 15px 8px 15px;
   height: 150px;
   margin-left: 0px;
   border-radius: 5px;
+  text-align: center;
 }
 
 .past-event {
@@ -112,7 +113,6 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   height: 100px;
 }
-
 
 .booking-card-infos-dash {
   width: 3fr;
@@ -129,6 +129,9 @@
 width: 100%;
 }
 
+.text-booking-card-dash {
+  line-height: 0;
+}
 
 
 /*

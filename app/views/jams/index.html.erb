@@ -75,9 +75,9 @@
             <div class="row">
                 <div class="col-4">
                     <% if jam.photo.attached? %>
-                    <%= cl_image_tag jam.photo.key %>
+                    <%= cl_image_tag jam.photo.key, class: "jam-hero-img" %>
                     <% else %>
-                    <%= image_tag "https://blog.reverbnation.com/wp-content/uploads/2017/12/why-your-band-needs-to-practice-1500px.jpg" %>
+                    <%= image_tag "https://blog.reverbnation.com/wp-content/uploads/2017/12/why-your-band-needs-to-practice-1500px.jpg", class: "jam-hero-img" %>
                     <% end %>
                 </div>
             <div class="col-8 float-left">
@@ -90,7 +90,11 @@
                     <%="Inscrits: #{jam.jams_users.count}"%>
                     -
                     <% jam.jams_users.each do |j| %>
-                    <%= j.instrument.downcase.strip %> 
+                                        <% if asset_exist?("#{j.instrument.downcase}.png") %>
+                    <%= image_tag "#{j.instrument.downcase}.png", class: "jam-instrument-index" %>
+                    <% else %>
+                    <%= jam_user.instrument.capitalize %>
+                    <% end %>
                     <% end %>
                 </h6>
                 </div>

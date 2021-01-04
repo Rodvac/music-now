@@ -1,6 +1,8 @@
 require 'date'
 
 class BookingsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:new, :show, :index]
+
   def new
     @room = Room.find(params[:room_id])
     @booking = Booking.new
@@ -59,7 +61,7 @@ class BookingsController < ApplicationController
     @jam = Jam.find(params[:id])
     @jam.destroy
     redirect_to jams_path
-  end 
+  end
 
   private
 

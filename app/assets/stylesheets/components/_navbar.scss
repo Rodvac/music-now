@@ -26,6 +26,10 @@
   font-size: 40px;
   line-height: 41px;
   letter-spacing: 0.01em;
+  transition: all 1s ease-out;
+    &:hover{
+    color: #315044;
+  }
 }
 
 .nav-link {

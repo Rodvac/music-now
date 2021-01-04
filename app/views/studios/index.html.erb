@@ -31,7 +31,7 @@
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
       data-current-position="<%= @current_position.to_json %>"
-      data-current-user="<%=current_user.first_name.chars.first.upcase%><%=current_user.last_name.chars.first.upcase%>">
+      data-current-user="<%=current_user != nil  ?  "#{current_user.first_name.first + current_user.last_name.first}" : "you" %>">
     </div>
     <div class="radius-graduation">
       <div id="graduation">

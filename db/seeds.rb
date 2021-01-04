@@ -43,7 +43,6 @@ room_pic_url = [
 "https://www.morteau.org/wp-content/uploads/2019/09/DSCN8239-1024x768.jpg",
 "https://studiotchaman.fr/wp-content/uploads/2017/09/grand-studio-de-repetition-aubagne.jpg",
 "https://www.lusineamusique.fr/wp-content/uploads/2018/06/img4019-800x500.png",
-"https://media-cdn.tripadvisor.com/media/photo-s/0e/2f/86/86/un-de-nos-local-de-repetition.jpg",
 "https://sallediffart.com/wp-content/uploads/2018/08/studiobleu.jpg",
 "https://lesmusicales.fr/wp-content/uploads/2019/04/sono.jpeg",
 "https://www.studiocandp.com/blog/uploads/images/image_big_14_5cb5e21c70016.jpg",

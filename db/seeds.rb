@@ -68,7 +68,7 @@ key_word_style = %w(éléctrique acoustique amplifié)
 
 puts "create user"
 antoine = User.create! :email => 'antoine@gmail.com', :password => '123456', :password_confirmation => '123456', :first_name => 'Antoine', :last_name => 'Goeuriot', :nickname => 'AG'
-tanguy = User.create! :email => 'tanguy@gmail.com', :password => '123456', :password_confirmation => '123456', :first_name => 'Tanguy', :last_name => 'Clarence', :nickname => 'TC'
+tanguy = User.create! :email => 'tanguy@gmail.com', :password => '123456', :password_confirmation => '123456', :first_name => 'Tanguy', :last_name => 'Clarence', :nickname => 'TC', admin: true
 delphine = User.create! :email => 'delphine@gmail.com', :password => '123456', :password_confirmation => '123456', :first_name => 'Delphine', :last_name => 'Habert',:nickname => 'DH'
 rodolphe = User.create! :email => 'rodolphe@gmail.com', :password => '123456', :password_confirmation => '123456', :first_name => 'Rodolphe', :last_name => 'Vacher',:nickname => 'RV'
 matthieu = User.create! :email => 'matthieu@gmail.com', :password => '123456', :password_confirmation => '123456', :first_name => 'Matthieu', :last_name => 'Durand',:nickname => 'MD'
